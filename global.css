@@ -3,3 +3,30 @@ body {
   color: #eee;
   font-family: Roboto;
 }
+
+button {
+  background-color: #303030;
+  color: #eee;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  transition: 0.2s;
+}
+button:hover {
+  background-color: #404040;
+}
+
+input {
+  background-color: #303030;
+  color: #eee;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
