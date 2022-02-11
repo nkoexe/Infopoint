@@ -6,7 +6,11 @@
     <title>Infopoint | Biblioteca</title>
   </head>
   <body>
-    <button onclick="location.href='/biblioteca.html'">Indietro</button>
-    <button>Conferma</button>
+    <form method="post">
+      <label for="titolo"> Titolo libro: </label>
+      <input type="text" id="titolo" name="titolo" /> <br />
+      <button onclick="location.href='/biblioteca.html'">Indietro</button>
+      <input type="submit" value="Conferma" />
+    </form>
   </body>
 </html>
