@@ -1,0 +1,16 @@
+{
+    "notizie": {
+        "id1": {
+            "title": "test",
+            "descr": "aaaaaaa",
+            "imgpath": "/path/to/img.png"
+        },
+        "id2": {
+            "title": "test2",
+            "descr": "aaaaaaa",
+            "imgpath": "/path/to/img.png"
+        }
+    },
+
+    "active": "id1"
+}

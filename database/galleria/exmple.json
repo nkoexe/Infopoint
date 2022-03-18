@@ -1,0 +1,20 @@
+[
+    {
+        "text": "test",
+        "type": "img",
+        "path": "/path/to/img.png",
+        "active": true
+    },
+    {
+        "text": "test2",
+        "type": "video",
+        "path": "/path/to/video.png",
+        "active": false
+    },
+    {
+        "text": "test3",
+        "type": "youtube",
+        "video_id": "dQw4w9WgXcQ",
+        "active": true
+    }
+]

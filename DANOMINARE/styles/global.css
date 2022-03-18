@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
 body {
   background-color: #1b1b1b;
   color: #eee;
-  font-family: Roboto;
+  font-family: "Poppins", sans-serif;
 }
 
 button {
@@ -10,6 +12,7 @@ button {
   font-size: 15px;
   border: none;
   border-radius: 5px;
+  margin: 5px;
   padding: 5px;
   padding-left: 15px;
   padding-right: 15px;

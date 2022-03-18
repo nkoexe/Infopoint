@@ -2,11 +2,15 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="global.css" />
+    <link rel="stylesheet" href="/styles/global.css" />
     <title>Infopoint | Galleria</title>
   </head>
   <body>
-    <button>Aggiungi foto/video</button>
+    <h1>Modifica Galleria</h1>
+    <form method="post">
+      <label for="copertina"> Aggiungi foto/video: </label>
+      <input type="file" id="input_galleria" name="galleria" accept="image/*" />
+    </form>
     <button onclick="location.href='/config.html'">Indietro</button>
     <button onclick="location.href='/preview.html'">Conferma</button>
   </body>
