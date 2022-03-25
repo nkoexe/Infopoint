@@ -1,10 +1,11 @@
-[
-    {
+{
+    "id1": {
         "text": "test",
         "active": true
     },
-    {
+
+    "id2":{
         "text": "test2",
-        "active": true
+        "active": false
     }
-]
+}

@@ -3,8 +3,7 @@
         "id1": {
             "title": "test",
             "descr": "aaaaaaa",
-            "imgpath": "/path/to/img.png",
-            "isbn": "aaaaaaa"
+            "imgpath": "/path/to/img.png"
         },
         "id2": {
             "title": "test2",

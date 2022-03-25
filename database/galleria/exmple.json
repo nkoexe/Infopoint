@@ -14,7 +14,7 @@
     {
         "text": "test3",
         "type": "youtube",
-        "video_id": "dQw4w9WgXcQ",
+        "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         "active": true
     }
 ]
