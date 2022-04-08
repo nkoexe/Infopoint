@@ -2,13 +2,13 @@
     {
         "text": "test",
         "type": "img",
-        "path": "/path/to/img.png",
+        "path": "/data/2022-10/img.png",
         "active": true
     },
     {
         "text": "test2",
         "type": "video",
-        "path": "/path/to/video.png",
+        "path": "/path/to/video.mp4",
         "active": false
     },
     {

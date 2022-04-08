@@ -2,11 +2,11 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/global.css') }}">
     <title>Infopoint | Impostazioni</title>
   </head>
   <body>
-    <button onclick="location.href='/config.html'">Indietro</button>
+    <button onclick="location.href='/'">Indietro</button>
     <button>Formato data</button>
     <button>Formato ora</button>
     <button>Seleziona logo</button>

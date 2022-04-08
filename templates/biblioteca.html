@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="/styles/global.css" />
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/global.css') }}">
     <title>Infopoint | Biblioteca</title>
   </head>
   <body>
@@ -19,7 +19,7 @@
       <label for="titolo"> Inserisci descrizione libro: </label>
       <input type="text" id="input_descrizione" name="descrizione" />
     </form>
-    <button onclick="location.href='/config.html'">Indietro</button>
-    <button onclick="location.href='/preview.html'">Conferma</button>
+    <button onclick="location.href='/'">Indietro</button>
+    <button onclick="location.href='/preview'">Conferma</button>
   </body>
 </html>

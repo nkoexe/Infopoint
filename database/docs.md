@@ -5,7 +5,9 @@ Gruppo di cartelle in cui vengono salvati tutti i dati del sistema.
 Domande:
 
 - serve un file di configurazione generale per impostazioni varie?
++ Risposta: yeah, ad esempio per i nomi delle cartelle o roba del genere
 - com'è meglio organizzare il json della biblioteca? pro-contro
++ Risolto 
 
 ## Struttura del database
 

@@ -1,5 +1,5 @@
 {
-    "notizie": {
+    "books": {
         "id1": {
             "title": "test",
             "descr": "aaaaaaa",
@@ -7,8 +7,8 @@
         },
         "id2": {
             "title": "test2",
-            "descr": "aaaaaaa",
-            "imgpath": "/path/to/img.png"
+            "descr": "aaaaaaaa",
+            "imgpath": "/path/to/img2.png"
         }
     },
 
