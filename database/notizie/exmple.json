@@ -1,10 +1,10 @@
 {
-    "id1": {
+    "1": {
         "text": "test",
         "active": true
     },
 
-    "id2":{
+    "2":{
         "text": "test2",
         "active": false
     }

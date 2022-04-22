@@ -1,11 +1,11 @@
 {
     "books": {
-        "id1": {
+        "1": {
             "title": "test",
             "descr": "aaaaaaa",
             "imgpath": "/path/to/img.png"
         },
-        "id2": {
+        "2": {
             "title": "test2",
             "descr": "aaaaaaaa",
             "imgpath": "/path/to/img2.png"

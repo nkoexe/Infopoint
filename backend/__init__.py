@@ -1,6 +1,11 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_login import LoginManager
 
 app = Flask(__name__)
+app.secret_key = b'0ee6f27b79730fb025949c4d792f084adadcf4796bfdeb980c6ec1abf1fd7a70'
+
+login_manager = LoginManager()
+login_manager.init_app(app)
 
 
 @app.route('/')
@@ -36,7 +41,7 @@ def notizie():
     elif request.method == 'POST':
         notizia = request.form['notizia']
         print(notizia)
-        return redirect('/')
+        return redirect('/notizie')
 
 
 if __name__ == '__main__':
