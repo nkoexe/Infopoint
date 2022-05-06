@@ -1,20 +1,20 @@
-[
-    {
+{
+    "1":  {
         "text": "test",
-        "type": "img",
+        "type": "image",
         "path": "/data/2022-10/img.png",
         "active": true
     },
-    {
+    "2": {
         "text": "test2",
         "type": "video",
         "path": "/path/to/video.mp4",
         "active": false
     },
-    {
+    "3": {
         "text": "test3",
         "type": "youtube",
-        "link": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "path": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
         "active": true
     }
-]
+}

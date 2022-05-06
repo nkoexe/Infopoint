@@ -6,7 +6,10 @@ Domande:
 
 - serve un file di configurazione generale per impostazioni varie?
 + Risposta: yeah, ad esempio per i nomi delle cartelle o roba del genere
-
+- Come gestire un dato eliminato? 
+    - Viene completamente eliminato dal database
+    - Viene aggiunto un attributo per indicare che è stato eliminato, nascondendolo dal frontend
+- Quali estensioni di file per la galleria sono permesse? (Solo png/jpg/jpeg/gif, mp4/m4a/mov/avi/mpg/mpeg)
 
 ## Struttura del database
 
