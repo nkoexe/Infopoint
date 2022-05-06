@@ -1,0 +1,47 @@
+#newsinput {
+    background-color: #303030;
+    color: #eee;
+    font-size: 15px;
+    font-family: "Poppins", sans-serif;;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    width: 70%;
+    height: 100px;
+}
+
+#newssubmit {
+    width: 170px;
+    height: 30px;
+}
+
+#newslinea {
+    width: 65%;
+    margin: 40px 0 60px 3%;
+    height: 3px;
+    background-color: #696969;
+}
+
+#newslist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.newscont {
+    background-color: #252525;
+    display: flex;
+    margin: 10px 50px 0px 20px;
+    padding: 10px;
+}
+
+.newstext {
+    background-color: #313131;
+    padding: 10px;
+    width: 80%;
+}
+
+.newsbtncont {
+    margin-left: 10px;
+    display: flex;
+}

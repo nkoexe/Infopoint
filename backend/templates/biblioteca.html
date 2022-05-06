@@ -1,25 +1,27 @@
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/global.css') }}">
-    <title>Infopoint | Biblioteca</title>
-  </head>
-  <body>
-    <h1>Modifica Riquadro Biblioteca</h1>
-    <form method="post">
-      <label for="copertina"> Inserisci copertina libro: </label>
-      <input type="file" id="input_copertina" name="copertina" accept="image/*" />
-    </form>
-    <form method="post">
-      <label for="titolo"> Inserisci titolo libro: </label>
-      <input type="text" id="input_titolo" name="titolo" />
-    </form>
-    <form method="post">
-      <label for="titolo"> Inserisci descrizione libro: </label>
-      <input type="text" id="input_descrizione" name="descrizione" />
-    </form>
-    <button onclick="location.href='/'">Indietro</button>
-    <button onclick="location.href='/preview'">Conferma</button>
-  </body>
-</html>
+{% extends "base.html" %} {% block title %}Biblioteca{% endblock %} {% block content %}
+
+<h1>Biblioteca</h1>
+<form method="post">
+  <label for="copertina"> Inserisci copertina libro: </label>
+  <input type="file" id="input_copertina" name="copertina" accept="image/*" required /><br />
+  <label for="titolo"> Inserisci titolo libro: </label>
+  <input type="text" id="input_titolo" name="titolo" required /><br />
+  <label for="titolo"> Inserisci descrizione libro: </label>
+  <input type="text" id="input_descrizione" name="descrizione" required /><br />
+  <input type="submit" value="Conferma" />
+</form>
+
+<li>
+  <div>
+    <div>
+      <div>copertina</div>
+      <div>titolo</div>
+      <div>descrizione</div>
+    </div>
+    <div>
+      <button>riutilizza</button>
+      <button>elimina</button>
+    </div>
+  </div>
+</li>
+{% endblock %}

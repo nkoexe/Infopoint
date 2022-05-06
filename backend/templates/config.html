@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/global.css') }}">
-    <title>Infopoint | Configurazione</title>
-  </head>
-  <body>
-    <h1>Configurazione Infopoint</h1>
-    <button onclick="location.href='/biblioteca'">Modifica riquadro biblioteca</button><br />
-    <button onclick="location.href='/galleria'">Modifica galleria foto</button><br />
-    <button onclick="location.href='/notizie'">Modifica notizie</button><br />
-    <button onclick="location.href='/login'">Logout</button>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block title %}Configurazione{% endblock %}
+{% block content %}
+
+<h1>Configurazione Infopoint</h1>
+<button onclick="location.href='/biblioteca'">Modifica riquadro biblioteca</button><br />
+<button onclick="location.href='/galleria'">Modifica galleria foto</button><br />
+<button onclick="location.href='/notizie'">Modifica notizie</button><br />
+<button onclick="location.href='/login'">Logout</button>
+{% endblock %}

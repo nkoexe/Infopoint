@@ -1,18 +1,31 @@
-<!DOCTYPE html>
-<html lang="it">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/global.css') }}">
-    <title>Infopoint | Notizie</title>
-  </head>
-  <body>
-    <h1>Modifica riquadro Notizie</h1>
-    <form method="post">
-      <label for="input_notizia">Aggiungi notizia:</label>
-      <input type="text" id="input_notizia" name="notizia" />
-    </form>
-    <button onclick="location.href='/'">Indietro</button>
-    <button onclick="location.href='/preview'">Conferma</button>
-  </body>
-  </body>
-</html>
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
+{% endblock %}
+{% block title %}Notizie{% endblock %} {% block content %}
+
+<h1>Notizie</h1>
+
+<form method="post">
+  <div>Che sta succedendo? Aggiungi una notizia:</div>
+  <textarea id="newsinput" name="text"></textarea><br />
+  <input type="submit" id="newssubmit" value="Conferma" />
+</form>
+
+<div id="newslinea"></div>
+
+<ul id="newslist">
+  {% for id in notizie %}
+  <li>
+    <div class="newscont">
+      <div class="newstext">{{ notizie[id]['text'] }}</div>
+      <div class="newsbtncont">
+        <button class="newsbtn showbtn">show</button>
+        <button class="newsbtn editbtn">edit</button>
+        <button class="newsbtn deletebtn">delete</button>
+      </div>
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}
