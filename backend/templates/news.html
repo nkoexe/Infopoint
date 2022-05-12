@@ -1,14 +1,14 @@
-{% extends "base.html" %}
-{% block head %}
+{% extends "base.html" %} {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
-{% endblock %}
-{% block title %}Notizie{% endblock %} {% block content %}
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/news.js') }}"></script>
+{% endblock %} {% block title %}Notizie{% endblock %} {% block content %}
 
 <h1>Notizie</h1>
 
 <form method="post">
   <div>Che sta succedendo? Aggiungi una notizia:</div>
-  <textarea id="newsinput" name="text"></textarea><br />
+  <textarea id="newsinput" name="text" required></textarea><br />
   <input type="submit" id="newssubmit" value="Conferma" />
 </form>
 
@@ -22,7 +22,7 @@
       <div class="newsbtncont">
         <button class="newsbtn showbtn">show</button>
         <button class="newsbtn editbtn">edit</button>
-        <button class="newsbtn deletebtn">delete</button>
+        <button class="newsbtn deletebtn" onclick="newsdel('{{ id }}')">delete</button>
       </div>
     </div>
   </li>

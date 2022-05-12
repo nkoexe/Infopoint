@@ -1,16 +1,20 @@
 {
+    "active": "5",
     "books": {
         "1": {
-            "title": "test",
             "descr": "aaaaaaa",
-            "imgpath": "/path/to/img.png"
+            "img": "/path/to/img.png",
+            "title": "test"
         },
         "2": {
-            "title": "test2",
             "descr": "aaaaaaaa",
-            "imgpath": "/path/to/img2.png"
+            "img": "/path/to/img2.png",
+            "title": "test2"
+        },
+        "3": {
+            "descr": "Questa sicuramnte descirzioen",
+            "img": "s.png",
+            "title": "Titototolo"
         }
-    },
-
-    "active": "id1"
+    }
 }

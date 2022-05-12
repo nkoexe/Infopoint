@@ -1,7 +1,9 @@
-{% extends "base.html" %} {% block title %}Biblioteca{% endblock %} {% block content %}
+{% extends "base.html" %} {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
+{% endblock %} {% block title %}Biblioteca{% endblock %} {% block content %}
 
 <h1>Biblioteca</h1>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
   <label for="copertina"> Inserisci copertina libro: </label>
   <input type="file" id="input_copertina" name="copertina" accept="image/*" required /><br />
   <label for="titolo"> Inserisci titolo libro: </label>
@@ -10,18 +12,21 @@
   <input type="text" id="input_descrizione" name="descrizione" required /><br />
   <input type="submit" value="Conferma" />
 </form>
-
-<li>
-  <div>
-    <div>
-      <div>copertina</div>
-      <div>titolo</div>
-      <div>descrizione</div>
+<ul id="blist">
+  {% for id in libri %}
+  <li>
+    <div class="bcont">
+      <div class="b">
+        <div>copertina</div>
+        <div>titolo</div>
+        <div>descrizione</div>
+      </div>
+      <div class="bbtncont">
+        <button>riutilizza</button>
+        <button>elimina</button>
+      </div>
     </div>
-    <div>
-      <button>riutilizza</button>
-      <button>elimina</button>
-    </div>
-  </div>
-</li>
+  </li>
+  {% endfor %}
+</ul>
 {% endblock %}

@@ -27,17 +27,16 @@ def _settings():
 @app.route('/biblioteca', methods=['GET', 'POST'])
 def _biblioteca():
     if request.method == 'GET':
-        return render_template('biblioteca.html')
+        return render_template('biblioteca.html', libri=biblioteca.data['books'])
 
     elif request.method == 'POST':
-        copertina = request.form['copertina']
+        copertina = request.files['copertina']
         titolo = request.form['titolo']
         descrizione = request.form['descrizione']
 
-        # ! not tested
-        # biblioteca.add(titolo, descrizione, copertina)
+        biblioteca.add(titolo, descrizione, copertina)
 
-        return render_template('biblioteca.html')
+        return redirect('/biblioteca')
 
 
 @app.route('/galleria')
@@ -56,6 +55,14 @@ def _notizie():
         notizie.add(notizia)
 
         return redirect('/notizie')
+
+
+@app.route('/notizie/<id>', methods=['DELETE'])
+def _notizie_id(id):
+    if request.method == 'DELETE':
+        notizie.delete(id)
+
+    return 'ok'
 
 
 if __name__ == '__main__':

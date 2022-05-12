@@ -37,6 +37,9 @@ class _biblioteca:
         :param str descr: the description of the book
         :param file img: the flask file object of the image of the book
         '''
+        #! Todo:
+        #! - check if file is actually an image
+        #! - save the image with the book id to avoid overwriting
 
         filename = secure_filename(img.filename)
         filepath = BASEPATH / 'biblioteca' / subdir_name / filename
@@ -102,14 +105,17 @@ class _notizie:
 
         self.update()
 
-    def delete(self, id: int):
+    def delete(self, id: int or str):
         '''
-        Delete a news.
+        Delete a news element.
 
         :param int id: id of the news
         '''
 
-        del self.data[str(id)]
+        if isinstance(id, int):
+            id = str(id)
+
+        del self.data[id]
 
         self.update()
 
@@ -181,14 +187,17 @@ class _galleria:
 
         self.update()
 
-    def delete(self, id: int):
+    def delete(self, id: int or str):
         '''
         Delete a media of the gallery.
 
         :param int id: id of the media
         '''
 
-        del self.data[str(id)]
+        if isinstance(id, int):
+            id = str(id)
+
+        del self.data[id]
 
         self.update()
 

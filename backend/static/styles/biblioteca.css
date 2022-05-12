@@ -1,0 +1,35 @@
+
+#blinea {
+    width: 65%;
+    margin: 40px 0 60px 3%;
+    height: 3px;
+    background-color: #696969;
+}
+
+#blist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bcont {
+    background-color: #252525;
+    display: flex;
+    margin: 10px 50px 0px 20px;
+    padding: 10px;
+}
+
+.bimg {
+
+}
+.btit {
+
+}
+.bdesc {
+
+}
+
+.bbtncont {
+    margin-left: 10px;
+    display: flex;
+}
