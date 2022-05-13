@@ -1,15 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
 
+:root {
+  --bg1: #fafafa;
+  --bg2: #f0f0f0;
+  --bg3: #dddddd;
+  --button: #5fbdec;
+  --button-hover: #3ab8f7;
+  --text1: #0f0f0f;
+  --text2: #202020;
+}
+
 body {
-  background-color: #1b1b1b;
-  color: #eee;
-  font-family: "Poppins", sans-serif;
+  background-color: var(--bg1);
 }
 
 button {
-  background-color: #303030;
-  color: #eee;
+  background-color: var(--button);
+  color: var(--text1);
   font-size: 15px;
+  font-family: "Poppins", sans-serif;
   border: none;
   border-radius: 5px;
   margin: 5px;
@@ -19,12 +28,12 @@ button {
   transition: 0.2s;
 }
 button:hover {
-  background-color: #404040;
+  background-color: var(--button-hover);
 }
 
 input {
-  background-color: #303030;
-  color: #eee;
+  background-color: var(--bg2);
+  color: var(--text1);
   font-size: 15px;
   border: none;
   border-radius: 5px;
@@ -32,6 +41,11 @@ input {
   padding: 5px;
   padding-left: 15px;
   padding-right: 15px;
+}
+
+.text {
+  color: var(--text1);
+  font-family: "Poppins", sans-serif;
 }
 
 #footer {

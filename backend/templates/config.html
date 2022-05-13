@@ -1,10 +1,8 @@
-{% extends "base.html" %}
-{% block title %}Configurazione{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}Configurazione{% endblock %} {% block content %}
 
-<h1>Configurazione Infopoint</h1>
+<h1 class="text">Configurazione Infopoint</h1>
 <button onclick="location.href='/biblioteca'">Modifica riquadro biblioteca</button><br />
 <button onclick="location.href='/galleria'">Modifica galleria foto</button><br />
 <button onclick="location.href='/notizie'">Modifica notizie</button><br />
-<button onclick="location.href='/login'">Logout</button>
+<button onclick="location.href='/logout'">Logout</button>
 {% endblock %}

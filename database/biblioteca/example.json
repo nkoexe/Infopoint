@@ -1,5 +1,5 @@
 {
-    "active": "5",
+    "active": "4",
     "books": {
         "1": {
             "descr": "aaaaaaa",
@@ -10,11 +10,6 @@
             "descr": "aaaaaaaa",
             "img": "/path/to/img2.png",
             "title": "test2"
-        },
-        "3": {
-            "descr": "Questa sicuramnte descirzioen",
-            "img": "s.png",
-            "title": "Titototolo"
         }
     }
 }

@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}Login{% endblock %} {% block content %}
 
-<h1>Login Infopoint</h1>
-<form action="/">
-  <input type="text" placeholder="Username" required /><br />
-  <input type="password" placeholder="Password" required /><br />
+<h1 class="text">Login Infopoint</h1>
+<form method="post">
+  <input type="text" name="username" placeholder="Username" required /><br />
+  <input type="password" name="password" placeholder="Password" required /><br />
   <input type="submit" value="Conferma" />
 </form>
 {% endblock %}

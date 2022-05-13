@@ -2,13 +2,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
 {% endblock %} {% block title %}Biblioteca{% endblock %} {% block content %}
 
-<h1>Biblioteca</h1>
+<h1 class="text">Biblioteca</h1>
 <form method="post" enctype="multipart/form-data">
-  <label for="copertina"> Inserisci copertina libro: </label>
+  <label class="text" for="copertina"> Inserisci copertina libro: </label>
   <input type="file" id="input_copertina" name="copertina" accept="image/*" required /><br />
-  <label for="titolo"> Inserisci titolo libro: </label>
+  <label class="text" for="titolo"> Inserisci titolo libro: </label>
   <input type="text" id="input_titolo" name="titolo" required /><br />
-  <label for="titolo"> Inserisci descrizione libro: </label>
+  <label class="text" for="titolo"> Inserisci descrizione libro: </label>
   <input type="text" id="input_descrizione" name="descrizione" required /><br />
   <input type="submit" value="Conferma" />
 </form>
@@ -18,8 +18,8 @@
     <div class="bcont">
       <div class="b">
         <div>copertina</div>
-        <div>titolo</div>
-        <div>descrizione</div>
+        <div class="text">titolo</div>
+        <div class="text">descrizione</div>
       </div>
       <div class="bbtncont">
         <button>riutilizza</button>

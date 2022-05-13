@@ -4,10 +4,10 @@
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/news.js') }}"></script>
 {% endblock %} {% block title %}Notizie{% endblock %} {% block content %}
 
-<h1>Notizie</h1>
+<h1 class="text">Notizie</h1>
 
 <form method="post">
-  <div>Che sta succedendo? Aggiungi una notizia:</div>
+  <div class="text">Che sta succedendo? Aggiungi una notizia:</div>
   <textarea id="newsinput" name="text" required></textarea><br />
   <input type="submit" id="newssubmit" value="Conferma" />
 </form>
@@ -18,7 +18,7 @@
   {% for id in notizie %}
   <li>
     <div class="newscont">
-      <div class="newstext">{{ notizie[id]['text'] }}</div>
+      <div class="text newstext">{{ notizie[id]['text'] }}</div>
       <div class="newsbtncont">
         <button class="newsbtn showbtn">show</button>
         <button class="newsbtn editbtn">edit</button>
