@@ -20,7 +20,10 @@ class User:
     def __init__(self, id):
         self.id = id
         self.username = users[id]['name']
-        self.roles = users[id]['roles']
+        self.admin = 'admin' in users[id]['roles']
+        self.biblioteca = 'biblioteca' in users[id]['roles']
+        self.galleria = 'galleria' in users[id]['roles']
+        self.notizie = 'notizie' in users[id]['roles']
         self.is_authenticated = True
         self.is_active = True
         self.is_anonymous = False
@@ -97,7 +100,7 @@ def _index():
 
 @app.route('/settings')
 @login_required
-@roles_required(['admin'])
+# @roles_required(['admin'])
 def _settings():
     return render_template('settings.html')
 
@@ -133,16 +136,25 @@ def _notizie():
     elif request.method == 'POST':
         notizia = request.form['text']
 
-        notizie.add(notizia)
+        if notizia.strip():
+            notizie.add(notizia)
 
         return redirect('/notizie')
 
 
-@app.route('/notizie/<id>', methods=['DELETE'])
+@app.route('/notizie/<id>', methods=['DELETE', 'PUT'])
 @login_required
 def _notizie_id(id):
     if request.method == 'DELETE':
         notizie.delete(id)
+
+    elif request.method == 'PUT':
+        notizia = request.form['text'].strip()
+
+        if not notizia:
+            return 'ko'
+
+        notizie.edit(id, text=notizia)
 
     return 'ok'
 

@@ -2,14 +2,15 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/news.js') }}"></script>
-{% endblock %} {% block title %}Notizie{% endblock %} {% block content %}
-
-<h1 class="text">Notizie</h1>
+{% endblock %} {% block title %}Notizie{% endblock %} {% block header%}Notizie{% endblock %}{% block
+content %}
 
 <form method="post">
   <div class="text">Che sta succedendo? Aggiungi una notizia:</div>
   <textarea id="newsinput" name="text" required></textarea><br />
-  <input type="submit" id="newssubmit" value="Conferma" />
+  <button type="submit" id="newssubmit" class="btn">Inserisci nuova</button>
+  <button type="button" class="hidden" id="newssave">Salva modifiche</button>
+  <button type="button" class="hidden" id="newscanc">Annulla</button>
 </form>
 
 <div id="newslinea"></div>
@@ -18,10 +19,10 @@
   {% for id in notizie %}
   <li>
     <div class="newscont">
-      <div class="text newstext">{{ notizie[id]['text'] }}</div>
+      <div class="text newstext" id="{{ id }}">{{ notizie[id]['text'] }}</div>
       <div class="newsbtncont">
         <button class="newsbtn showbtn">show</button>
-        <button class="newsbtn editbtn">edit</button>
+        <button class="newsbtn editbtn" onclick="newsedit('{{ id }}')">edit</button>
         <button class="newsbtn deletebtn" onclick="newsdel('{{ id }}')">delete</button>
       </div>
     </div>

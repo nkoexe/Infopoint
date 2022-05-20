@@ -1,8 +1,7 @@
 {% extends "base.html" %} {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
-{% endblock %} {% block title %}Biblioteca{% endblock %} {% block content %}
-
-<h1 class="text">Biblioteca</h1>
+{% endblock %} {% block title %}Biblioteca{% endblock %} {% block header %}Biblioteca{% endblock
+%}{% block content %}
 <form method="post" enctype="multipart/form-data">
   <label class="text" for="copertina"> Inserisci copertina libro: </label>
   <input type="file" id="input_copertina" name="copertina" accept="image/*" required /><br />
