@@ -1,8 +1,11 @@
-from pathlib import Path
-from flask import Flask, render_template, request, redirect, url_for
-from flask_login import LoginManager, login_user, login_required, logout_user
+from hashlib import sha256
 from json import load
-from database import biblioteca, notizie, galleria
+from pathlib import Path
+
+from flask import Flask, flash, redirect, render_template, request, url_for
+from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+
+from database import biblioteca, galleria, notizie
 
 users = load(open(Path(__file__).parent / 'users.json'))
 
@@ -11,13 +14,13 @@ app.secret_key = b'0ee6f27b79730fb025949c4d792f084adadcf4796bfdeb980c6ec1abf1fd7
 
 login_manager = LoginManager()
 login_manager.init_app(app)
-login_manager.login_view = '_login'
 
 
 class User:
     def __init__(self, id):
         self.id = id
-        self.data = users[id]
+        self.username = users[id]['name']
+        self.roles = users[id]['roles']
         self.is_authenticated = True
         self.is_active = True
         self.is_anonymous = False
@@ -26,8 +29,32 @@ class User:
         return self.id
 
 
+def roles_required(function, roles=['admin']):
+    '''
+    Wrapper to check if the user has the required roles.
+    Use this along with the @login_required decorator.
+    '''
+    def wrapper(*args, **kw):
+        print(current_user)
+        return function(*args, **kw)
+
+    return wrapper
+
+
+@login_manager.unauthorized_handler
+def unauthorized():
+    '''
+    Handles requests without login to pages that require it.
+    '''
+    return redirect('/login')
+
+
 @login_manager.user_loader
 def load_user(user_id):
+    '''
+    Creates a User object for the given user_id.
+    Called by Flask-Login before each request.
+    '''
     if user_id in users:
         return User(user_id)
     else:
@@ -43,11 +70,16 @@ def _login():
         username = request.form['username']
         password = request.form['password']
 
-        login_user(User('1'))
+        password = sha256(password.encode('utf-8')).hexdigest()
 
-        # Questo oppure semplicemente /index
-        next = request.args.get('next')
-        return redirect(next or '/')
+        for i in users:
+            if users[i]['name'] == username and users[i]['hash'] == password:
+                login_user(User(i))
+
+                # next = request.args.get('next')
+                return redirect('/')
+
+        return render_template('login.html', error='Nome utente o password errati')
 
 
 @app.route('/logout')
@@ -65,6 +97,7 @@ def _index():
 
 @app.route('/settings')
 @login_required
+@roles_required(['admin'])
 def _settings():
     return render_template('settings.html')
 
