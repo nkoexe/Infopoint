@@ -1,17 +1,17 @@
-{% extends "root.html" %}
+{% extends "root.html" %} {% block title %}Login{% endblock %} {% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/login.css') }}" />
+{% endblock %} {% block main %}
 
-{% block title %}Login{% endblock %} 
-
-
-{% block main %}
-
-<h1 class="text">Login Infopoint</h1>
-<form method="post">
-  <input type="text" name="username" placeholder="Username" required /><br />
-  <input type="password" name="password" placeholder="Password" required /><br />
-  <input type="submit" value="Conferma" />
+<div id="container">
+  <h1 class="text">Infopoint Login</h1>
   {% if error %}
   <div class="text error">{{ error }}</div>
   {% endif %}
-</form>
+  <form method="post">
+    <input type="text" name="username" placeholder="Username" required /><br />
+    <input type="password" name="password" placeholder="Password" required /><br />
+    <input type="submit" value="Conferma" />
+  </form>
+</div>
+
 {% endblock %}
