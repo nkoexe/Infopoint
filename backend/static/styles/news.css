@@ -10,8 +10,14 @@
     height: 100px;
 }
 
+/* SaveEdits and Cancel buttons before editing are hidden */
 .hidden {
     display: none;
+}
+
+/* News that aren't visible on the frontend */
+.disabled {
+    opacity: 0.5;
 }
 
 .newscont {
@@ -23,13 +29,18 @@
 }
 
 .newstext {
-    padding: 10px;
+    padding: 15px;
     width: 80%;
 }
 
 .newsbtncont {
-    margin-left: 10px;
+    margin-left: auto;
+    margin-right: 30px;
     display: flex;
+}
+
+.newsbtn {
+    padding-top: 10px;
 }
 
 /* 

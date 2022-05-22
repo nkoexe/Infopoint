@@ -2,16 +2,17 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/news.css') }}" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/news.js') }}"></script>
-{% endblock %} {% block title %}Notizie{% endblock %} {% block header%}Notizie{% endblock %}{% block
-content %}
+{% endblock %} {% block title %}Notizie{% endblock %} {% block header%}Notizie{% endblock %}{% block content %}
 
-<form method="post">
-  <div class="text">Che sta succedendo? Aggiungi una notizia:</div>
-  <textarea id="newsinput" name="text" required></textarea><br />
-  <button type="submit" id="newssubmit" class="btn">Inserisci nuova</button>
-  <button type="button" class="hidden" id="newssave">Salva modifiche</button>
-  <button type="button" class="hidden" id="newscanc">Annulla</button>
-</form>
+<div id="newsform">
+  <form method="post">
+    <div class="text">Che sta succedendo? Aggiungi una notizia:</div>
+    <textarea id="newsinput" name="text" required></textarea><br />
+    <button type="submit" id="newssubmit" class="btn">Inserisci nuova</button>
+    <button type="button" class="hidden" id="newssave">Salva modifiche</button>
+    <button type="button" class="hidden" id="newscanc">Annulla</button>
+  </form>
+</div>
 
 <div id="newslinea"></div>
 
@@ -19,11 +20,19 @@ content %}
   {% for id in notizie %}
   <li>
     <div class="newscont">
-      <div class="text newstext" id="{{ id }}">{{ notizie[id]['text'] }}</div>
+      <div class="text newstext{% if not notizie[id]['active'] %} disabled{% endif %}" id="{{ id }}">{{ notizie[id]['text'] }}</div>
       <div class="newsbtncont">
-        <button class="newsbtn showbtn">show</button>
-        <button class="newsbtn editbtn" onclick="newsedit('{{ id }}')">edit</button>
-        <button class="newsbtn deletebtn" onclick="newsdel('{{ id }}')">delete</button>
+        <button class="newsbtn newsshowbtn" onclick="newsshow('{{ id }}')">
+          <span class="material-icons" id="newsshowicon{{ id }}"
+            >{% if notizie[id]['active'] %} visibility {% else %} visibility_off {% endif %}</span
+          >
+        </button>
+        <button class="newsbtn newseditbtn" onclick="newsedit('{{ id }}')">
+          <span class="material-icons">edit</span>
+        </button>
+        <button class="newsbtn newsdeletebtn" onclick="newsdel('{{ id }}')">
+          <span class="material-icons">delete</span>
+        </button>
       </div>
     </div>
   </li>
