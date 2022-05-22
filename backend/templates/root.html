@@ -2,21 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="theme-color" content="#C00F19" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/root.css') }}" />
-    <link
-      rel="shortcut icon"
-      href="{{ url_for('static', filename='favicon.ico') }}"
-      type="image/x-icon"
-    />
-    {% block head %}{% endblock %}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon" />
+    {% block head2 %}{% endblock %} {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %} | Infopoint</title>
   </head>
   <body>
-    <div id="content">{% block main %}{% endblock %}</div>
-    <div id="footer" class="text">
-      {% block footer %} &copy; Copyright 2022 Tuamamma. {% endblock %}
-    </div>
+    <div id="main">{% block main %}{% endblock %}</div>
+    <footer><span class="text">&copy; Copyright 2022</span></footer>
   </body>
 </html>
