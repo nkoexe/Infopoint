@@ -1,14 +1,18 @@
 {
-    "1": {
+    "00001": {
         "active": true,
         "text": "test"
     },
-    "2": {
-        "active": false,
+    "00002": {
+        "active": true,
         "text": "test2"
     },
-    "3": {
+    "00003": {
         "active": true,
-        "text": "Heyoooo questa Ã¨ una notizia di test figata assurda"
+        "text": "Heyoooo questa è una notizia di test figata assurda"
+    },
+    "00004": {
+        "active": true,
+        "text": "ambarabaciccicoccò"
     }
 }

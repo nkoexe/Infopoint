@@ -39,20 +39,27 @@ class _biblioteca:
         '''
         #! Todo:
         #! - check if file is actually an image
-        #! - save the image with the book id to avoid overwriting
 
-        filename = secure_filename(img.filename)
-        filepath = BASEPATH / 'biblioteca' / subdir_name / filename
+        if len(self.data) == 0:
+            id = '1'.zfill(5)
+        else:
+            # the book's id is the last one incremented by 1
+            id = str(int(list(self.data['books'].keys())[-1]) + 1).zfill(5)
+
+        extension = img.filename.rsplit('.', 1)[1].lower()
+
+        if extension not in ('.jpg', '.jpeg', '.png', '.gif'):
+            # File type not supported
+            return
+
+        filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
         img.save(filepath)
-
-        # the book's id is the last one incremented by 1
-        id = str(int(sorted(self.data['books'].keys())[-1]) + 1)
 
         # add the book to the database
         self.data['books'][id] = {
             'title': title,
             'descr': descr,
-            'img': filename
+            'img': filepath
         }
 
         self.data['active'] = id
@@ -79,8 +86,11 @@ class _notizie:
         :param str text: main text of the news
         '''
 
-        # the news' id is the last one incremented by 1
-        id = str(int(sorted(self.data.keys())[-1]) + 1)
+        if len(self.data) == 0:
+            id = '1'.zfill(5)
+        else:
+            # the news' id is the last one incremented by 1
+            id = str(int(list(self.data.keys())[-1]) + 1).zfill(5)
 
         self.data[id] = {
             'text': text,
@@ -89,31 +99,31 @@ class _notizie:
 
         self.update()
 
-    def edit(self, id: int, text: str = None, active: bool = None):
+    def edit(self, id: str, text: str = None, active: bool = None):
         '''
-        Modify a news text.
+        Modify the text of a news element or set it as visible in the frontend or not.
 
-        :param int id: id of the news
-        :param str text: main text of the news
+        :param str id: id of the news element
+        :param str text: main text of the news element
+        :param bool active: if the news is visible
         '''
 
         if text is not None and isinstance(text, str):
-            self.data[str(id)]['text'] = text
+            self.data[id]['text'] = text
 
         if active is not None and isinstance(active, bool):
-            self.data[str(id)]['active'] = active
+            self.data[id]['active'] = active
 
         self.update()
 
-    def delete(self, id: int or str):
+        return self.data[id]['active']
+
+    def delete(self, id: str):
         '''
         Delete a news element.
 
-        :param int id: id of the news
+        :param str id: id of the news element
         '''
-
-        if isinstance(id, int):
-            id = str(id)
 
         del self.data[id]
 
@@ -145,21 +155,32 @@ class _galleria:
         if media is None and link is None:
             return
 
-        if media is not None:
-            filename = secure_filename(media.filename)
-            filepath = BASEPATH / 'galleria' / subdir_name / filename
-            media.save(filepath)
+        if len(self.data) == 0:
+            id = '1'.zfill(5)
+        else:
+            id = str(int(list(self.data.keys())[-1]) + 1).zfill(5)
 
-            if filepath.suffix in ('.jpg', '.jpeg', '.png', '.gif'):
+        if media is not None:
+            extension = media.filename.rsplit('.', 1)[1].lower()
+
+            if extension in ('.jpg', '.jpeg', '.png', '.gif'):
                 media_type = 'image'
-            elif filepath.suffix in ('.mp4', '.mov', '.avi', '.mpg', '.mpeg'):
+            elif extension in ('.mp4', '.mov', '.avi', '.mpg', '.mpeg'):
                 media_type = 'video'
             else:
                 # File type not supported
                 # todo: modify
                 return
 
-        id = str(int(sorted(self.data.keys())[-1]) + 1)
+            filepath = BASEPATH / 'galleria' / subdir_name / (id + '.' + extension)
+            media.save(filepath)
+
+        elif link is not None:
+            if link.startswith('https://www.youtube.com/watch?v='):
+                media_type = 'youtube'
+                filepath = link
+            else:
+                return
 
         self.data[id] = {
             'text': text,
@@ -170,32 +191,29 @@ class _galleria:
 
         self.update()
 
-    def edit(self, id: int, text: str = None, active: bool = None):
+    def edit(self, id: str, text: str = None, active: bool = None):
         '''
         Modify a media of the gallery.
 
-        :param int id: id of the media
+        :param str id: id of the media
         :param str text: description of the media
         :param bool active: set the media to active or not
         '''
 
         if text is not None and isinstance(text, str):
-            self.data[str(id)]['text'] = text
+            self.data[id]['text'] = text
 
         if active is not None and isinstance(active, bool):
-            self.data[str(id)]['active'] = active
+            self.data[id]['active'] = active
 
         self.update()
 
-    def delete(self, id: int or str):
+    def delete(self, id: str):
         '''
         Delete a media of the gallery.
 
-        :param int id: id of the media
+        :param str id: id of the media
         '''
-
-        if isinstance(id, int):
-            id = str(id)
 
         del self.data[id]
 
