@@ -1,6 +1,6 @@
+from functools import wraps
 from hashlib import sha256
 from json import load
-from functools import wraps
 from pathlib import Path
 
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
@@ -36,7 +36,7 @@ class User:
 class required:
     '''
     Wrappers to check if the user has the required role.
-    Use this along with the @login_required decorator.
+    Use these along with the @login_required decorator.
     '''
     def admin(func):
         @wraps(func)
@@ -131,11 +131,11 @@ def _index():
 
     elif sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
-            return render_template('biblioteca.html')
+            return redirect('/biblioteca')
         elif current_user.galleria:
-            return render_template('galleria.html')
+            return redirect('/galleria')
         elif current_user.notizie:
-            return render_template('notizie.html')
+            return redirect('/notizie')
 
     else:
         return render_template('home.html')
@@ -181,7 +181,7 @@ def _galleria():
 @required.notizie
 def _notizie():
     if request.method == 'GET':
-        return render_template('news.html', notizie=notizie.data)
+        return render_template('notizie.html', notizie=notizie.data)
 
     elif request.method == 'POST':
         notizia = request.form['text'].strip()
