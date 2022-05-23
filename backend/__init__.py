@@ -134,9 +134,9 @@ def _notizie():
         return render_template('news.html', notizie=notizie.data)
 
     elif request.method == 'POST':
-        notizia = request.form['text']
+        notizia = request.form['text'].strip()
 
-        if notizia.strip():
+        if notizia:
             notizie.add(notizia)
 
         return redirect('/notizie')
