@@ -1,16 +1,37 @@
 {
-    "1": {
+    "00001": {
         "name": "nico",
         "hash": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
         "roles": [
             "admin"
         ]
     },
-    "2": {
+    "00002": {
         "name": "davi",
         "hash": "b4fb90f20a36ed61b1c9e4d27a8e3dbaec856df8604df1692d00a6b1fa8b9209",
         "roles": [
             "admin"
+        ]
+    },
+    "00003": {
+        "name": "b",
+        "hash": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
+        "roles": [
+            "biblioteca"
+        ]
+    },
+    "00004": {
+        "name": "g",
+        "hash": "b4fb90f20a36ed61b1c9e4d27a8e3dbaec856df8604df1692d00a6b1fa8b9209",
+        "roles": [
+            "galleria"
+        ]
+    },
+    "00005": {
+        "name": "n",
+        "hash": "b133a0c0e9bee3be20163d2ad31d6248db292aa6dcb1ee087a2aa50e0fc75ae2",
+        "roles": [
+            "notizie"
         ]
     }
 }

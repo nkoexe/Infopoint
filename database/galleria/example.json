@@ -1,17 +1,17 @@
 {
-    "1":  {
+    "00001":  {
         "text": "test",
         "type": "image",
         "path": "/data/2022-10/img.png",
         "active": true
     },
-    "2": {
+    "00002": {
         "text": "test2",
         "type": "video",
         "path": "/path/to/video.mp4",
         "active": false
     },
-    "3": {
+    "00003": {
         "text": "test3",
         "type": "youtube",
         "path": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",

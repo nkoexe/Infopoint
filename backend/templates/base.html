@@ -1,11 +1,14 @@
-{% extends "root.html" %} {% block main %}
+{% extends "root.html" %} {% block head2 %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/base.css') }}" />
+{% endblock %} {% block main %}
 
 <div id="header">
   <div id="headerleft">
-    <div id="logo"></div>
-    <div id="headertext" class="text">{% block header %}{% endblock %}</div>
-    <div id="content">{% block content %}{% endblock %}</div>
+    <a id="logo" href="/"><span class="material-icons md-55">display_settings</span></a>
+    <span id="headertext" class="text">{% block header %}{% endblock %}</span>
   </div>
+  <div id="headerright"></div>
 </div>
+<div id="content">{% block content %}{% endblock %}</div>
 
 {% endblock %}

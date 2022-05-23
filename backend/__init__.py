@@ -1,8 +1,9 @@
 from hashlib import sha256
 from json import load
+from functools import wraps
 from pathlib import Path
 
-from flask import Flask, flash, redirect, render_template, request, url_for
+from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
 from database import biblioteca, galleria, notizie
@@ -21,9 +22,9 @@ class User:
         self.id = id
         self.username = users[id]['name']
         self.admin = 'admin' in users[id]['roles']
-        self.biblioteca = 'biblioteca' in users[id]['roles']
-        self.galleria = 'galleria' in users[id]['roles']
-        self.notizie = 'notizie' in users[id]['roles']
+        self.biblioteca = 'biblioteca' in users[id]['roles'] or self.admin
+        self.galleria = 'galleria' in users[id]['roles'] or self.admin
+        self.notizie = 'notizie' in users[id]['roles'] or self.admin
         self.is_authenticated = True
         self.is_active = True
         self.is_anonymous = False
@@ -32,16 +33,46 @@ class User:
         return self.id
 
 
-def roles_required(function, roles=['admin']):
+class required:
     '''
-    Wrapper to check if the user has the required roles.
+    Wrappers to check if the user has the required role.
     Use this along with the @login_required decorator.
     '''
-    def wrapper(*args, **kw):
-        print(current_user)
-        return function(*args, **kw)
+    def admin(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if not current_user.admin:
+                abort(403)
 
-    return wrapper
+            return func(*args, **kwargs)
+        return wrapper
+
+    def biblioteca(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if not current_user.biblioteca:
+                abort(403)
+
+            return func(*args, **kwargs)
+        return wrapper
+
+    def galleria(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if not current_user.galleria:
+                abort(403)
+
+            return func(*args, **kwargs)
+        return wrapper
+
+    def notizie(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            if not current_user.notizie:
+                abort(403)
+
+            return func(*args, **kwargs)
+        return wrapper
 
 
 @login_manager.unauthorized_handler
@@ -95,19 +126,36 @@ def _logout():
 @app.route('/')
 @login_required
 def _index():
-    return render_template('config.html')
+    if current_user.admin:
+        return render_template('home.html')
+
+    elif sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
+        if current_user.biblioteca:
+            return render_template('biblioteca.html')
+        elif current_user.galleria:
+            return render_template('galleria.html')
+        elif current_user.notizie:
+            return render_template('notizie.html')
+
+    else:
+        return render_template('home.html')
 
 
 @app.route('/settings')
 @login_required
-# @roles_required(['admin'])
+@required.admin
 def _settings():
+    if not current_user.admin:
+        abort(403)
+
     return render_template('settings.html')
 
 
 @app.route('/biblioteca', methods=['GET', 'POST'])
 @login_required
+@required.biblioteca
 def _biblioteca():
+
     if request.method == 'GET':
         return render_template('biblioteca.html', libri=biblioteca.data['books'])
 
@@ -123,12 +171,14 @@ def _biblioteca():
 
 @app.route('/galleria')
 @login_required
+@required.galleria
 def _galleria():
     return render_template('galleria.html')
 
 
 @app.route('/notizie', methods=['GET', 'POST'])
 @login_required
+@required.notizie
 def _notizie():
     if request.method == 'GET':
         return render_template('news.html', notizie=notizie.data)
@@ -144,17 +194,24 @@ def _notizie():
 
 @app.route('/notizie/<id>', methods=['DELETE', 'PUT'])
 @login_required
+@required.notizie
 def _notizie_id(id):
     if request.method == 'DELETE':
         notizie.delete(id)
 
     elif request.method == 'PUT':
-        notizia = request.form['text'].strip()
+        if 'text' in request.form:
+            notizia = request.form['text'].strip()
 
-        if not notizia:
-            return 'ko'
+            if not notizia:
+                return 'ko'
 
-        notizie.edit(id, text=notizia)
+            notizie.edit(id, text=notizia)
+
+        if 'active' in request.form:
+            active = not notizie.data[id]['active']
+            notizie.edit(id, active=active)
+            return '1' if active else '0'
 
     return 'ok'
 
