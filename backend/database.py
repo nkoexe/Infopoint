@@ -5,7 +5,6 @@ Python interface to the database.
 from json import load, dump
 from pathlib import Path
 from configparser import ConfigParser
-from werkzeug.utils import secure_filename
 
 
 BASEPATH = Path(__file__).parent.parent / 'database'
