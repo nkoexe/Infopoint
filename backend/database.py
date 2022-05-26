@@ -2,10 +2,9 @@
 Python interface to the database.
 '''
 
-from json import load, dump
-from pathlib import Path
 from configparser import ConfigParser
-
+from json import dump, load
+from pathlib import Path
 
 BASEPATH = Path(__file__).parent.parent / 'database'
 
@@ -16,7 +15,7 @@ json_name = config.get('Path', 'json_name')
 subdir_name = config.get('Path', 'subdir_name')
 
 
-class _biblioteca:
+class BibliotecaDB:
     def __init__(self):
         self.path = BASEPATH / 'biblioteca' / json_name
         self.data = load(open(self.path, 'r'))
@@ -66,7 +65,7 @@ class _biblioteca:
         self.update()
 
 
-class _notizie:
+class NotizieDB:
     def __init__(self):
         self.path = BASEPATH / 'notizie' / json_name
         self.data = load(open(self.path, 'r'))
@@ -129,7 +128,7 @@ class _notizie:
         self.update()
 
 
-class _galleria:
+class GalleriaDB:
     def __init__(self):
         self.path = BASEPATH / 'galleria' / json_name
         self.data = load(open(self.path, 'r'))
@@ -217,8 +216,3 @@ class _galleria:
         del self.data[id]
 
         self.update()
-
-
-biblioteca = _biblioteca()
-notizie = _notizie()
-galleria = _galleria()
