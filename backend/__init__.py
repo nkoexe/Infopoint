@@ -6,7 +6,7 @@ from pathlib import Path
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
-from .database import BibliotecaDB, NotizieDB, GalleriaDB
+from database import BibliotecaDB, NotizieDB, GalleriaDB
 
 biblioteca = BibliotecaDB()
 notizie = NotizieDB()
