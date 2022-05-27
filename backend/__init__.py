@@ -155,16 +155,16 @@ def _settings():
 @login_required
 @required.biblioteca
 def _biblioteca():
-
     if request.method == 'GET':
         return render_template('biblioteca.html', libri=biblioteca.data['books'])
 
     elif request.method == 'POST':
         copertina = request.files['copertina']
-        titolo = request.form['titolo']
-        descrizione = request.form['descrizione']
+        titolo = request.form['titolo'].strip()
+        descrizione = request.form['descrizione'].strip()
 
-        biblioteca.add(titolo, descrizione, copertina)
+        if titolo and descrizione and copertina:
+            biblioteca.add(titolo, descrizione, copertina)
 
         return redirect('/biblioteca')
 

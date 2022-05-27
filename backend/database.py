@@ -47,18 +47,22 @@ class _biblioteca:
 
         extension = img.filename.rsplit('.', 1)[1].lower()
 
-        if extension not in ('.jpg', '.jpeg', '.png', '.gif'):
+        if extension not in ('jpg', 'jpeg', 'png', 'gif'):
             # File type not supported
             return
 
         filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
+        print(filepath)
+
         img.save(filepath)
+
+        print('salvato')
 
         # add the book to the database
         self.data['books'][id] = {
             'title': title,
             'descr': descr,
-            'img': filepath
+            'img': (id + '.' + extension)
         }
 
         self.data['active'] = id
