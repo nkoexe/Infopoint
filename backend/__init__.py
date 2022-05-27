@@ -81,9 +81,7 @@ class required:
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return 'Whoops! Questa pagina non esiste.\
-        Se non ti aspettavi di finire qui, puoi segnalarlo ad un responsabile.\
-        Altrimenti, puoi tornare alla <a href="/">homepage</a>.', 404
+    return render_template('404.html'), 404
 
 
 @login_manager.unauthorized_handler
@@ -159,9 +157,6 @@ def _index():
 @login_required
 @required.admin
 def _settings():
-    if not current_user.admin:
-        abort(403)
-
     return render_template('settings.html')
 
 
@@ -176,6 +171,8 @@ def _biblioteca():
         copertina = request.files['copertina']
         titolo = request.form['titolo'].strip()
         descrizione = request.form['descrizione'].strip()
+
+        print(copertina.stream.read())
 
         if titolo and descrizione and copertina:
             biblioteca.add(titolo, descrizione, copertina)

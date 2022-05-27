@@ -1,20 +1,5 @@
 {
-    "active": "00003",
+    "active": "00005",
     "books": {
-        "00001": {
-            "descr": "aaaaaaa",
-            "img": "/path/to/img.png",
-            "title": "test"
-        },
-        "00002": {
-            "descr": "aaaaaaaa",
-            "img": "/path/to/img2.png",
-            "title": "test2"
-        },
-        "00003": {
-            "descr": "descriz",
-            "img": "00003.png",
-            "title": "titolone"
-        }
     }
 }
