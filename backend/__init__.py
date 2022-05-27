@@ -6,7 +6,11 @@ from pathlib import Path
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 
-from database import biblioteca, galleria, notizie
+from database import BibliotecaDB, NotizieDB, GalleriaDB
+
+biblioteca = BibliotecaDB()
+notizie = NotizieDB()
+galleria = GalleriaDB()
 
 users = load(open(Path(__file__).parent / 'users.json'))
 
@@ -75,6 +79,13 @@ class required:
         return wrapper
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return 'Whoops! Questa pagina non esiste.\
+        Se non ti aspettavi di finire qui, puoi segnalarlo ad un responsabile.\
+        Altrimenti, puoi tornare alla <a href="/">homepage</a>.', 404
+
+
 @login_manager.unauthorized_handler
 def unauthorized():
     '''
@@ -98,6 +109,9 @@ def load_user(user_id):
 @app.route('/login', methods=['GET', 'POST'])
 def _login():
     if request.method == 'GET':
+        if current_user.is_authenticated:
+            return redirect('/')
+
         return render_template('login.html')
 
     elif request.method == 'POST':
