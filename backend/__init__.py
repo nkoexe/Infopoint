@@ -37,10 +37,11 @@ class User:
         return self.id
 
 
-class required:
+class ruolo_richiesto:
     '''
-    Wrappers to check if the user has the required role.
-    Use these along with the @login_required decorator.
+    Wrappers per controllare che l'utente che ha mandato la richiesta
+    possiede un ruolo richiesto.
+    Da usare assieme a (subito dopo) @login_required.
     '''
     def admin(func):
         @wraps(func)
@@ -95,8 +96,9 @@ def unauthorized():
 @login_manager.user_loader
 def load_user(user_id):
     '''
-    Creates a User object for the given user_id.
-    Called by Flask-Login before each request.
+    Crea un oggetto User per lo user_id passato.
+    Chiamato automaticamente da Flask-Login prima di
+    processare la richiesta ricevuta.
     '''
     if user_id in users:
         return User(user_id)
@@ -106,18 +108,21 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def _login():
+    # Se l'utente ha già eseguito il login lo reindirizza alla homepage
     if request.method == 'GET':
         if current_user.is_authenticated:
             return redirect('/')
 
         return render_template('login.html')
 
+    # L'utente sta eseguendo il login
     elif request.method == 'POST':
-        username = request.form['username']
-        password = request.form['password']
+        username = request.form['username'].strip()
+        password = request.form['password'].strip()
 
         password = sha256(password.encode('utf-8')).hexdigest()
 
+        # Controlla nome utente e password
         for i in users:
             if users[i]['name'] == username and users[i]['hash'] == password:
                 login_user(User(i))
@@ -138,9 +143,12 @@ def _logout():
 @app.route('/')
 @login_required
 def _index():
+    # Se l'utente è un admin mostra la pagina completa
     if current_user.admin:
         return render_template('home.html')
 
+    # Se l'utente ha solo un permesso non mostrare la homepage ma
+    # reindirizza direttamente alla pagina a cui si ha accesso
     elif sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
             return redirect('/biblioteca')
@@ -151,22 +159,25 @@ def _index():
 
     else:
         return render_template('home.html')
+        # Todo: Altri casi tipo avere 2 permessi, risolvere implementando questo:
+        # render_template('home.html', biblioteca=usr.biblioteca, ..., impostazioni=False)
 
 
-@app.route('/settings')
+@app.route('/impostazioni')
 @login_required
-@required.admin
-def _settings():
-    return render_template('settings.html')
+@ruolo_richiesto.admin
+def _impostazioni():
+    return render_template('impostazioni.html')
 
 
 @app.route('/biblioteca', methods=['GET', 'POST'])
 @login_required
-@required.biblioteca
+@ruolo_richiesto.biblioteca
 def _biblioteca():
     if request.method == 'GET':
         return render_template('biblioteca.html', libri=biblioteca.data['books'])
 
+    # Inserimento di un nuovo libro
     elif request.method == 'POST':
         copertina = request.files['copertina']
         titolo = request.form['titolo'].strip()
@@ -182,18 +193,19 @@ def _biblioteca():
 
 @app.route('/galleria')
 @login_required
-@required.galleria
+@ruolo_richiesto.galleria
 def _galleria():
     return render_template('galleria.html')
 
 
 @app.route('/notizie', methods=['GET', 'POST'])
 @login_required
-@required.notizie
+@ruolo_richiesto.notizie
 def _notizie():
     if request.method == 'GET':
         return render_template('notizie.html', notizie=notizie.data)
 
+    # Inserimento di una nuova notizia
     elif request.method == 'POST':
         notizia = request.form['text'].strip()
 
@@ -205,12 +217,13 @@ def _notizie():
 
 @app.route('/notizie/<id>', methods=['DELETE', 'PUT'])
 @login_required
-@required.notizie
+@ruolo_richiesto.notizie
 def _notizie_id(id):
     if request.method == 'DELETE':
         notizie.delete(id)
 
     elif request.method == 'PUT':
+        # Aggiorna il testo della notizia
         if 'text' in request.form:
             notizia = request.form['text'].strip()
 
@@ -219,6 +232,8 @@ def _notizie_id(id):
 
             notizie.edit(id, text=notizia)
 
+        # Aggiorna lo stato visibile o meno della notizia
+        # invertendo il valore precedente
         if 'active' in request.form:
             active = not notizie.data[id]['active']
             notizie.edit(id, active=active)
