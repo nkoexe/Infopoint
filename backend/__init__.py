@@ -143,13 +143,9 @@ def _logout():
 @app.route('/')
 @login_required
 def _index():
-    # Se l'utente è un admin mostra la pagina completa
-    if current_user.admin:
-        return render_template('home.html')
-
     # Se l'utente ha solo un permesso non mostrare la homepage ma
     # reindirizza direttamente alla pagina a cui si ha accesso
-    elif sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
+    if sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
             return redirect('/biblioteca')
         elif current_user.galleria:
@@ -157,10 +153,9 @@ def _index():
         elif current_user.notizie:
             return redirect('/notizie')
 
+    # Altrimenti mostra la homepage con pulsanti in base ai propri permessi
     else:
-        return render_template('home.html')
-        # Todo: Altri casi tipo avere 2 permessi, risolvere implementando questo:
-        # render_template('home.html', biblioteca=usr.biblioteca, ..., impostazioni=False)
+        return render_template('home.html', user=current_user)
 
 
 @app.route('/impostazioni')

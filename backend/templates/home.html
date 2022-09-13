@@ -1,9 +1,19 @@
 {% extends "base.html" %} {% block title %}Configurazione{% endblock %} {% block header %}Configurazione Infopoint{% endblock %} {% block content %}
 
+<h1>Benvenuto, {{ user.username }}.</h1><br>
+
+{% if user.biblioteca %}
 <button onclick="location.href='/biblioteca'">Modifica biblioteca</button><br />
+{% endif %}
+{% if user.galleria %}
 <button onclick="location.href='/galleria'">Modifica galleria</button><br />
+{% endif %}
+{% if user.notizie %}
 <button onclick="location.href='/notizie'">Modifica notizie</button><br />
+{% endif %}
 <button onclick="location.href='/logout'">Logout</button><br>
+{% if user.admin %}
 <button onclick="location.href='/impostazioni'">Impostazioni</button>
+{% endif %}
 
 {% endblock %}
