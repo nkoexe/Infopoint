@@ -4,7 +4,7 @@ from json import load
 from pathlib import Path
 
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
-from flask_login import LoginManager, login_required, login_user, logout_user, current_user
+from flask_login import LoginManager, login_required as login_richiesto, login_user, logout_user, current_user
 
 from database import BibliotecaDB, NotizieDB, GalleriaDB
 
@@ -41,7 +41,7 @@ class ruolo_richiesto:
     '''
     Wrappers per controllare che l'utente che ha mandato la richiesta
     possiede un ruolo richiesto.
-    Da usare assieme a (subito dopo) @login_required.
+    Da usare assieme a (subito dopo) @login_richiesto.
     '''
     def admin(func):
         @wraps(func)
@@ -134,15 +134,16 @@ def _login():
 
 
 @app.route('/logout')
-@login_required
+@login_richiesto
 def _logout():
     logout_user()
     return redirect('/login')
 
 
 @app.route('/')
-@login_required
+@login_richiesto
 def _index():
+
     # Se l'utente ha solo un permesso non mostrare la homepage ma
     # reindirizza direttamente alla pagina a cui si ha accesso
     if sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
@@ -159,14 +160,14 @@ def _index():
 
 
 @app.route('/impostazioni')
-@login_required
+@login_richiesto
 @ruolo_richiesto.admin
 def _impostazioni():
     return render_template('impostazioni.html')
 
 
 @app.route('/biblioteca', methods=['GET', 'POST'])
-@login_required
+@login_richiesto
 @ruolo_richiesto.biblioteca
 def _biblioteca():
     if request.method == 'GET':
@@ -187,14 +188,14 @@ def _biblioteca():
 
 
 @app.route('/galleria')
-@login_required
+@login_richiesto
 @ruolo_richiesto.galleria
 def _galleria():
     return render_template('galleria.html')
 
 
 @app.route('/notizie', methods=['GET', 'POST'])
-@login_required
+@login_richiesto
 @ruolo_richiesto.notizie
 def _notizie():
     if request.method == 'GET':
@@ -211,7 +212,7 @@ def _notizie():
 
 
 @app.route('/notizie/<id>', methods=['DELETE', 'PUT'])
-@login_required
+@login_richiesto
 @ruolo_richiesto.notizie
 def _notizie_id(id):
     if request.method == 'DELETE':
