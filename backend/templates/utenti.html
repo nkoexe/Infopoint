@@ -1,0 +1,14 @@
+{% extends "base.html" %} {% block title %}Utenti{% endblock %} {% block header %}Impostazioni Utenti{% endblock %} {% block content %}
+
+<table id="userstable">
+  {% for id in users %}
+  <tr>
+    <td>{{id}}</td>
+    <td>{{ users[id]['name'] }}</td>
+    <td>{{ ', '.join(users[id]['roles']) }}</td>
+    <td>Modifica Elimina</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% endblock %}
