@@ -7,9 +7,10 @@ function newsshow(id) {
 
     // Send the request to the server
     $.ajax({
-        url: "/notizie/" + id,
+        url: "/notizie",
         type: "PUT",
         data: {
+            "id": id,
             // To reverse the visibility just send this, the server will do the rest
             "active": ""
         },
@@ -18,11 +19,11 @@ function newsshow(id) {
                 alert("Errore");
             } else if (data == '1') {
                 // If the element is now visible, change the icon and text opacity
-                showbtn.innerHTML = "visibility";
+                showbtn.innerText = "visibility";
                 newstext.classList.remove("disabled");
             } else {
                 // If the element is now hidden, change the icon and text opacity
-                showbtn.innerHTML = "visibility_off";
+                showbtn.innerText = "visibility_off";
                 newstext.classList.add("disabled");
             }
         }
@@ -36,7 +37,7 @@ function newsedit(id) {
     var savebtn = document.getElementById("newssave")
     savebtn.classList.remove("hidden");
     savebtn.setAttribute("onclick", "newseditsave('" + id + "')"); // id is still a string - "00021", not 21
-    
+
     var cancbtn = document.getElementById("newscanc");
     cancbtn.classList.remove("hidden");
     cancbtn.setAttribute("onclick", "newseditcanc('" + id + "')");
@@ -57,9 +58,10 @@ function newseditsave(id) {
 
     // Send the new text to the server
     $.ajax({
-        url: "/notizie/" + id,
+        url: "/notizie",
         type: "PUT",
         data: {
+            "id": id,
             "text": text
         },
         success: function(data) {
@@ -92,9 +94,14 @@ function newseditcanc(id) {
 
 function newsdel(id) {
     $.ajax({
-        url: "/notizie/" + id,
+        url: "/notizie",
         type: "DELETE",
+        data: {
+            "id": id
+        },
         success: function(data) {
+            // Remove list element instead of reloading.
+            // add an id to the element ("list0002"), find it, .remove() it
             location.reload();
         }
     });
