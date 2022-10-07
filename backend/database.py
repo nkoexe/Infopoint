@@ -5,8 +5,9 @@ Python interface to the database.
 from configparser import ConfigParser
 from json import dump, load
 from pathlib import Path
+import logging
 
-BASEPATH = Path(__file__).parent.parent / 'database'
+BASEPATH = Path(__file__).resolve().parent.parent / 'database'
 
 config = ConfigParser()
 config.read(BASEPATH / 'config.ini')
@@ -26,6 +27,7 @@ class BibliotecaDB:
         '''
 
         dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        logging.debug('Database Biblioteca aggiornato.')
 
     def add(self, title: str, descr: str, img):
         '''
@@ -48,6 +50,7 @@ class BibliotecaDB:
 
         if extension not in ('jpg', 'jpeg', 'png', 'gif'):
             # File type not supported
+            logging.warning(f'Aggiunta a Biblioteca: Estensione file <{extension}> non supportata.')
             return
 
         filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
@@ -55,7 +58,7 @@ class BibliotecaDB:
 
         img.save(filepath)
 
-        print('salvato')
+        logging.debug('Copertina libro salvata in ' + filepath)
 
         # add the book to the database
         self.data['books'][id] = {
@@ -65,6 +68,8 @@ class BibliotecaDB:
         }
 
         self.data['active'] = id
+
+        logging.debug(f'Libro con id <{id}> aggiunto e impostato come attivo.')
 
         self.update()
 
@@ -80,6 +85,7 @@ class NotizieDB:
         '''
 
         dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str):
         '''
@@ -99,6 +105,8 @@ class NotizieDB:
             'active': True
         }
 
+        logging.debug(f'Notizia con id <{id}> aggiunta.')
+
         self.update()
 
     def edit(self, id: str, text: str = None, active: bool = None):
@@ -112,9 +120,11 @@ class NotizieDB:
 
         if text is not None and isinstance(text, str):
             self.data[id]['text'] = text
+            logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
 
         if active is not None and isinstance(active, bool):
             self.data[id]['active'] = active
+            logging.debug(f'Notizia con id <{id}> impostata come ' + 'visibile.' if active else 'nascosta.')
 
         self.update()
 
@@ -128,6 +138,7 @@ class NotizieDB:
         '''
 
         del self.data[id]
+        logging.debug(f'Notizia con id <{id}> eliminata.')
 
         self.update()
 
@@ -143,6 +154,7 @@ class GalleriaDB:
         '''
 
         dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str, active: bool, media=None, link=None):
         '''
@@ -155,6 +167,7 @@ class GalleriaDB:
         '''
 
         if media is None and link is None:
+            logging.warning('Aggiunta a Galleria: File o link non dati, uno dei due è necessario.')
             return
 
         if len(self.data) == 0:
@@ -171,17 +184,20 @@ class GalleriaDB:
                 media_type = 'video'
             else:
                 # File type not supported
-                # todo: modify
+                logging.warning(f'Aggiunta a Galleria: Estensione file <{extension}> non supportata.')
                 return
 
             filepath = BASEPATH / 'galleria' / subdir_name / (id + '.' + extension)
             media.save(filepath)
+
+            logging.debug('File salvato in: ' + filepath)
 
         elif link is not None:
             if link.startswith('https://www.youtube.com/watch?v='):
                 media_type = 'youtube'
                 filepath = link
             else:
+                logging.warning('Link invalido.')
                 return
 
         self.data[id] = {
@@ -190,6 +206,8 @@ class GalleriaDB:
             'path': filepath,
             'active': active
         }
+
+        logging.debug(f'Elemento della Galleria con id <{id}> salvato.')
 
         self.update()
 
@@ -204,9 +222,11 @@ class GalleriaDB:
 
         if text is not None and isinstance(text, str):
             self.data[id]['text'] = text
+            logging.debug(f'Aggiornato il testo dell\'elemento di Galleria con id <{id}>')
 
         if active is not None and isinstance(active, bool):
             self.data[id]['active'] = active
+            logging.debug(f'Elemento di Galleria con id <{id}> impostata come ' + 'visibile.' if active else 'nascosta.')
 
         self.update()
 
@@ -218,5 +238,7 @@ class GalleriaDB:
         '''
 
         del self.data[id]
+
+        logging.debug('Elemento di Galleria con id <{id}>')
 
         self.update()

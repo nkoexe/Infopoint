@@ -2,17 +2,22 @@ from functools import wraps
 from hashlib import sha256
 from json import load
 from pathlib import Path
+import logging
+
 
 from flask import Flask, abort, flash, redirect, render_template, request, url_for
 from flask_login import LoginManager, login_required as login_richiesto, login_user, logout_user, current_user
 
 from database import BibliotecaDB, NotizieDB, GalleriaDB
 
+
 biblioteca = BibliotecaDB()
 notizie = NotizieDB()
 galleria = GalleriaDB()
 
 users = load(open(Path(__file__).parent / 'users.json'))
+
+logging.basicConfig(level=logging.DEBUG)
 
 app = Flask(__name__)
 app.secret_key = b'0ee6f27b79730fb025949c4d792f084adadcf4796bfdeb980c6ec1abf1fd7a70'
@@ -88,7 +93,8 @@ def page_not_found(e):
 @login_manager.unauthorized_handler
 def unauthorized():
     '''
-    Handles requests without login to pages that require it.
+    Indica cosa fare con richieste di utenti che non hanno
+    ancora fatto il login, a pagine che lo richiedono
     '''
     return redirect('/login')
 
@@ -108,8 +114,8 @@ def load_user(user_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def _login():
-    # Se l'utente ha già eseguito il login lo reindirizza alla homepage
     if request.method == 'GET':
+        # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
             return redirect('/')
 
@@ -127,7 +133,6 @@ def _login():
             if users[i]['name'] == username and users[i]['hash'] == password:
                 login_user(User(i))
 
-                # next = request.args.get('next')
                 return redirect('/')
 
         return render_template('login.html', error='Nome utente o password errati')
@@ -143,9 +148,9 @@ def _logout():
 @app.route('/')
 @login_richiesto
 def _index():
-
     # Se l'utente ha solo un permesso non mostrare la homepage ma
-    # reindirizza direttamente alla pagina a cui si ha accesso
+    # reindirizza direttamente alla pagina a cui si ha accesso.
+    # Il controllo viene eseguito sommando booleani, dato che in Python false=0 e true=1
     if sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
             return redirect('/biblioteca')
@@ -164,6 +169,13 @@ def _index():
 @ruolo_richiesto.admin
 def _impostazioni():
     return render_template('impostazioni.html')
+
+
+@app.route('/impostazioni/utenti')
+@login_richiesto
+@ruolo_richiesto.admin
+def _impostazioni_utenti():
+    return render_template('utenti.html', users=users)
 
 
 @app.route('/biblioteca', methods=['GET', 'POST'])
@@ -194,12 +206,18 @@ def _galleria():
     return render_template('galleria.html')
 
 
-@app.route('/notizie', methods=['GET', 'POST'])
+@app.route('/notizie', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_richiesto
 @ruolo_richiesto.notizie
 def _notizie():
     if request.method == 'GET':
         return render_template('notizie.html', notizie=notizie.data)
+
+    # Eliminazione di una notizia esistente
+    elif request.method == 'DELETE':
+        id = request.form['id']
+        notizie.delete(id)
+        app.logger.debug(f'Notizia con id {id} eliminata')
 
     # Inserimento di una nuova notizia
     elif request.method == 'POST':
@@ -210,16 +228,11 @@ def _notizie():
 
         return redirect('/notizie')
 
-
-@app.route('/notizie/<id>', methods=['DELETE', 'PUT'])
-@login_richiesto
-@ruolo_richiesto.notizie
-def _notizie_id(id):
-    if request.method == 'DELETE':
-        notizie.delete(id)
-
+    # Aggiornamento della notizia
     elif request.method == 'PUT':
-        # Aggiorna il testo della notizia
+        id = request.form['id']
+
+        # Modifica del testo
         if 'text' in request.form:
             notizia = request.form['text'].strip()
 
@@ -228,7 +241,7 @@ def _notizie_id(id):
 
             notizie.edit(id, text=notizia)
 
-        # Aggiorna lo stato visibile o meno della notizia
+        # Modifica dello stato visibile o meno della notizia
         # invertendo il valore precedente
         if 'active' in request.form:
             active = not notizie.data[id]['active']
