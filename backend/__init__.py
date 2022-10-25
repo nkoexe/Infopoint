@@ -251,5 +251,6 @@ def _notizie():
     return 'ok'
 
 
-if __name__ == '__main__':
+if __name__ == '__main__':  # INIZIO ESECUZIONE
+    # Avvia il server
     app.run('0.0.0.0', 5000, debug=True)

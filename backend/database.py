@@ -18,15 +18,16 @@ subdir_name = config.get('Path', 'subdir_name')
 
 class BibliotecaDB:
     def __init__(self):
-        self.path = BASEPATH / 'biblioteca' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.config_path = BASEPATH / 'biblioteca' / json_name
+        self.file_path = BASEPATH / 'biblioteca' / subdir_name
+        self.data = load(open(self.config_path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Biblioteca aggiornato.')
 
     def add(self, title: str, descr: str, img):
@@ -53,7 +54,7 @@ class BibliotecaDB:
             logging.warning(f'Aggiunta a Biblioteca: Estensione file <{extension}> non supportata.')
             return
 
-        filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
+        filepath = self.file_path / (id + '.' + extension)
         print(filepath)
 
         img.save(filepath)
@@ -76,15 +77,15 @@ class BibliotecaDB:
 
 class NotizieDB:
     def __init__(self):
-        self.path = BASEPATH / 'notizie' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.config_path = BASEPATH / 'notizie' / json_name
+        self.data = load(open(self.config_path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str):
@@ -145,15 +146,16 @@ class NotizieDB:
 
 class GalleriaDB:
     def __init__(self):
-        self.path = BASEPATH / 'galleria' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.config_path = BASEPATH / 'galleria' / json_name
+        self.file_path = BASEPATH / 'galleria' / subdir_name
+        self.data = load(open(self.config_path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str, active: bool, media=None, link=None):
@@ -187,7 +189,7 @@ class GalleriaDB:
                 logging.warning(f'Aggiunta a Galleria: Estensione file <{extension}> non supportata.')
                 return
 
-            filepath = BASEPATH / 'galleria' / subdir_name / (id + '.' + extension)
+            filepath = self.file_path / (id + '.' + extension)
             media.save(filepath)
 
             logging.debug('File salvato in: ' + filepath)
