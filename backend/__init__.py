@@ -5,10 +5,10 @@ from pathlib import Path
 import logging
 
 
-from flask import Flask, abort, flash, redirect, render_template, request, url_for
+from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
 from flask_login import LoginManager, login_required as login_richiesto, login_user, logout_user, current_user
 
-from database import BibliotecaDB, NotizieDB, GalleriaDB
+from database import BibliotecaDB, NotizieDB, GalleriaDB, BASEPATH as media_path
 
 
 biblioteca = BibliotecaDB()
@@ -177,8 +177,11 @@ def _impostazioni():
 def _impostazioni_utenti():
     return render_template('utenti.html', users=users)
 
+@app.route('/media/<path:filename>')
+def media(filename):
+    return send_from_directory(media_path, filename)
 
-@app.route('/biblioteca', methods=['GET', 'POST'])
+@app.route('/biblioteca', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_richiesto
 @ruolo_richiesto.biblioteca
 def _biblioteca():
@@ -191,12 +194,37 @@ def _biblioteca():
         titolo = request.form['titolo'].strip()
         descrizione = request.form['descrizione'].strip()
 
-        print(copertina.stream.read())
-
         if titolo and descrizione and copertina:
             biblioteca.add(titolo, descrizione, copertina)
 
         return redirect('/biblioteca')
+    
+    elif request.method == 'DELETE':
+        id = request.form['id']
+        biblioteca.delete(id)
+
+    elif request.method == 'PUT':
+        id = request.form['id']
+
+        if 'title' and 'descr' in request.form:
+            titolo = request.form['title'].strip()
+            descr = request.form['descr'].strip()
+
+            if not titolo or not descr:
+                return 'ko'
+
+            biblioteca.edit(id, titolo, descr)
+
+        # Modifica dello stato visibile o meno della notizia
+        # invertendo il valore precedente
+        if 'active' in request.form:
+            active = not notizie.data[id]['active']
+            notizie.edit(id, active=active)
+            return '1' if active else '0'
+        # biblioteca.show(id)
+    return 'ok'
+        
+
 
 
 @app.route('/galleria')
@@ -217,7 +245,6 @@ def _notizie():
     elif request.method == 'DELETE':
         id = request.form['id']
         notizie.delete(id)
-        app.logger.debug(f'Notizia con id {id} eliminata')
 
     # Inserimento di una nuova notizia
     elif request.method == 'POST':
@@ -251,6 +278,5 @@ def _notizie():
     return 'ok'
 
 
-if __name__ == '__main__':  # INIZIO ESECUZIONE
-    # Avvia il server
+if __name__ == '__main__':
     app.run('0.0.0.0', 5000, debug=True)

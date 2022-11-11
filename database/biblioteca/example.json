@@ -1,5 +1,15 @@
 {
-    "active": "00005",
+    "active": "00002",
     "books": {
+        "00001": {
+            "descr": "fggggg",
+            "img": "00001.png",
+            "title": "vwvweqw"
+        },
+        "00002": {
+            "descr": "ssss",
+            "img": "00002.png",
+            "title": "dddd"
+        }
     }
 }

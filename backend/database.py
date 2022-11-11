@@ -6,6 +6,7 @@ from configparser import ConfigParser
 from json import dump, load
 from pathlib import Path
 import logging
+import os
 
 BASEPATH = Path(__file__).resolve().parent.parent / 'database'
 
@@ -18,16 +19,15 @@ subdir_name = config.get('Path', 'subdir_name')
 
 class BibliotecaDB:
     def __init__(self):
-        self.config_path = BASEPATH / 'biblioteca' / json_name
-        self.file_path = BASEPATH / 'biblioteca' / subdir_name
-        self.data = load(open(self.config_path, 'r'))
+        self.path = BASEPATH / 'biblioteca' / json_name
+        self.data = load(open(self.path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Biblioteca aggiornato.')
 
     def add(self, title: str, descr: str, img):
@@ -41,7 +41,7 @@ class BibliotecaDB:
         #! Todo:
         #! - check if file is actually an image
 
-        if len(self.data) == 0:
+        if len(self.data['books']) == 0:
             id = '1'.zfill(5)
         else:
             # the book's id is the last one incremented by 1
@@ -54,12 +54,12 @@ class BibliotecaDB:
             logging.warning(f'Aggiunta a Biblioteca: Estensione file <{extension}> non supportata.')
             return
 
-        filepath = self.file_path / (id + '.' + extension)
+        filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
         print(filepath)
 
         img.save(filepath)
 
-        logging.debug('Copertina libro salvata in ' + filepath)
+        logging.debug('Copertina libro salvata in ' + str (filepath))
 
         # add the book to the database
         self.data['books'][id] = {
@@ -74,18 +74,52 @@ class BibliotecaDB:
 
         self.update()
 
+    def delete(self, id: str):
+        '''
+        Delete a biblioteca element.
+
+        :param str id: id of the biblioteca element
+        '''
+
+        del self.data['books'][id]
+        filedir = BASEPATH / 'biblioteca' / subdir_name
+        for fname in os.listdir(filedir):
+            if fname.startswith(id):
+                os.remove(filedir / fname)
+        logging.debug(f'Libro con id <{id}> eliminato.')
+
+        self.update()
+
+    def show(self, id: str):
+        self.data['active'] = id
+        self.update()
+
+    def edit(self, id: str, title: str = None, descr: str = None, active: bool = None):
+
+        if title and descr is not None and isinstance(title, str) and isinstance(descr, str):
+            self.data['books'][id]['title'] = title
+            self.data['books'][id]['descr'] = descr
+            logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
+
+        if active:
+            if self[active] != id:
+                self.data['active'] = id
+                logging.debug(f'Notizia con id <{id}> impostata come ' + 'visibile.' if active else 'nascosta.')
+
+        self.update()
+
 
 class NotizieDB:
     def __init__(self):
-        self.config_path = BASEPATH / 'notizie' / json_name
-        self.data = load(open(self.config_path, 'r'))
+        self.path = BASEPATH / 'notizie' / json_name
+        self.data = load(open(self.path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str):
@@ -146,16 +180,15 @@ class NotizieDB:
 
 class GalleriaDB:
     def __init__(self):
-        self.config_path = BASEPATH / 'galleria' / json_name
-        self.file_path = BASEPATH / 'galleria' / subdir_name
-        self.data = load(open(self.config_path, 'r'))
+        self.path = BASEPATH / 'galleria' / json_name
+        self.data = load(open(self.path, 'r'))
 
     def update(self):
         '''
         Dump the database to the json files.
         '''
 
-        dump(self.data, open(self.config_path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
+        dump(self.data, open(self.path, 'w'), indent=4, sort_keys=True, ensure_ascii=False)
         logging.debug('Database Notizie aggiornato.')
 
     def add(self, text: str, active: bool, media=None, link=None):
@@ -189,7 +222,7 @@ class GalleriaDB:
                 logging.warning(f'Aggiunta a Galleria: Estensione file <{extension}> non supportata.')
                 return
 
-            filepath = self.file_path / (id + '.' + extension)
+            filepath = BASEPATH / 'galleria' / subdir_name / (id + '.' + extension)
             media.save(filepath)
 
             logging.debug('File salvato in: ' + filepath)
@@ -241,6 +274,6 @@ class GalleriaDB:
 
         del self.data[id]
 
-        logging.debug('Elemento di Galleria con id <{id}>')
+        logging.debug('Elemento di Galleria con id <{id}> eliminato')
 
         self.update()

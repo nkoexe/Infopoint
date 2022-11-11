@@ -1,0 +1,69 @@
+function bookdel(id) {
+    $.ajax({
+        url: "/biblioteca",
+        type: "DELETE",
+        data: {
+            "id": id
+        },
+        success: function(data) {
+            // Remove list element instead of reloading.
+            // add an id to the element ("list0002"), find it, .remove() it
+            location.reload();
+        }
+    });
+}
+
+function bookshow(id) {
+    $.ajax({
+        url: "/biblioteca",
+        type: "PUT",
+        data: {
+            "id": id,
+            "active": ""
+        },
+        success: function(data) {
+            // Remove list element instead of reloading.
+            // add an id to the element ("list0002"), find it, .remove() it
+            location.reload();
+        }
+    });
+}
+
+function bookedit(id) {
+    var savebtn = document.getElementById("booksave")
+    savebtn.classList.remove("hidden");
+    savebtn.setAttribute("onclick", "bookeditsave('" + id + "')"); // id is still a string - "00021", not 21
+
+    var cancbtn = document.getElementById("bookcanc");
+    cancbtn.classList.remove("hidden");
+    cancbtn.setAttribute("onclick", "bookeditcanc('" + id + "')");
+
+    // Take the text of the news element and put it in the textarea
+    document.getElementById("input_titolo").value = document.getElementById('title.' + id).textContent;
+    document.getElementById("input_descrizione").value = document.getElementById('desc.' + id).textContent;
+}
+
+function bookeditsave(id, title, desc) {
+    $.ajax({
+        url: "/biblioteca",
+        type: "PUT",
+        data: {
+            "id": id,
+            "title": title,
+            "desc": desc
+        },
+        success: function(data) {
+            if (data == "ok") {
+                location.reload();
+            } else {
+                // TODO: show the error
+                alert("C'è stato un errore nella modifica della notizia");
+            }
+            location.reload();
+        }
+    });
+}
+
+function bookeditcanc(id) {
+    
+}
