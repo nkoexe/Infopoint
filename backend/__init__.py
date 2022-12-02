@@ -201,27 +201,24 @@ def _biblioteca():
     
     elif request.method == 'DELETE':
         id = request.form['id']
-        biblioteca.delete(id)
+        if biblioteca.data['active'] != id:
+            biblioteca.delete(id)
+        else:
+            return 'ko'
 
     elif request.method == 'PUT':
         id = request.form['id']
-
         if 'title' and 'descr' in request.form:
             titolo = request.form['title'].strip()
-            descr = request.form['descr'].strip()
+            descrizione = request.form['descr'].strip()
 
-            if not titolo or not descr:
+            if not titolo or not descrizione:
                 return 'ko'
-
-            biblioteca.edit(id, titolo, descr)
+            biblioteca.edit(id, titolo, descrizione)
 
         # Modifica dello stato visibile o meno della notizia
-        # invertendo il valore precedente
         if 'active' in request.form:
-            active = not notizie.data[id]['active']
-            notizie.edit(id, active=active)
-            return '1' if active else '0'
-        # biblioteca.show(id)
+            biblioteca.edit(id, active = True)
     return 'ok'
         
 

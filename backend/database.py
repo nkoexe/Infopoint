@@ -96,15 +96,17 @@ class BibliotecaDB:
 
     def edit(self, id: str, title: str = None, descr: str = None, active: bool = None):
 
-        if title and descr is not None and isinstance(title, str) and isinstance(descr, str):
+        if title is not None and descr is not None and isinstance(title, str) and isinstance(descr, str):
             self.data['books'][id]['title'] = title
             self.data['books'][id]['descr'] = descr
             logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
+        else:
+            logging.debug(f"Errore, titolo o descrizione vuoti")
 
         if active:
-            if self[active] != id:
+            if self.data['active'] != id:
                 self.data['active'] = id
-                logging.debug(f'Notizia con id <{id}> impostata come ' + 'visibile.' if active else 'nascosta.')
+                logging.debug(f'Notizia con id <{id}> impostata come ' + 'visibile.')
 
         self.update()
 

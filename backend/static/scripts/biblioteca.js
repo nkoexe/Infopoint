@@ -8,6 +8,9 @@ function bookdel(id) {
         success: function(data) {
             // Remove list element instead of reloading.
             // add an id to the element ("list0002"), find it, .remove() it
+            if (data == "ko"){
+                alert("Il libro selezionato non e' eliminabile in quanto attualmente attivo")
+            }
             location.reload();
         }
     });
@@ -43,14 +46,16 @@ function bookedit(id) {
     document.getElementById("input_descrizione").value = document.getElementById('desc.' + id).textContent;
 }
 
-function bookeditsave(id, title, desc) {
+function bookeditsave(id) {
+    var title = document.getElementById("input_titolo").value
+    var descr = document.getElementById("input_descrizione").value
     $.ajax({
         url: "/biblioteca",
         type: "PUT",
         data: {
             "id": id,
             "title": title,
-            "desc": desc
+            "descr": descr
         },
         success: function(data) {
             if (data == "ok") {
@@ -65,5 +70,9 @@ function bookeditsave(id, title, desc) {
 }
 
 function bookeditcanc(id) {
-    
+    document.getElementById("booksave").classList.add("hidden");
+    document.getElementById("bookcanc").classList.add("hidden");
+
+    document.getElementById("input_titolo").value = "";
+    document.getElementById("input_descrizione").value = "";
 }

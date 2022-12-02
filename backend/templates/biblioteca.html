@@ -11,6 +11,8 @@
   <label class="text" for="titolo"> Inserisci descrizione libro: </label>
   <input type="text" id="input_descrizione" name="descrizione" required /><br />
   <button type="submit" id="bibliosubmit" class="btn">Invia</button>
+  <button type="button" class="hidden" id="booksave">Salva modifiche</button>
+  <button type="button" class="hidden" id="bookcanc">Annulla</button>
 </form>
 
 <ul id="blist">
@@ -24,9 +26,8 @@
       </div>
       <div class="bbtncont">
         <button onclick="bookshow('{{ id }}')">riutilizza</button>
-        <button onclick="bookedit('{{ id }}')">modifica</button>
-        <button type="button" class="hidden" id="booksave">Salva modifiche</button>
-        <button type="button" class="hidden" id="bookcanc">Annulla</button>
+        <button id="bookedit" onclick="bookedit('{{ id }}')">modifica</button>
+        
         <button onclick="bookdel('{{ id }}')">elimina</button>
       </div>
     </div>
