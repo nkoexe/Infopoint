@@ -1,5 +1,5 @@
 {
-    "active": "00001",
+    "active": "00004",
     "books": {
         "00001": {
             "descr": "fgggggk",
@@ -10,6 +10,16 @@
             "descr": "ssss",
             "img": "00002.png",
             "title": "dddd"
+        },
+        "00003": {
+            "descr": "rrrrrrrrrr",
+            "img": "00003.png",
+            "title": "ggggg"
+        },
+        "00004": {
+            "descr": "prova di kirby",
+            "img": "00004.png",
+            "title": "kirbyprova"
         }
     }
 }

@@ -5,7 +5,9 @@
 
 <form method="post" enctype="multipart/form-data">
   <label class="text" for="copertina"> Inserisci copertina libro: </label>
-  <input type="file" id="input_copertina" name="copertina" accept="image/*" /><br />
+  <input type="file" id="input_copertina" name="copertina" accept="image/*" onchange="loadFile(event)" /><br />
+  <img id="preview_copertina">
+  <img id="img prova">
   <label class="text" for="titolo"> Inserisci titolo libro: </label>
   <input type="text" id="input_titolo" name="titolo" required /><br />
   <label class="text" for="titolo"> Inserisci descrizione libro: </label>
@@ -20,7 +22,7 @@
   <li>
     <div class="bcont">
       <div class="b">
-        <div><img src="{{ url_for('media', filename='biblioteca/files/' + libri[id]['img'] ) }}"></div>
+        <div><img id="img.{{ id }}" src="{{ url_for('media', filename='biblioteca/files/' + libri[id]['img'] ) }}"></div>
         <div id="title.{{ id }}" class="text">{{ libri[id]['title'] }}</div>
         <div id="desc.{{ id }}" class="text">{{ libri[id]['descr'] }}</div>
       </div>
