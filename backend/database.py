@@ -94,7 +94,7 @@ class BibliotecaDB:
         self.data['active'] = id
         self.update()
 
-    def edit(self, id: str, title: str = None, descr: str = None, active: bool = None):
+    def edit(self, id: str, title: str, descr: str):
 
         if title is not None and descr is not None and isinstance(title, str) and isinstance(descr, str):
             self.data['books'][id]['title'] = title
@@ -103,6 +103,47 @@ class BibliotecaDB:
         else:
             logging.debug(f"Errore, titolo o descrizione vuoti")
 
+        self.update()
+    
+    def editImg(self, id: str, title: str, descr: str, img):
+
+        if title is not None and descr is not None and isinstance(title, str) and isinstance(descr, str):
+            self.data['books'][id] = {
+            'title': title,
+            'descr': descr
+        }
+            logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
+        else:
+            logging.debug(f"Errore, titolo o descrizione vuoti")
+
+        extension = img.filename.rsplit('.', 1)[1].lower()
+
+        if extension not in ('jpg', 'jpeg', 'png', 'gif'):
+            # File type not supported
+            logging.warning(f'Aggiunta a Biblioteca: Estensione file <{extension}> non supportata.')
+            return
+
+        filepath = BASEPATH / 'biblioteca' / subdir_name / (id + '.' + extension)
+        print(filepath)
+
+        img.save(filepath)
+
+        logging.debug('Copertina libro salvata in ' + str (filepath))
+
+        # add the book to the database
+        self.data['books'][id] = {
+            'title': title,
+            'descr': descr,
+            'img': (id + '.' + extension)
+        }
+
+        self.data['active'] = id
+
+        logging.debug(f'Libro con id <{id}> aggiunto e impostato come attivo.')
+
+        self.update()
+
+    def editActive(self, id: str, active: bool):
         if active:
             if self.data['active'] != id:
                 self.data['active'] = id

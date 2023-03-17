@@ -188,16 +188,25 @@ def _biblioteca():
     if request.method == 'GET':
         return render_template('biblioteca.html', libri=biblioteca.data['books'])
 
-    # Inserimento di un nuovo libro
+    # Inserimento di un nuovo libro e modifica
     elif request.method == 'POST':
         copertina = request.files['copertina']
         titolo = request.form['titolo'].strip()
         descrizione = request.form['descrizione'].strip()
+        id = request.form['metodo']
 
-        if titolo and descrizione and copertina:
-            biblioteca.add(titolo, descrizione, copertina)
-
-        return redirect('/biblioteca')
+        # Inserimento di un libro nuovo
+        if id == '0':
+            if titolo and descrizione and copertina:
+                biblioteca.add(titolo, descrizione, copertina)
+            return redirect('/biblioteca')
+        # Modifica di un libro esistente
+        elif id != '0':
+            if titolo and descrizione and copertina:
+                biblioteca.editImg(id, titolo, descrizione, copertina)
+            elif titolo and descrizione:
+                biblioteca.edit(id, titolo, descrizione)
+            return redirect('/biblioteca')
     
     elif request.method == 'DELETE':
         id = request.form['id']
@@ -208,17 +217,9 @@ def _biblioteca():
 
     elif request.method == 'PUT':
         id = request.form['id']
-        if 'title' and 'descr' in request.form:
-            titolo = request.form['title'].strip()
-            descrizione = request.form['descr'].strip()
-
-            if not titolo or not descrizione:
-                return 'ko'
-            biblioteca.edit(id, titolo, descrizione)
-
         # Modifica dello stato visibile o meno della notizia
         if 'active' in request.form:
-            biblioteca.edit(id, active = True)
+            biblioteca.editActive(id, active = True)
     return 'ok'
         
 

@@ -7,14 +7,14 @@
   <label class="text" for="copertina"> Inserisci copertina libro: </label>
   <input type="file" id="input_copertina" name="copertina" accept="image/*" onchange="loadFile(event)" /><br />
   <img id="preview_copertina">
-  <img id="img prova">
   <label class="text" for="titolo"> Inserisci titolo libro: </label>
   <input type="text" id="input_titolo" name="titolo" required /><br />
   <label class="text" for="titolo"> Inserisci descrizione libro: </label>
   <input type="text" id="input_descrizione" name="descrizione" required /><br />
   <button type="submit" id="bibliosubmit" class="btn">Invia</button>
-  <button type="button" class="hidden" id="booksave">Salva modifiche</button>
+  <button type="submit" class="hidden" id="booksave">Salva modifiche</button>
   <button type="button" class="hidden" id="bookcanc">Annulla</button>
+  <input type="hidden" id="valore_metodo" name="metodo" value="0" />
 </form>
 
 <ul id="blist">

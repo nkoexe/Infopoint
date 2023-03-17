@@ -45,47 +45,29 @@ function bookedit(id) {
     document.getElementById("input_titolo").value = document.getElementById('title.' + id).textContent;
     document.getElementById("input_descrizione").value = document.getElementById('desc.' + id).textContent;
     document.getElementById("preview_copertina").src = document.getElementById('img.' + id).src;
+    document.getElementById("bibliosubmit").classList.add("hidden");
+
+    // Valore nascosto per modifica al metodo post
+    var method_val = document.getElementById("valore_metodo");
+    method_val.value = id;
 }
 
-function bookeditsave(id) {
-    var title = document.getElementById("input_titolo").value
-    var descr = document.getElementById("input_descrizione").value
-    //var img = document.getElementById("input_copertina").files[0].name
-    
-    $.ajax({
-        url: "/biblioteca",
-        type: "PUT",
-        data: {
-            "id": id,
-            "title": title,
-            "descr": descr//,
-            //"img": img
-        },
-        success: function(data) {
-            if (data == "ok") {
-                location.reload();
-            } else {
-                // TODO: show the error
-                alert("C'è stato un errore nella modifica della notizia");
-            }
-            location.reload();
-        }
-    });
-}
-
-function bookeditcanc(id) {
+function bookeditcanc() {
     document.getElementById("booksave").classList.add("hidden");
     document.getElementById("bookcanc").classList.add("hidden");
+    document.getElementById("bibliosubmit").classList.remove("hidden");
 
     document.getElementById("input_titolo").value = "";
     document.getElementById("input_descrizione").value = "";
     document.getElementById("preview_copertina").src = "";
+    document.getElementById("valore_metodo").value = "";
 }
 
 function loadFile(event) {
-    var preview = document.getElementById("preview_copertina");
-    preview.src = URL.createObjectURL(event.target.files[0]);
-    preview.onload = function() {
-        URL.revokeObjectURL(output.src)
-    }
+    var reader = new FileReader();
+    reader.onload = function(){
+        var preview = document.getElementById("preview_copertina");
+        preview.src = reader.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
 }
