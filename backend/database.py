@@ -80,18 +80,41 @@ class BibliotecaDB:
 
         :param str id: id of the biblioteca element
         '''
-
-        del self.data['books'][id]
+        
         filedir = BASEPATH / 'biblioteca' / subdir_name
-        for fname in os.listdir(filedir):
-            if fname.startswith(id):
-                os.remove(filedir / fname)
+        id_img = self.data['books'][id]['img']
+        
+        del self.data['books'][id]
+
+        if all(self.data['books'][book]['img'] != id_img for book in self.data['books'] ):
+            for fname in os.listdir(filedir):
+                if fname.startswith(id_img):
+                    os.remove(filedir / fname)
+
+        #for book in self.data['books']:
+        #    if book.data['img'] == id_img:
+        #        for fname in os.listdir(filedir):
+        #            if fname.startswith(id):
+        #                os.remove(filedir / fname)
+
+        
         logging.debug(f'Libro con id <{id}> eliminato.')
 
         self.update()
 
     def show(self, id: str):
         self.data['active'] = id
+        self.update()
+
+    def duplicate(self, title: str, descr: str, img: str):
+
+        id = str(int(list(self.data['books'].keys())[-1]) + 1).zfill(5)
+        # add the book to the database
+        self.data['books'][id] = {
+            'title': title,
+            'descr': descr,
+            'img': img
+        }
         self.update()
 
     def edit(self, id: str, title: str, descr: str):

@@ -190,22 +190,29 @@ def _biblioteca():
 
     # Inserimento di un nuovo libro e modifica
     elif request.method == 'POST':
-        copertina = request.files['copertina']
-        titolo = request.form['titolo'].strip()
-        descrizione = request.form['descrizione'].strip()
-        id = request.form['metodo']
-
-        # Inserimento di un libro nuovo
-        if id == '0':
-            if titolo and descrizione and copertina:
-                biblioteca.add(titolo, descrizione, copertina)
-            return redirect('/biblioteca')
-        # Modifica di un libro esistente
-        elif id != '0':
-            if titolo and descrizione and copertina:
-                biblioteca.editImg(id, titolo, descrizione, copertina)
-            elif titolo and descrizione:
-                biblioteca.edit(id, titolo, descrizione)
+        if 'img_duplicated' not in request.form:
+            copertina = request.files['copertina']
+            titolo = request.form['titolo'].strip()
+            descrizione = request.form['descrizione'].strip()
+            id = request.form['metodo']
+            # Inserimento di un libro nuovo
+            if id == '0':
+                if titolo and descrizione and copertina:
+                    biblioteca.add(titolo, descrizione, copertina)
+                return redirect('/biblioteca')
+            # Modifica di un libro esistente
+            elif id != '0' and id != 'duplicate':
+                if titolo and descrizione and copertina:
+                    biblioteca.editImg(id, titolo, descrizione, copertina)
+                elif titolo and descrizione:
+                    biblioteca.edit(id, titolo, descrizione)
+                return redirect('/biblioteca')
+        elif 'img_duplicated' in request.form:
+            img = request.form['img_duplicated'].strip()
+            titolo = request.form['titolo'].strip()
+            descrizione = request.form['descrizione'].strip()
+            if titolo and descrizione and img:
+                biblioteca.duplicate(titolo, descrizione, img)
             return redirect('/biblioteca')
     
     elif request.method == 'DELETE':

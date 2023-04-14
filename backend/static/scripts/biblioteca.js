@@ -6,8 +6,7 @@ function bookdel(id) {
             "id": id
         },
         success: function(data) {
-            // Remove list element instead of reloading.
-            // add an id to the element ("list0002"), find it, .remove() it
+
             if (data == "ko"){
                 alert("Il libro selezionato non e' eliminabile in quanto attualmente attivo")
             }
@@ -25,8 +24,7 @@ function bookshow(id) {
             "active": ""
         },
         success: function(data) {
-            // Remove list element instead of reloading.
-            // add an id to the element ("list0002"), find it, .remove() it
+            
             location.reload();
         }
     });
@@ -70,4 +68,30 @@ function loadFile(event) {
         preview.src = reader.result;
     };
     reader.readAsDataURL(event.target.files[0]);
+}
+
+function duplicate(id) {
+    /*document.getElementById("input_titolo").value = document.getElementById('title.' + id).textContent;
+    document.getElementById("input_descrizione").value = document.getElementById('desc.' + id).textContent;
+    var img = document.getElementById('img.' + id).value;
+    document.getElementById("duplicate").value = img;
+    var method_val = document.getElementById("valore_metodo");
+    method_val.value = "duplicate";*/
+    var titolo = document.getElementById('title.' + id).textContent;
+    var descrizione = document.getElementById('desc.' + id).textContent;
+    img = document.getElementById('img.' + id).alt;
+
+    $.ajax({
+        url: "/biblioteca",
+        type: "POST",
+        data: {
+            "titolo": titolo,
+            "descrizione": descrizione,
+            "img_duplicated": img
+        },
+        success: function(data) {
+            
+            location.reload();
+        }
+    });
 }
