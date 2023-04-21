@@ -6,7 +6,7 @@
 <form method="post" enctype="multipart/form-data">
   <label class="text" for="copertina"> Inserisci copertina libro: </label>
   <input type="file" id="input_copertina" name="copertina" accept="image/*" onchange="loadFile(event)" /><br />
-  <img id="preview_copertina">
+  <img id="preview_copertina"><span id="break" class="hidden"> <br /> </span>
   <label class="text" for="titolo"> Inserisci titolo libro: </label>
   <input type="text" id="input_titolo" name="titolo" required /><br />
   <label class="text" for="titolo"> Inserisci descrizione libro: </label>
@@ -14,12 +14,13 @@
   <button type="submit" id="bibliosubmit" class="btn">Invia</button>
   <button type="submit" class="hidden" id="booksave">Salva modifiche</button>
   <button type="button" class="hidden" id="bookcanc">Annulla</button>
+  <input type="checkbox" class="hidden" id="activecheck">
   <input type="hidden" id="valore_metodo" name="metodo" value="0" />
 </form>
 
 <ul id="blist">
   {% for id in libri %}
-  <li>
+  <li id="{{ id }}">
     <div class="bcont">
       <div class="b">
         <div><img id="img.{{ id }}" src="{{ url_for('media', filename='biblioteca/files/' + libri[id]['img'] ) }}" alt="{{ libri[id]['img'] }}"></div>

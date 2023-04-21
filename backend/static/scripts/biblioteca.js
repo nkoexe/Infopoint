@@ -43,6 +43,7 @@ function bookedit(id) {
     document.getElementById("input_titolo").value = document.getElementById('title.' + id).textContent;
     document.getElementById("input_descrizione").value = document.getElementById('desc.' + id).textContent;
     document.getElementById("preview_copertina").src = document.getElementById('img.' + id).src;
+    document.getElementById("break").classList.remove("hidden")
     document.getElementById("bibliosubmit").classList.add("hidden");
 
     // Valore nascosto per modifica al metodo post
@@ -58,6 +59,7 @@ function bookeditcanc() {
     document.getElementById("input_titolo").value = "";
     document.getElementById("input_descrizione").value = "";
     document.getElementById("preview_copertina").src = "";
+    document.getElementById("break").classList.add("hidden")
     document.getElementById("valore_metodo").value = "";
 }
 
@@ -79,7 +81,7 @@ function duplicate(id) {
     method_val.value = "duplicate";*/
     var titolo = document.getElementById('title.' + id).textContent;
     var descrizione = document.getElementById('desc.' + id).textContent;
-    img = document.getElementById('img.' + id).alt;
+    var img = document.getElementById('img.' + id).alt;
 
     $.ajax({
         url: "/biblioteca",
@@ -90,8 +92,20 @@ function duplicate(id) {
             "img_duplicated": img
         },
         success: function(data) {
-            
+            sessionStorage.setItem("reloading", "true");
             location.reload();
         }
     });
+}
+
+window.onload = function() {
+    var reloading = sessionStorage.getItem("reloading");
+    if (reloading) {
+        console.log(reloading)
+        sessionStorage.removeItem("reloading");
+        var ul = document.getElementById("blist");
+        var lastBook = ul.children[ul.children.length - 1];
+        var lastID = lastBook.id;
+        bookedit(lastID);
+    }
 }
