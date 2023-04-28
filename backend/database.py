@@ -279,9 +279,9 @@ class GalleriaDB:
         if media is not None:
             extension = media.filename.rsplit('.', 1)[1].lower()
 
-            if extension in ('.jpg', '.jpeg', '.png', '.gif'):
+            if extension in ('jpg', 'jpeg', 'png', 'gif'):
                 media_type = 'image'
-            elif extension in ('.mp4', '.mov', '.avi', '.mpg', '.mpeg'):
+            elif extension in ('mp4', 'mov', 'avi', 'mpg', 'mpeg'):
                 media_type = 'video'
             else:
                 # File type not supported
@@ -290,8 +290,9 @@ class GalleriaDB:
 
             filepath = BASEPATH / 'galleria' / subdir_name / (id + '.' + extension)
             media.save(filepath)
+            filepath = id + '.' + extension
 
-            logging.debug('File salvato in: ' + filepath)
+            logging.debug('File salvato in: ' + str(filepath))
 
         elif link is not None:
             if link.startswith('https://www.youtube.com/watch?v='):

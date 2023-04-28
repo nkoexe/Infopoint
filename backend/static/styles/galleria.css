@@ -1,0 +1,17 @@
+#blist {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.bcont {
+    /* background-color: #252525; */
+    display: flex;
+    margin: 10px 50px 0px 20px;
+    padding: 10px;
+}
+
+.bbtncont {
+    margin-left: 10px;
+    display: flex;
+}

@@ -1,20 +1,14 @@
 {
-    "00001":  {
-        "text": "test",
-        "type": "image",
-        "path": "/data/2022-10/img.png",
-        "active": true
+    "00009": {
+        "active": true,
+        "path": "00009.png",
+        "text": "fgggggk",
+        "type": "image"
     },
-    "00002": {
-        "text": "test2",
-        "type": "video",
-        "path": "/path/to/video.mp4",
-        "active": false
-    },
-    "00003": {
-        "text": "test3",
-        "type": "youtube",
-        "path": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-        "active": true
+    "00010": {
+        "active": null,
+        "path": "00010.png",
+        "text": "hhhh",
+        "type": "image"
     }
 }

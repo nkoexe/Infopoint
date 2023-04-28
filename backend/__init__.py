@@ -232,11 +232,29 @@ def _biblioteca():
 
 
 
-@app.route('/galleria')
+@app.route('/galleria', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_richiesto
 @ruolo_richiesto.galleria
 def _galleria():
-    return render_template('galleria.html')
+    if request.method == 'GET':
+        return render_template('galleria.html', media=galleria.data)
+    
+    elif request.method == 'POST':
+        media = request.files['galleria']
+        link = request.form['link']
+        text = request.form['descrizione']
+        active = request.form.get('attivo', type=bool)
+
+        if media and text:
+            galleria.add(text, active, media, link)
+
+        return redirect('/galleria')
+    
+    elif request.method == 'DELETE':
+        id = request.form['id']
+        galleria.delete(id)
+
+    return 'ok'
 
 
 @app.route('/notizie', methods=['GET', 'POST', 'DELETE', 'PUT'])
