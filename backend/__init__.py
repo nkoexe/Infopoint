@@ -243,7 +243,11 @@ def _galleria():
         media = request.files['galleria']
         link = request.form['link']
         text = request.form['descrizione']
-        active = request.form.get('attivo', type=bool)
+        if request.form.get('checkbox'):
+            active = True
+        else:
+            active = False
+        logging.debug(active)
 
         if media and text:
             galleria.add(text, active, media, link)
@@ -253,6 +257,12 @@ def _galleria():
     elif request.method == 'DELETE':
         id = request.form['id']
         galleria.delete(id)
+
+    elif request.method == 'PUT':
+        id = request.form['id']
+        # Modifica dello stato visibile o meno della notizia
+        if 'active' in request.form:
+            galleria.editActive(id, active = True)
 
     return 'ok'
 

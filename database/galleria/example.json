@@ -1,14 +1,26 @@
 {
-    "00009": {
+    "00001": {
         "active": true,
-        "path": "00009.png",
-        "text": "fgggggk",
+        "path": "00001.png",
+        "text": "FB",
         "type": "image"
     },
-    "00010": {
-        "active": null,
-        "path": "00010.png",
-        "text": "hhhh",
+    "00002": {
+        "active": true,
+        "path": "00002.png",
+        "text": "Instagram",
+        "type": "image"
+    },
+    "00003": {
+        "active": true,
+        "path": "00003.png",
+        "text": "gatto con faccia umana",
+        "type": "image"
+    },
+    "00004": {
+        "active": true,
+        "path": "00004.png",
+        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
         "type": "image"
     }
 }

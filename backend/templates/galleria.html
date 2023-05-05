@@ -11,7 +11,7 @@ endblock %}{% block content %}
   <label class="text" for="titolo"> Inserisci descrizione: </label>
   <input type="text" id="input_descrizione" name="descrizione" required /><br />
   <label class="text" for="titolo"> Attivo: </label>
-  <input type="checkbox" id="activecheck" name="attivo"> <br />
+  <input type="checkbox" id="activecheck" name="checkbox"> <br />
   <button type="submit" id="galleriasubmit" class="btn">Invia</button>
 </form>
 
@@ -24,10 +24,10 @@ endblock %}{% block content %}
         <div id="desc.{{ id }}" class="text">{{ media[id]['text'] }}</div>
       </div>
       <div class="bbtncont">
-        <button onclick="bookshow('{{ id }}')">attiva</button>
-        <button id="bookedit" onclick="bookedit('{{ id }}')">modifica</button>
+        <button onclick="imgshow('{{ id }}')">attiva</button>
+        <button id="bookedit" onclick="imgedit('{{ id }}')">modifica</button>
         <button id="duplicate" onclick="duplicate('{{ id }}')">duplica</button>
-        <button onclick="gallerydel('{{ id }}')">elimina</button>
+        <button onclick="imgdel('{{ id }}')">elimina</button>
       </div>
     </div>
   </li>
