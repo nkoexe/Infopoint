@@ -23,7 +23,7 @@ body {
     place-items: stretch;
     place-content: stretch;
     grid-template-columns: calc(var(--grandezza-galleria)*16)  1fr;
-    grid-template-rows: calc(var(--grandezza-galleria)*4) calc(var(--grandezza-galleria)*5) 1fr 1fr;
+    grid-template-rows: calc(var(--grandezza-galleria)*4) calc(var(--grandezza-galleria)*5) 1fr 1fr 2vh;
     background-color: whitesmoke;
     width: 100vw;
     height: 100vh;
@@ -192,11 +192,13 @@ img {
     grid-row-start: 4;
     grid-row-end: 5;
     display: grid;
-    align-content: center;
     border: 2.5px solid rgb(192,15,25);
     margin:var(--inner-border);
     padding: 0;
     border-radius: 1vw;
+    justify-content: left;
+    overflow: nowrap;
+    white-space: nowrap;
 
 }
 
@@ -217,13 +219,13 @@ img {
     font-size: 2.3em;
     margin: 0;
     padding: 0;
-
+    text-indent: 7.5%;
 }
 
 
 #boxora {
    
-    align-self: center; 
+    align-self: center;
     margin: 2.1%;
     border: 0;
     padding: 0;
@@ -266,6 +268,16 @@ img {
     display:flex;
     align-items: center;
     justify-content: center;
+}
+
+#crediti{
+    display: block;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 5;
+    grid-row-end: 6;
+    text-align: right;
+    padding-right: var(--inner-border);
 }
 
 /* #grid-container{
