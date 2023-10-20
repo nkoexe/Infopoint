@@ -43,14 +43,24 @@ body {
 }
 
 #galleria{
+    display: grid;
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
+    background-color: white;
     border: 2.5px solid rgb(192,15,25);
+    grid-template-rows: [giacomo] 82% auto [nicccolo] ;
     margin:var(--inner-border);
     padding: 0;
     
+}
+
+.didascalia{
+
+grid-row-start:[giacomo];
+grid-row-end:[nicccolo]
+
 }
 
 .image{
@@ -219,7 +229,7 @@ img {
     font-size: 2.3em;
     margin: 0;
     padding: 0;
-    text-indent: 7.5%;
+    padding-left: 1.2em;
 }
 
 

@@ -9,7 +9,8 @@
   }
 });*/
 
-import jsonData from "../galleria/example.json";
+import jsonData  from "../database/galleria/example.json";
+
 console.log(jsonData);
 
 let index = 0;
