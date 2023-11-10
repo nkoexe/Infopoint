@@ -1,107 +1,74 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>infopoint</title>
-
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <script async defer src="https://app1.weatherwidget.org/js/?id=ww_179bed5ab551a"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script type="module" src="main.js"></script>
-
     <script type="text/javascript"> 
         function display_c(){
-        var refresh=1000; // Refresh rate in milli seconds
-        mytime=setTimeout('display_ct()',refresh)
+            var refresh=1000; // Refresh rate in milli seconds
+            mytime=setTimeout('display_ct()',refresh)
         }
-        
+
         function display_ct() {
-        var now = new Date()
-        var day = now.getDate();
-        var month = now.getMonth() +1;
-        var year = now.getFullYear();
+            var now = new Date()
+            var day = now.getDate();
+            var month = now.getMonth() +1;
+            var year = now.getFullYear();
 
-        if (month <10 ){month='0' + month;}
-        if (day <10 ){day='0' + day;}
-        var date = day+'/'+month+'/'+year;
+            if (month < 10 ){ month = '0' + month};
+            if (day < 10 ) { day = '0' + day};
+            var date = day + '/' + month + '/' + year;
 
-        
-        var hour = now.getHours();
-        var minute = now.getMinutes();
-        var second = now.getSeconds();
+            var hour = now.getHours();
+            var minute = now.getMinutes();
+            var second = now.getSeconds();
 
-        if(hour <10 ){hour='0'+hour;}
-        if(minute <10 ) {minute='0' + minute; }
-        if(second<10){second='0' + second;}
-        var time = hour+':'+minute+':'+second;
+            if (hour < 10) { hour = '0' + hour };
+            if (minute < 10) { minute = '0' + minute };
+            if (second < 10) { second = '0' + second };
+            var time = hour + ':' + minute + ':' + second;
 
-        var timedate = date + " - " + time;
+            var timedate = date + " - " + time;
 
-        document.getElementById('ct').innerHTML = timedate;
-        display_c();
+            document.getElementById('ct').innerHTML = timedate;
+            display_c();
         }
     </script>
-    
 </head>
 
-
-
 <body onload=display_ct();>
-
- 
     <div id = 'padre'>
 
         <div id="galleria">
-
             <figure>
                 <img src="foto/capybara.jpg" alt="capybara" />
-              </figure>
+            </figure>
 
-              <div style="position: absolute; text-align: center" > 
-              
-
-            <p class="didascalia">
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-            </p>
+            <div style="position: absolute; text-align: center" > 
+                <p class="didascalia">
+                    aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+                </p>
+            </div>
         </div>
-
-
-        </div>
-
-        
-    
-
-
 
         <div id="notizie">
-
-              <marquee behavior="scroll" direction="left">
+            <marquee behavior="scroll" direction="left">
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             </marquee> 
-    
-        </div>
-    
-    
-     
+        </div>     
 
         <div id="meteo">
-
             <div id="ww_179bed5ab551a" v='1.3' loc='id' a='{"t":"responsive","lang":"it","sl_lpl":1,"ids":["wl8009"],"font":"Comic Sans","sl_ics":"one","sl_sot":"celsius","cl_bkg":"#FFFFFF00","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_nme":3,"sl_tof":"7","cl_odd":"#00000000"}'> Weather for the Following Location: <a href="https://2ua.org/ita/bolzano/map/" id="ww_179bed5ab551a_u" target="_blank">Bolzano map, Italy</a></div>
-           
         </div>
-        
-    
-    
-        
-    
-    
-    
+
         <div id="biblioteca">
-            
             <center>
                 <h1 id="titolo">
                     Io e la mia ossessione
@@ -113,45 +80,21 @@
             <p id="descrizione">     
                 La mia depressione. Il mio dilemma. L'insostenibile leggerezza dell'essere
             </p> 
-        
-
-        
-
         </div>
-    
-    
     
         <div id="logo">
-
-                
-                <img id="foto1"  class="foto" src='foto/logo.png'>
-
+            <img id="foto1"  class="foto" src='foto/logo.png'>
         </div>
-    
-           
-    
+
         <div id="ora" >
-
             <div id = "boxora" onload=display_ct();>
-
                 <span id='ct' ></span>
-
-            </div>
-
-         
+            </div> 
         </div>
 
-    <div id="crediti">
-        ©Laboratorio HackingTheSchool
-
-
+        <div id="crediti">
+            ©Laboratorio HackingTheSchool
+        </div>
     </div>
-
-    
-
-
 </body>
-
-
-
 </html>

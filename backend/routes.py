@@ -1,6 +1,8 @@
+import logging
+
 from .app import app
-from .auth import 
-from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
+from .auth import users, login_richiesto, ruolo_richiesto, current_user
+from flask import redirect, render_template, request, send_from_directory
 
 from .databaseconnections import biblioteca, notizie, galleria, media_path
 
@@ -8,7 +10,6 @@ from .databaseconnections import biblioteca, notizie, galleria, media_path
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('404.html'), 404
-
 
 
 @app.route('/')
@@ -43,9 +44,11 @@ def _impostazioni():
 def _impostazioni_utenti():
     return render_template('utenti.html', users=users)
 
+
 @app.route('/media/<path:filename>')
 def media(filename):
     return send_from_directory(media_path, filename)
+
 
 @app.route('/biblioteca', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_richiesto
@@ -80,7 +83,7 @@ def _biblioteca():
             if titolo and descrizione and img:
                 biblioteca.duplicate(titolo, descrizione, img)
             return redirect('/biblioteca')
-    
+
     elif request.method == 'DELETE':
         id = request.form['id']
         if biblioteca.data['active'] != id:
@@ -92,10 +95,8 @@ def _biblioteca():
         id = request.form['id']
         # Modifica dello stato visibile o meno della notizia
         if 'active' in request.form:
-            biblioteca.editActive(id, active = True)
+            biblioteca.editActive(id, active=True)
     return 'ok'
-        
-
 
 
 @app.route('/galleria', methods=['GET', 'POST', 'DELETE', 'PUT'])
@@ -104,7 +105,7 @@ def _biblioteca():
 def _galleria():
     if request.method == 'GET':
         return render_template('galleria.html', media=galleria.data)
-    
+
     elif request.method == 'POST':
         media = request.files['galleria']
         link = request.form['link']
@@ -119,7 +120,7 @@ def _galleria():
             galleria.add(text, active, media, link)
 
         return redirect('/galleria')
-    
+
     elif request.method == 'DELETE':
         id = request.form['id']
         galleria.delete(id)
@@ -128,7 +129,7 @@ def _galleria():
         id = request.form['id']
         # Modifica dello stato visibile o meno della notizia
         if 'active' in request.form:
-            galleria.editActive(id, active = True)
+            galleria.editActive(id, active=True)
 
     return 'ok'
 
@@ -175,3 +176,7 @@ def _notizie():
             return '1' if active else '0'
 
     return 'ok'
+
+@app.route('/frontend')
+def frontend():
+    return render_template()
