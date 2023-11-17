@@ -1,10 +1,10 @@
 import logging
 
-from .app import app
-from .auth import users, login_richiesto, ruolo_richiesto, current_user
+from app import app
+from auth import users, login_richiesto, ruolo_richiesto, current_user
 from flask import redirect, render_template, request, send_from_directory
 
-from .databaseconnections import biblioteca, notizie, galleria, media_path
+from databaseconnections import biblioteca, notizie, galleria, media_path
 
 
 @app.errorhandler(404)
@@ -76,6 +76,7 @@ def _biblioteca():
                 elif titolo and descrizione:
                     biblioteca.edit(id, titolo, descrizione)
                 return redirect('/biblioteca')
+
         elif 'img_duplicated' in request.form:
             img = request.form['img_duplicated'].strip()
             titolo = request.form['titolo'].strip()
@@ -177,6 +178,7 @@ def _notizie():
 
     return 'ok'
 
+
 @app.route('/frontend')
 def frontend():
-    return render_template()
+    return render_template('index.html')
