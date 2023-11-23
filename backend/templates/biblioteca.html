@@ -23,6 +23,7 @@
   <li id="{{ id }}">
     <div class="bcont">
       <div class="b">
+        <!-- todo: utilizzare funzioni in databaseconnections -->
         <div><img id="img.{{ id }}" src="{{ url_for('media', filename='biblioteca/files/' + libri[id]['img'] ) }}" alt="{{ libri[id]['img'] }}"></div>
         <div id="title.{{ id }}" class="text">{{ libri[id]['title'] }}</div>
         <div id="desc.{{ id }}" class="text">{{ libri[id]['descr'] }}</div>

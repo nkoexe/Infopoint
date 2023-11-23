@@ -38,8 +38,8 @@ class BibliotecaDB:
         :param str descr: the description of the book
         :param file img: the flask file object of the image of the book
         '''
-        #! Todo:
-        #! - check if file is actually an image
+        # ! Todo:
+        # ! - check if file is actually an image
 
         if len(self.data['books']) == 0:
             id = '1'.zfill(5)
@@ -59,7 +59,7 @@ class BibliotecaDB:
 
         img.save(filepath)
 
-        logging.debug('Copertina libro salvata in ' + str (filepath))
+        logging.debug('Copertina libro salvata in ' + str(filepath))
 
         # add the book to the database
         self.data['books'][id] = {
@@ -80,24 +80,23 @@ class BibliotecaDB:
 
         :param str id: id of the biblioteca element
         '''
-        
+
         filedir = DATABASEPATH / 'biblioteca' / subdir_name
         id_img = self.data['books'][id]['img']
-        
+
         del self.data['books'][id]
 
-        if all(self.data['books'][book]['img'] != id_img for book in self.data['books'] ):
+        if all(self.data['books'][book]['img'] != id_img for book in self.data['books']):
             for fname in os.listdir(filedir):
                 if fname.startswith(id_img):
                     os.remove(filedir / fname)
 
-        #for book in self.data['books']:
+        # for book in self.data['books']:
         #    if book.data['img'] == id_img:
         #        for fname in os.listdir(filedir):
         #            if fname.startswith(id):
         #                os.remove(filedir / fname)
 
-        
         logging.debug(f'Libro con id <{id}> eliminato.')
 
         self.update()
@@ -124,20 +123,20 @@ class BibliotecaDB:
             self.data['books'][id]['descr'] = descr
             logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
         else:
-            logging.debug(f"Errore, titolo o descrizione vuoti")
+            logging.warning('Errore, titolo o descrizione vuoti')
 
         self.update()
-    
+
     def editImg(self, id: str, title: str, descr: str, img):
 
         if title is not None and descr is not None and isinstance(title, str) and isinstance(descr, str):
             self.data['books'][id] = {
-            'title': title,
-            'descr': descr
-        }
+                'title': title,
+                'descr': descr
+            }
             logging.debug(f'Aggiornato il testo di Notizia con id <{id}>')
         else:
-            logging.debug(f"Errore, titolo o descrizione vuoti")
+            logging.warning('Errore, titolo o descrizione vuoti')
 
         extension = img.filename.rsplit('.', 1)[1].lower()
 
@@ -151,7 +150,7 @@ class BibliotecaDB:
 
         img.save(filepath)
 
-        logging.debug('Copertina libro salvata in ' + str (filepath))
+        logging.debug('Copertina libro salvata in ' + str(filepath))
 
         # add the book to the database
         self.data['books'][id] = {
@@ -342,5 +341,9 @@ class GalleriaDB:
         del self.data[id]
 
         logging.debug('Elemento di Galleria con id <{id}> eliminato')
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 17c96d17e4f68b4f0ed86536f645590458a30aba
         self.update()

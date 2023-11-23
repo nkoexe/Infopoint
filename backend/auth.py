@@ -1,6 +1,6 @@
-from .app import app
+from app import app
 from json import load
-from flask import Flask, abort, flash, redirect, render_template, request, send_from_directory, url_for
+from flask import abort, redirect, render_template, request, url_for
 from pathlib import Path
 from functools import wraps
 from hashlib import sha256
@@ -73,8 +73,6 @@ class ruolo_richiesto:
         return wrapper
 
 
-        
-
 @login_manager.unauthorized_handler
 def unauthorized():
     '''
@@ -128,4 +126,3 @@ def _login():
 def _logout():
     logout_user()
     return redirect('/login')
-
