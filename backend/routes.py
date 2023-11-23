@@ -176,11 +176,7 @@ def _notizie():
             return '1' if active else '0'
 
     return 'ok'
-<<<<<<< HEAD
-=======
-
 
 @app.route('/frontend')
 def frontend():
     return render_template('index.html')
->>>>>>> 17c96d17e4f68b4f0ed86536f645590458a30aba

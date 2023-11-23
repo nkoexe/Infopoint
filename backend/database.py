@@ -341,9 +341,4 @@ class GalleriaDB:
         del self.data[id]
 
         logging.debug('Elemento di Galleria con id <{id}> eliminato')
-<<<<<<< HEAD
-        
-=======
-
->>>>>>> 17c96d17e4f68b4f0ed86536f645590458a30aba
         self.update()
