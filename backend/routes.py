@@ -6,6 +6,10 @@ from flask import redirect, render_template, request, send_from_directory
 
 from .databaseconnections import biblioteca, notizie, galleria, media_path
 
+from .frontend import frontend
+
+app.register_blueprint(frontend, url_prefix='/frontend')
+
 
 @app.errorhandler(404)
 def page_not_found(e):
@@ -43,11 +47,6 @@ def _impostazioni():
 @ruolo_richiesto.admin
 def _impostazioni_utenti():
     return render_template('utenti.html', users=users)
-
-
-@app.route('/media/<path:filename>')
-def media(filename):
-    return send_from_directory(media_path, filename)
 
 
 @app.route('/biblioteca', methods=['GET', 'POST', 'DELETE', 'PUT'])
@@ -176,7 +175,3 @@ def _notizie():
             return '1' if active else '0'
 
     return 'ok'
-
-@app.route('/frontend')
-def frontend():
-    return render_template()

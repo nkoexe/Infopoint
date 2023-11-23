@@ -342,17 +342,5 @@ class GalleriaDB:
         del self.data[id]
 
         logging.debug('Elemento di Galleria con id <{id}> eliminato')
-
-        self.update()
-
-    def editActive(self, id: str, active: bool):
-
-        if active:
-            if self.data[id][active] != True:
-                self.data[id][active] = True
-                logging.debug(f'Immagine con id <{id}> impostata come ' + 'visibile.')
-            elif self.data[id][active] == True:
-                self.data[id][active] = False
-                logging.debug(f'Immagine con id <{id}> impostata come ' + 'nascosta.')
         
         self.update()
