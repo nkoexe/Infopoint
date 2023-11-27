@@ -6,9 +6,9 @@ from flask import redirect, render_template, request, send_from_directory
 
 from databaseconnections import biblioteca, notizie, galleria, media_path
 
-from .frontend import frontend
+from frontend import frontend
 
-app.register_blueprint(frontend, url_prefix='/frontend')
+app.register_blueprint(frontend)
 
 
 @app.errorhandler(404)
@@ -134,6 +134,11 @@ def _galleria():
     return 'ok'
 
 
+@app.route('/galleria/<path:filename>')
+def media(filename):
+    return send_from_directory(media_path, filename)
+
+
 @app.route('/notizie', methods=['GET', 'POST', 'DELETE', 'PUT'])
 @login_richiesto
 @ruolo_richiesto.notizie
@@ -176,7 +181,3 @@ def _notizie():
             return '1' if active else '0'
 
     return 'ok'
-
-@app.route('/frontend')
-def frontend():
-    return render_template('index.html')

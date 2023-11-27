@@ -1,8 +1,8 @@
 import logging
 logging.basicConfig(level=logging.DEBUG)
 
-from app import app
+from app import app, socketio
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 5000, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
