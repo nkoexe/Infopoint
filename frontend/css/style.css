@@ -22,6 +22,27 @@ body {
 }
 
 
+#dio {
+    position: absolute;
+    display: flex;
+    width: 100%;
+    height: 0;
+    z-index: 10;
+    background-color: red;
+    transition: height 0.2s;
+    overflow: hidden;
+}
+
+#dio.expanded {
+    height: 50px;
+}
+
+#dio button {
+    margin: auto;
+    margin-right: 30px;
+    width: 35px;
+    height: 35px;
+}
 
 #padre {
     display: grid;
@@ -33,8 +54,8 @@ body {
     width: 100vw;
     height: 100vh;
     padding: var(--outer-border);
-    box-sizing:border-box;
-    --grandezza-galleria: 4.7vw;   
+    box-sizing: border-box;
+    --grandezza-galleria: 4.7vw;
 }
 
 img {
@@ -53,9 +74,9 @@ img {
     grid-row-start: 1;
     grid-row-end: 3;
     background-color: white;
-    border: 2.5px solid rgb(192,15,25);
+    border: 2.5px solid rgb(192, 15, 25);
     margin: var(--inner-border);
-    padding: 1rem;    
+    padding: 1rem;
 }
 
 #fotogalleria {
@@ -64,7 +85,7 @@ img {
     height: 100%;
 }
 
-#videogallery{
+#videogallery {
     position: relative;
     margin: 0;
     width: 100%;
@@ -83,6 +104,7 @@ img {
     /* background: linear-gradient(to top, #ffffff, #ffffff00) */
     background: #ffffffaa;
 }
+
 #didascaliagalleria p {
     margin: 0;
 }
@@ -90,18 +112,23 @@ img {
 .fade {
     animation-name: fade;
     animation-duration: 2s;
-  
-  }
+
+}
 
 @keyframes fade {
-    from {opacity: .6}
-    to {opacity: 1}
-  }
+    from {
+        opacity: .6
+    }
+
+    to {
+        opacity: 1
+    }
+}
 
 
 
 
-#notizie{
+#notizie {
     background-color: white;
     grid-column-start: 1;
     grid-column-end: 2;
@@ -111,14 +138,14 @@ img {
     font-size: 2.8em;
     display: grid;
     align-content: center;
-    margin:var(--inner-border);
-    border: 2.5px solid rgb(192,15,25);
+    margin: var(--inner-border);
+    border: 2.5px solid rgb(192, 15, 25);
     padding: 0;
 
 }
 
 
-#meteo{
+#meteo {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 4;
@@ -127,7 +154,7 @@ img {
     align-content: center;
     margin: var(--inner-border);
     background-color: white;
-    border: 2.5px solid rgb(192,15,25);
+    border: 2.5px solid rgb(192, 15, 25);
     padding: 0;
 
 }
@@ -142,9 +169,9 @@ img {
     padding: 1vw;
     align-items: center;
     place-items: center;
-    grid-template-rows: [row1] 15% [row2] 55% [row3] auto [lastrow] ;
-    margin:var(--inner-border);
-    border: 2.5px solid rgb(192,15,25);
+    grid-template-rows: [row1] 15% [row2] 55% [row3] auto [lastrow];
+    margin: var(--inner-border);
+    border: 2.5px solid rgb(192, 15, 25);
 }
 
 #titolobiblioteca {
@@ -171,7 +198,7 @@ img {
 #fotobiblioteca {
     width: 45%;
     height: auto;
-    text-decoration: center; 
+    text-decoration: center;
     padding: 1vw;
     grid-row-start: row2;
     grid-row-end: row3;
@@ -184,8 +211,8 @@ img {
     background-color: white;
     grid-column-start: 2;
     grid-column-end: 3;
-    border: 2.5px solid rgb(192,15,25);
-    margin:var(--inner-border);
+    border: 2.5px solid rgb(192, 15, 25);
+    margin: var(--inner-border);
     padding: 0;
 }
 
@@ -198,14 +225,14 @@ img {
 }
 
 #ora {
-    background-color: rgb(192,15,25);
+    background-color: rgb(192, 15, 25);
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 4;
     grid-row-end: 5;
     display: grid;
-    border: 2.5px solid rgb(192,15,25);
-    margin:var(--inner-border);
+    border: 2.5px solid rgb(192, 15, 25);
+    margin: var(--inner-border);
     padding: 0;
     border-radius: 1vw;
     justify-content: left;
@@ -220,7 +247,7 @@ img {
     padding: 0;
 }
 
-#ct {    
+#ct {
     color: white;
     font-weight: bolder;
     font-size: 2.3em;
