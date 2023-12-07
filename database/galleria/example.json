@@ -25,8 +25,8 @@
     },
     "00005": {
         "active": true,
-        "path": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "path": "https://www.youtube.com/embed/dQw4w9WgXcQ",
         "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
-        "type": "video"
+        "type": "youtube"
     }
 }

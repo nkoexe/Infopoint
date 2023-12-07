@@ -82,7 +82,7 @@ img {
     padding: 1rem;
 }
 
-#elementogalleria {
+#elemento_galleria {
     position: relative;
     margin: 0;
     width: 100%;
@@ -91,7 +91,7 @@ img {
     max-height: 100%;
 }
 
-#elementogalleria * {
+#elemento_galleria * {
     width: 100%;
     max-width: 100%;
     height: 100%;

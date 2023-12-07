@@ -296,6 +296,7 @@ class GalleriaDB:
         elif link is not None:
             if link.startswith('https://www.youtube.com/watch?v='):
                 media_type = 'youtube'
+                
                 filepath = link
             else:
                 logging.warning('Link invalido.')

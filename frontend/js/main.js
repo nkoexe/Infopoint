@@ -1,3 +1,8 @@
+const template_youtube = `<iframe id="galleria_youtube" src="{src}" type="text/html" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`
+const template_video = `<video id="galleria_video" autoplay controls loop><source src="{src}" type="video/mp4"></video>`
+const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <>" />
+`
+
 socket = io('/frontend');
 
 // Il nome l'ha scelto David, questo è il riquadro per uscire da schermo intero
@@ -13,9 +18,7 @@ const descrizionebiblioteca = document.getElementById('descrizionebiblioteca');
 
 let index_galleria = 0;
 let dati_galleria;
-const galleria_youtube = document.getElementById('galleria_youtube');
-const galleria_video = document.getElementById('galleria_video');
-const galleria_immagine = document.getElementById('galleria_immagine');
+const elemento_galleria = document.getElementById('elemento_galleria');
 const galleria_didascalia = document.getElementById('didascaliagalleria').children[0];
 
 
@@ -33,34 +36,24 @@ document.onkeydown = (event) => {
 // -------------------------------
 
 
-function cambia_elemento_galleria () {
+function cambia_elemento_galleria() {
     index_galleria = (index_galleria + 1) % dati_galleria.length;
     let elemento = dati_galleria[index_galleria];
 
-    console.log(elemento)
-
     if (elemento.type === 'youtube') {
-        galleria_youtube.classList.remove('hidden');
-        galleria_video.classList.add('hidden');
-        galleria_immagine.classList.add('hidden');
+        console.log(elemento.path)
 
-        galleria_youtube.src = elemento.path + "?autoplay=1";
+        elemento_galleria.innerHTML = template_youtube.replace("{src}", elemento.path + "?autoplay=1&controls=0&disablekb=1&enablejsapi=1&fs=0&hl=it&loop=1&modestbranding=1&iv_load_policy=3")
+        elemento_galleria.children[0].setAttribute("allow", "autoplay");
+        elemento_galleria.children[0].play();
         galleria_didascalia.innerHTML = elemento.text;
 
     } else if (elemento.type === 'video') {
-        galleria_youtube.classList.add('hidden');
-        galleria_video.classList.remove('hidden');
-        galleria_immagine.classList.add('hidden');
-
-        galleria_video.children[0].src = "galleria/" + elemento.path;
+        elemento_galleria.innerHTML = template_video.replace("{src}", "galleria/" + elemento.path)
         galleria_didascalia.innerHTML = elemento.text;
 
     } else if (elemento.type === 'image') {
-        galleria_youtube.classList.add('hidden');
-        galleria_video.classList.add('hidden');
-        galleria_immagine.classList.remove('hidden');
-
-        galleria_immagine.src = "galleria/" + elemento.path;
+        elemento_galleria.innerHTML = template_immagine.replace("{src}", "galleria/" + elemento.path)
         galleria_didascalia.innerHTML = elemento.text;
     }
 };
