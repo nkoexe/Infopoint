@@ -20,7 +20,7 @@ subdir_name = config.get('Path', 'subdir_name')
 class BibliotecaDB:
     def __init__(self):
         self.path = DATABASEPATH / 'biblioteca' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.data = load(open(self.path, 'r', encoding='utf-8'))
 
     def update(self):
         '''
@@ -177,7 +177,7 @@ class BibliotecaDB:
 class NotizieDB:
     def __init__(self):
         self.path = DATABASEPATH / 'notizie' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.data = load(open(self.path, 'r', encoding='utf-8'))
 
     def update(self):
         '''
@@ -246,7 +246,7 @@ class NotizieDB:
 class GalleriaDB:
     def __init__(self):
         self.path = DATABASEPATH / 'galleria' / json_name
-        self.data = load(open(self.path, 'r'))
+        self.data = load(open(self.path, 'r', encoding='utf-8'))
 
     def update(self):
         '''

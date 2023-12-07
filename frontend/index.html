@@ -16,6 +16,7 @@
 
 <body>
 
+    <!-- riquadro per uscire da schermo intero. il nome l'ha scelto David perché sopra il padre c'è solo Dio -->
     <div id="dio">
         <button onclick="esci_da_schermo_intero()">[]</button>
     </div>
@@ -24,21 +25,22 @@
 
         <div id="galleria">
 
-            <!-- <div id="videogallery">
-               <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/H10xp3u5AxE?autoplay=1&loop=1si=heVQfZfNc7FUx4cm&amp;controls=0" title="Youtube Player" frameborder="0" allow="autoplay; encrypted-media"></iframe> 
-                <video width="100%" height="100%" autoplay controls loop>
-                    <source src="foto/video.mp4" type="video/mp4">
+            <div id="elementogalleria">
+               <iframe id="galleria_youtube" class="hidden" src="https://www.youtube-nocookie.com/embed/H10xp3u5AxE?autoplay=1&loop=1si=heVQfZfNc7FUx4cm&amp;controls=0" title="Youtube Player" frameborder="0" allow="autoplay; encrypted-media"></iframe> 
+                <video id="galleria_video" class="hidden" autoplay controls loop>
+                    <source src="" type="video/mp4">
                 </video>
+                <img id="galleria_immagine" class="hidden" src="foto/caravaggio.jpg" alt="caravaggio" />
+            </div> 
 
-            </div>  -->
-
-            <figure id="fotogalleria">
-                <img src="foto/caravaggio.jpg" alt="caravaggio" />
-            </figure>
+            <!-- eliminare -->
+            <!-- <figure id="fotogalleria"> -->
+            <!-- </figure> -->
 
             <div id="didascaliagalleria">
                 <p>
-                    La Vocazione di san Matteo è un dipinto realizzato tra il 2033 ed il 9876 dal pittore italiano Mpouhamed Azri Al Fatari Kebaba detto Caravaggio, ispirato all'episodio raccontato in Matteo 9,9-13. Si trova nella Cappella Contarelli, chiesa di San Luigi dei Francesi a Roma.
+                    Odi et amo. Quare id faciam, fortasse requiris.
+                   Nescio, sed fieri sentio et excrucior.
                 </p>
             </div>
         </div>
@@ -64,7 +66,7 @@
                 I promessi sposi
             </h1>
 
-            <img id="fotobiblioteca" src="foto/i promessi.jpg">
+            <img id="immaginebiblioteca" src="foto/i promessi.jpg">
 
             <p id="descrizionebiblioteca">
                 I promessi sposi sono un celebre romanzo storico di Alessandro Manzoni, ritenuto il più famoso e il più letto tra quelli scritti in lingua italiana.

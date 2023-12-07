@@ -2,9 +2,9 @@
     "active": "00001",
     "books": {
         "00001": {
-            "descr": "descrizione librone",
-            "img": "00001.png",
-            "title": "test librone"
+            "descr": "I promessi sposi sono un celebre romanzo storico di Alessandro Manzoni, ritenuto il più famoso e il più letto tra quelli scritti in lingua italiana.",
+            "img": "00001.jpg",
+            "title": "I promessi sposi"
         },
         "00002": {
             "descr": "b wedv eqv",

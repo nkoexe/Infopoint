@@ -19,15 +19,17 @@ def file(cartella, nome_file):
 
     file = cartella / nome_file
 
+    print(file)
+
     if not file.exists():
         return ValueError(f'File {file} non esiste')
 
-    return send_file(file)
+    return send_file(file, mimetype='image/gif')
 
 
 def file_galleria(nome_file):
-    return file(media_path / 'galleria', nome_file)
+    return file(media_path / 'galleria' / 'files', nome_file)
 
 
 def file_biblioteca(nome_file):
-    return file(media_path / 'biblioteca', nome_file)
+    return file(media_path / 'biblioteca' / 'files', nome_file)

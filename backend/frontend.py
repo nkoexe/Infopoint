@@ -2,7 +2,7 @@ from flask import Blueprint, render_template, abort
 
 from databaseconnections import media_path
 from app import socketio
-from databaseconnections import biblioteca, notizie, galleria
+from databaseconnections import biblioteca, notizie, galleria, file_biblioteca, file_galleria
 
 frontend = Blueprint('frontend', __name__, template_folder='../frontend', static_folder='../frontend', url_prefix='/frontend')
 
@@ -10,6 +10,16 @@ frontend = Blueprint('frontend', __name__, template_folder='../frontend', static
 @frontend.route('/')
 def index():
     return render_template('index.html')
+
+
+@frontend.route('biblioteca/<path:path>')
+def statc_file_biblioteca(path):
+    return file_biblioteca(path)
+
+
+@frontend.route('galleria/<path:path>')
+def static_file_galleria(path):
+    return file_galleria(path)
 
 
 @frontend.route('/<path:path>')
