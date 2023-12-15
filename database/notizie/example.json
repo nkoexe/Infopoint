@@ -9,14 +9,22 @@
     },
     "00003": {
         "active": true,
-        "text": "Heyoooo questa è una notizia di test figata assurda"
+        "text": "Notiziona test adoro questo lavoro notizia test è un test"
     },
     "00004": {
         "active": true,
-        "text": "Ambarabaciccicoccò"
+        "text": "Notizia test"
     },
     "00007": {
         "active": true,
-        "text": "Evento scolastico"
+        "text": "Evento scolastico 2023-2024"
+    },
+    "00008": {
+        "active": true,
+        "text": "INFOPOINT IN COSTRUZIONE"
+    },
+    "00009": {
+        "active": true,
+        "text": "Lorem Ipsum, dolor et amo"
     }
 }

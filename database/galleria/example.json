@@ -2,31 +2,32 @@
     "00001": {
         "active": true,
         "path": "00001.jpg",
-        "text": "FB",
+        "text": "cielo con nuvolette",
         "type": "image"
     },
     "00002": {
         "active": true,
         "path": "00002.jpg",
-        "text": "Capybara hell yeah",
+        "text": "Animali",
         "type": "image"
     },
     "00003": {
         "active": true,
         "path": "00003.jpg",
-        "text": "CARA VAGG IO",
+        "text": "La Vocazione di San Matteo",
         "type": "image"
     },
     "00004": {
         "active": true,
-        "path": "00004.mp4",
-        "text": "vibeo",
+        "path":"00004.mp4",
+        "text": "Napoleone Bonaparte-Barbero",
         "type": "video"
+   
     },
     "00005": {
         "active": true,
-        "path": "R26t8tJVmA0",
-        "text": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "path": "sAv1uSZYw6c",
+        "text": "video youtube prova",
         "type": "youtube"
     }
 }
