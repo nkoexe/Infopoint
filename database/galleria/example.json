@@ -1,33 +1,69 @@
 {
     "00001": {
         "active": true,
-        "path": "00001.jpg",
-        "text": "cielo con nuvolette",
+        "path": "Tantiindirizzi.png",
+        "text": "Apertura del bando «Tanti indirizzi un istituto»",
         "type": "image"
     },
     "00002": {
-        "active": true,
-        "path": "00002.jpg",
-        "text": "Animali",
-        "type": "image"
+       
     },
     "00003": {
-        "active": true,
+        "active": false,
         "path": "00003.jpg",
         "text": "La Vocazione di San Matteo",
         "type": "image"
     },
     "00004": {
-        "active": true,
+        "active": false,
         "path":"00004.mp4",
         "text": "Napoleone Bonaparte-Barbero",
         "type": "video"
    
     },
-    "00005": {
-        "active": true,
+    "0005": {
+        "active":true,
+        "path": "display100martafuturo.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type":"image"
+    },
+
+    "00006": {
+        "active": false,
         "path": "sAv1uSZYw6c",
         "text": "video youtube prova",
         "type": "youtube"
+    },
+    "00007": {
+        "active": true,
+        "path": "progettobando.jpg",
+        "text": "Nuovo loco per murales del bando «Tanti indirizzi un istituto»",
+        "type": "image"
+    },
+    "00008": {
+        "active": true,
+        "path": "display100martapassato.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type": "image"
+    },
+    "00009": {
+        "active": true,
+        "path": "00011.jpg",
+        "text": "Club del libro del Gandhi",
+        "type": "image"
+    },
+    "00010": {
+        "active": true,
+        "path": "display100martapresente.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type": "image"
+    },
+    "00011": {
+        "active": true,
+        "path": "infopointgroup.jpg",
+        "text": "Laboratorio HackingTheSchool 2023-2024",
+        "type": "image"
+
     }
-}
+}    
+    
