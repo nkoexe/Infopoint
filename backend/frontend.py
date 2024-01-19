@@ -15,7 +15,7 @@ frontend = Blueprint(
     __name__,
     template_folder="../frontend",
     static_folder="../frontend",
-    url_prefix="/infopoint/frontend",
+    url_prefix="/frontend",
 )
 
 
