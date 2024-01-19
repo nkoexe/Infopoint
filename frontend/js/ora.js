@@ -1,9 +1,6 @@
-function display_c() {
-    var refresh = 1000; // Refresh rate in milli seconds
-    mytime = setTimeout('display_ct()', refresh)
-}
+const ui_orologio = document.getElementById('orologio')
 
-function display_ct() {
+setInterval(() => {
     var now = new Date()
     var day = now.getDate();
     var month = now.getMonth() + 1;
@@ -24,8 +21,6 @@ function display_ct() {
 
     var timedate = date + " - " + time;
 
-    document.getElementById('ct').innerHTML = timedate;
-    display_c();
-}
+    ui_orologio.innerHTML = timedate;
 
-document.onload = display_ct();
+}, 1000);
