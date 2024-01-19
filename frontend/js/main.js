@@ -2,7 +2,8 @@
 const template_video = `<video id="galleria_video" onended="cambia_elemento_galleria()" autoplay controls><source src="{src}" type="video/mp4"></video>`
 const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <>" />`
 
-socket = io('/frontend');
+var socket = new io.Socket();
+socket.connect("/infopoint");
 
 // Il nome l'ha scelto David, questo è il riquadro per uscire da schermo intero
 const dio = document.getElementById('dio');
