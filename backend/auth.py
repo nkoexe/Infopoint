@@ -89,7 +89,7 @@ class ruolo_richiesto:
 
 @login_manager.unauthorized_handler
 def unauthorized():
-    logging.info("richiesta non autorizzata")
+    logger.info("richiesta non autorizzata")
     """
     Indica cosa fare con richieste di utenti che non hanno
     ancora fatto il login, a pagine che lo richiedono
@@ -113,6 +113,8 @@ def load_user(user_id):
 @app.route("/login", methods=["GET", "POST"])
 def _login():
     if request.method == "GET":
+        logger.info("login utente")
+
         # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
             return redirect("/")
