@@ -94,7 +94,7 @@ function cambia_elemento_galleria() {
 
         setTimeout(() => {
             cambia_elemento_galleria();
-        }, 5000)
+        }, 10000)
 
     } else {
         console.log("Errore nel tipo di elemento: " + elemento.type)
