@@ -16,7 +16,7 @@ def index():
     logger.info(
         "whohooohoooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo"
     )
-    return redirect(url_for("backend.index"))
+    return redirect("/infopoint/frontend")
 
 
 from routes import backend
