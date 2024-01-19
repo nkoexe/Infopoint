@@ -14,9 +14,12 @@ backend = Blueprint("backend", __name__, url_prefix="/infopoint")
 from auth import users, login_richiesto, ruolo_richiesto, current_user
 from databaseconnections import biblioteca, notizie, galleria, media_path
 
+logger = logging.getLogger(__name__)
+
 
 @backend.errorhandler(404)
 def page_not_found(e):
+    logger.info("non trovato")
     return render_template("404.html"), 404
 
 
