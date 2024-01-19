@@ -1,4 +1,5 @@
 from app import app
+from routes import backend
 from json import load
 from flask import abort, redirect, render_template, request, url_for
 from pathlib import Path
@@ -16,9 +17,7 @@ from flask_login import (
 
 logger = logging.getLogger(__name__)
 
-
 users = load(open(Path(__file__).parent / "users.json"))
-
 
 login_manager = LoginManager(app)
 
@@ -94,7 +93,7 @@ def unauthorized():
     Indica cosa fare con richieste di utenti che non hanno
     ancora fatto il login, a pagine che lo richiedono
     """
-    return redirect("/login")
+    return redirect(url_for("backend.login"))
 
 
 @login_manager.user_loader
@@ -110,14 +109,14 @@ def load_user(user_id):
         return None
 
 
-@app.route("/login", methods=["GET", "POST"])
-def _login():
+@backend.route("/login", methods=["GET", "POST"])
+def login():
     if request.method == "GET":
         logger.info("login utente")
 
         # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
-            return redirect("/")
+            return redirect(url_for("backend.index"))
 
         return render_template("login.html")
 
@@ -133,13 +132,13 @@ def _login():
             if users[i]["name"] == username and users[i]["hash"] == password:
                 login_user(User(i))
 
-                return redirect("/")
+                return redirect(url_for("backend.index"))
 
         return render_template("login.html", error="Nome utente o password errati")
 
 
-@app.route("/logout")
+@backend.route("/logout")
 @login_richiesto
-def _logout():
+def logout():
     logout_user()
-    return redirect("/login")
+    return redirect(url_for("backend.login"))
