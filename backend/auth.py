@@ -1,5 +1,4 @@
 from app import app
-from routes import backend
 from json import load
 from flask import abort, redirect, render_template, request, url_for
 from pathlib import Path
@@ -93,7 +92,7 @@ def unauthorized():
     Indica cosa fare con richieste di utenti che non hanno
     ancora fatto il login, a pagine che lo richiedono
     """
-    return redirect(url_for("backend.login"))
+    return redirect(url_for("app.login"))
 
 
 @login_manager.user_loader
@@ -109,14 +108,14 @@ def load_user(user_id):
         return None
 
 
-@backend.route("/login", methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
         logger.info("login utente")
 
         # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
-            return redirect(url_for("backend.index"))
+            return redirect(url_for("app.index"))
 
         return render_template("login.html")
 
@@ -132,13 +131,13 @@ def login():
             if users[i]["name"] == username and users[i]["hash"] == password:
                 login_user(User(i))
 
-                return redirect(url_for("backend.index"))
+                return redirect("/")
 
         return render_template("login.html", error="Nome utente o password errati")
 
 
-@backend.route("/logout")
+@app.route("/logout")
 @login_richiesto
 def logout():
     logout_user()
-    return redirect(url_for("backend.login"))
+    return redirect(url_for("app.login"))

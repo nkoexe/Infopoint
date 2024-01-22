@@ -11,7 +11,6 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 from app import app
 
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
-backend = Blueprint("backend", __name__, url_prefix="/")
 
 from auth import users, login_richiesto, ruolo_richiesto, current_user
 from databaseconnections import biblioteca, notizie, galleria, media_path
@@ -19,13 +18,12 @@ from databaseconnections import biblioteca, notizie, galleria, media_path
 logger = logging.getLogger(__name__)
 
 
-@backend.errorhandler(404)
+@app.errorhandler(404)
 def page_not_found(e):
-    logger.info("non trovato")
     return render_template("404.html"), 404
 
 
-@backend.route("/")
+@app.route("/")
 @login_richiesto
 def index():
     # Se l'utente ha solo un permesso non mostrare la homepage ma
@@ -33,32 +31,32 @@ def index():
     # Il controllo viene eseguito sommando booleani, dato che in Python false=0 e true=1
     if sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
-            return redirect(url_for("backend.galleria"))
+            return redirect(url_for("app.galleria"))
         elif current_user.galleria:
-            return redirect(url_for("backend.galleria"))
+            return redirect(url_for("app.galleria"))
         elif current_user.notizie:
-            return redirect(url_for("backend.notizie"))
+            return redirect(url_for("app.notizie"))
 
     # Altrimenti mostra la homepage con pulsanti in base ai propri permessi
     else:
         return render_template("home.html", user=current_user)
 
 
-@backend.route("/impostazioni")
+@app.route("/impostazioni")
 @login_richiesto
 @ruolo_richiesto.admin
 def impostazioni():
     return render_template("impostazioni.html")
 
 
-@backend.route("/impostazioni/utenti")
+@app.route("/impostazioni/utenti")
 @login_richiesto
 @ruolo_richiesto.admin
 def impostazioni_utenti():
     return render_template("utenti.html", users=users)
 
 
-@backend.route("/biblioteca", methods=["GET", "POST", "DELETE", "PUT"])
+@app.route("/biblioteca", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.biblioteca
 def _biblioteca():
@@ -108,7 +106,7 @@ def _biblioteca():
     return "ok"
 
 
-@backend.route("/galleria", methods=["GET", "POST", "DELETE", "PUT"])
+@app.route("/galleria", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.galleria
 def _galleria():
@@ -143,12 +141,12 @@ def _galleria():
     return "ok"
 
 
-@backend.route("/galleria/<path:filename>")
+@app.route("/galleria/<path:filename>")
 def media(filename):
     return send_from_directory(media_path, filename)
 
 
-@backend.route("/notizie", methods=["GET", "POST", "DELETE", "PUT"])
+@app.route("/notizie", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.notizie
 def _notizie():
