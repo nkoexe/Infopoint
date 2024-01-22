@@ -3,9 +3,9 @@ from flask import Blueprint, render_template, abort
 from databaseconnections import media_path
 from app import socketio
 from databaseconnections import (
-    biblioteca,
-    notizie,
-    galleria,
+    bibliotecadb,
+    notiziedb,
+    galleriadb,
     file_biblioteca,
     file_galleria,
 )
@@ -48,12 +48,12 @@ def connect():
 
 # ! Todo: al momento mandiamo tutti i dati, anche quelli nascosti.
 def aggiorna_biblioteca():
-    socketio.emit("biblioteca", biblioteca.data, namespace="/frontend")
+    socketio.emit("biblioteca", bibliotecadb.data, namespace="/frontend")
 
 
 def aggiorna_notizie():
-    socketio.emit("notizie", notizie.data, namespace="/frontend")
+    socketio.emit("notizie", notiziedb.data, namespace="/frontend")
 
 
 def aggiorna_galleria():
-    socketio.emit("galleria", galleria.data, namespace="/frontend")
+    socketio.emit("galleria", galleriadb.data, namespace="/frontend")

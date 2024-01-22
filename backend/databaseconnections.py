@@ -6,9 +6,9 @@ from flask import send_file
 from database import BibliotecaDB, NotizieDB, GalleriaDB, DATABASEPATH as media_path
 
 
-biblioteca = BibliotecaDB()
-notizie = NotizieDB()
-galleria = GalleriaDB()
+bibliotecadb = BibliotecaDB()
+notiziedb = NotizieDB()
+galleriadb = GalleriaDB()
 
 
 def file(cartella, nome_file):

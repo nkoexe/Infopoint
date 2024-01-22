@@ -92,7 +92,7 @@ def unauthorized():
     Indica cosa fare con richieste di utenti che non hanno
     ancora fatto il login, a pagine che lo richiedono
     """
-    return redirect(url_for("app.login"))
+    return redirect(url_for("login"))
 
 
 @login_manager.user_loader
@@ -115,7 +115,7 @@ def login():
 
         # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
-            return redirect(url_for("app.index"))
+            return redirect(url_for("index"))
 
         return render_template("login.html")
 
@@ -131,7 +131,7 @@ def login():
             if users[i]["name"] == username and users[i]["hash"] == password:
                 login_user(User(i))
 
-                return redirect("/")
+                return redirect(url_for("index"))
 
         return render_template("login.html", error="Nome utente o password errati")
 
@@ -140,4 +140,4 @@ def login():
 @login_richiesto
 def logout():
     logout_user()
-    return redirect(url_for("app.login"))
+    return redirect(url_for("login"))

@@ -13,7 +13,7 @@ from app import app
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 from auth import users, login_richiesto, ruolo_richiesto, current_user
-from databaseconnections import biblioteca, notizie, galleria, media_path
+from databaseconnections import bibliotecadb, notiziedb, galleriadb, media_path
 
 logger = logging.getLogger(__name__)
 
@@ -31,11 +31,11 @@ def index():
     # Il controllo viene eseguito sommando booleani, dato che in Python false=0 e true=1
     if sum((current_user.biblioteca, current_user.galleria, current_user.notizie)) == 1:
         if current_user.biblioteca:
-            return redirect(url_for("app.galleria"))
+            return redirect(url_for("biblioteca"))
         elif current_user.galleria:
-            return redirect(url_for("app.galleria"))
+            return redirect(url_for("galleria"))
         elif current_user.notizie:
-            return redirect(url_for("app.notizie"))
+            return redirect(url_for("notizie"))
 
     # Altrimenti mostra la homepage con pulsanti in base ai propri permessi
     else:
@@ -59,9 +59,9 @@ def impostazioni_utenti():
 @app.route("/biblioteca", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.biblioteca
-def _biblioteca():
+def biblioteca():
     if request.method == "GET":
-        return render_template("biblioteca.html", libri=biblioteca.data["books"])
+        return render_template("biblioteca.html", libri=bibliotecadb.data["books"])
 
     # Inserimento di un nuovo libro e modifica
     elif request.method == "POST":
@@ -73,14 +73,14 @@ def _biblioteca():
             # Inserimento di un libro nuovo
             if id == "0":
                 if titolo and descrizione and copertina:
-                    biblioteca.add(titolo, descrizione, copertina)
+                    bibliotecadb.add(titolo, descrizione, copertina)
                 return redirect("/biblioteca")
             # Modifica di un libro esistente
             elif id != "0" and id != "duplicate":
                 if titolo and descrizione and copertina:
-                    biblioteca.editImg(id, titolo, descrizione, copertina)
+                    bibliotecadb.editImg(id, titolo, descrizione, copertina)
                 elif titolo and descrizione:
-                    biblioteca.edit(id, titolo, descrizione)
+                    bibliotecadb.edit(id, titolo, descrizione)
                 return redirect("/biblioteca")
 
         elif "img_duplicated" in request.form:
@@ -88,13 +88,13 @@ def _biblioteca():
             titolo = request.form["titolo"].strip()
             descrizione = request.form["descrizione"].strip()
             if titolo and descrizione and img:
-                biblioteca.duplicate(titolo, descrizione, img)
+                bibliotecadb.duplicate(titolo, descrizione, img)
             return redirect("/biblioteca")
 
     elif request.method == "DELETE":
         id = request.form["id"]
-        if biblioteca.data["active"] != id:
-            biblioteca.delete(id)
+        if bibliotecadb.data["active"] != id:
+            bibliotecadb.delete(id)
         else:
             return "ko"
 
@@ -102,16 +102,16 @@ def _biblioteca():
         id = request.form["id"]
         # Modifica dello stato visibile o meno della notizia
         if "active" in request.form:
-            biblioteca.editActive(id, active=True)
+            bibliotecadb.editActive(id, active=True)
     return "ok"
 
 
 @app.route("/galleria", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.galleria
-def _galleria():
+def galleria():
     if request.method == "GET":
-        return render_template("galleria.html", media=galleria.data)
+        return render_template("galleria.html", media=galleriadb.data)
 
     elif request.method == "POST":
         media = request.files["galleria"]
@@ -124,19 +124,19 @@ def _galleria():
         logging.debug(active)
 
         if media and text:
-            galleria.add(text, active, media, link)
+            galleriadb.add(text, active, media, link)
 
         return redirect("/galleria")
 
     elif request.method == "DELETE":
         id = request.form["id"]
-        galleria.delete(id)
+        galleriadb.delete(id)
 
     elif request.method == "PUT":
         id = request.form["id"]
         # Modifica dello stato visibile o meno della notizia
         if "active" in request.form:
-            galleria.editActive(id, active=True)
+            galleriadb.editActive(id, active=True)
 
     return "ok"
 
@@ -149,21 +149,21 @@ def media(filename):
 @app.route("/notizie", methods=["GET", "POST", "DELETE", "PUT"])
 @login_richiesto
 @ruolo_richiesto.notizie
-def _notizie():
+def notizie():
     if request.method == "GET":
-        return render_template("notizie.html", notizie=notizie.data)
+        return render_template("notizie.html", notizie=notiziedb.data)
 
     # Eliminazione di una notizia esistente
     elif request.method == "DELETE":
         id = request.form["id"]
-        notizie.delete(id)
+        notiziedb.delete(id)
 
     # Inserimento di una nuova notizia
     elif request.method == "POST":
         notizia = request.form["text"].strip()
 
         if notizia:
-            notizie.add(notizia)
+            notiziedb.add(notizia)
 
         return redirect("/notizie")
 
@@ -178,13 +178,13 @@ def _notizie():
             if not notizia:
                 return "ko"
 
-            notizie.edit(id, text=notizia)
+            notiziedb.edit(id, text=notizia)
 
         # Modifica dello stato visibile o meno della notizia
         # invertendo il valore precedente
         if "active" in request.form:
-            active = not notizie.data[id]["active"]
-            notizie.edit(id, active=active)
+            active = not notiziedb.data[id]["active"]
+            notiziedb.edit(id, active=active)
             return "1" if active else "0"
 
     return "ok"
