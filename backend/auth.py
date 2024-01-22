@@ -111,8 +111,6 @@ def load_user(user_id):
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "GET":
-        logger.info("login utente")
-
         # Se l'utente ha già eseguito il login lo reindirizza alla homepage
         if current_user.is_authenticated:
             return redirect(url_for("index"))

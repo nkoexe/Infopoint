@@ -148,6 +148,20 @@ img {
     font-size: 1vw !important;
 }
 
+#meteo svg {
+    height: 2.5vw !important;
+    width: 2.5vw !important;
+}
+
+#meteo .current-temp span {
+    font-size: 2vw !important;
+}
+
+#meteo .current-conditions svg {
+    height: 4vw !important;
+    width: 4vw !important;
+}
+
 #biblioteca {
     display: flex;
     flex-direction: column;
@@ -173,6 +187,7 @@ img {
 #immaginebiblioteca {
     flex: 1;
     margin: auto;
+    min-height: 0;
     max-height: 100%;
     padding: 1vw;
     margin: 0;
@@ -231,7 +246,7 @@ img {
     font-size: 2.3vw;
     margin: 0;
     padding: 0;
-    padding-left: 1.5vw;
+    padding-left: 1vw;
 }
 
 #crediti {
