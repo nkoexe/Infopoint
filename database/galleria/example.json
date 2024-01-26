@@ -19,7 +19,7 @@
    
     },
     "0005": {
-        "active":true,
+        "active":false,
         "path": "display100martafuturo.png",
         "text": "Un display per il centenario 1923-2023",
         "type":"image"
@@ -38,7 +38,7 @@
         "type": "image"
     },
     "00008": {
-        "active": true,
+        "active": false,
         "path": "display100martapassato.png",
         "text": "Un display per il centenario 1923-2023",
         "type": "image"
