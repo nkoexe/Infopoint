@@ -61,6 +61,12 @@
         "text": "Laboratorio HackingTheSchool 2023-2024",
         "type": "image"
 
+    },
+    "00012" : {
+        "active": true,
+        "path": "IA.jpg",
+        "text": "",
+        "type": "image"
     }
 }    
     
