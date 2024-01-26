@@ -138,3 +138,22 @@ socket.on('notizie', (data) => {
         }
     }
 })
+
+
+// socket.on('connect_error', reconnect)
+socket.on('connect_failed', reconnect)
+socket.on('disconnect', reconnect)
+
+function reconnect() {
+    fetch('/')
+        .then((response) => {
+            if (response.ok) {
+                console.log('Reloading...')
+                location.reload()
+            }
+        })
+        .catch(() => { })
+        .finally(() => {
+            setTimeout(reconnect, 10000)
+        })
+}
