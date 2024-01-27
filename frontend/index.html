@@ -15,23 +15,15 @@
 
 
 <body>
-
     <!-- riquadro per uscire da schermo intero. il nome l'ha scelto David perché sopra il padre c'è solo Dio -->
     <div id="dio">
         <button onclick="toggleFullScreen()">[]</button>
     </div>
-
     <div id='padre'>
-
         <div id="galleria">
-
             <div id="elemento_galleria">
+                <img id="galleria_immagine" src="foto/capybara.jpg" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <niccolo.ragazzi@gandhimerano.com>" />
             </div>
-
-            <!-- eliminare -->
-            <!-- <figure id="fotogalleria"> -->
-            <!-- </figure> -->
-
             <div id="didascaliagalleria">
                 <p>
                     Odi et amo. Quare id faciam, fortasse requiris.
@@ -39,51 +31,39 @@
                 </p>
             </div>
         </div>
-
         <div id="notizie">
             <marquee behavior="scroll" direction="left">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                deserunt mollit anim id est laborum.
+                dolore magna aliqua. Ut enim ad minim veniam aaaaaaaaaaaaa
             </marquee>
         </div>
-
         <div id="meteo">
             <div id="ww_179bed5ab551a" v='1.3' loc='id' a='{"t":"responsive","lang":"it","sl_lpl":1,"ids":["wl8009"],"font":"Comic Sans","sl_ics":"one","sl_sot":"celsius","cl_bkg":"#FFFFFF00","cl_font":"#000000","cl_cloud":"#d4d4d4","cl_persp":"#2196F3","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722","el_nme":3,"sl_tof":"7","cl_odd":"#00000000"}'>
                 Weather for the Following Location: <a href="https://2ua.org/ita/bolzano/map/" id="ww_179bed5ab551a_u" target="_blank">Bolzano map, Italy</a>
             </div>
         </div>
-
         <div id="biblioteca">
             <h1 id="titolobiblioteca">
                 I promessi sposi
             </h1>
-
             <img id="immaginebiblioteca" src="foto/i promessi.jpg">
-
             <p id="descrizionebiblioteca">
                 I promessi sposi sono un celebre romanzo storico di Alessandro Manzoni, ritenuto il più famoso e il più letto tra quelli scritti in lingua italiana.
             </p>
         </div>
-
         <div id="logo">
             <img id="fotologo" class="foto" src='foto/logo.png'>
         </div>
-
-        <div id="ora">
-            <div id="boxora" onload=display_ct();>
-                <span id='ct'></span>
+        <!-- <div id="ora">
+            <div id="boxora">
+                <span id='orologio'></span>
             </div>
-        </div>
-
+        </div> -->
         <div id="crediti">
-            © Laboratorio HackingTheSchool
+            Powered by Laboratorio HackingTheSchool
         </div>
     </div>
     <script src="js/main.js" defer></script>
     <script src="js/ora.js" defer></script>
 </body>
-
 </html>

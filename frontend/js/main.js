@@ -2,7 +2,8 @@
 const template_video = `<video id="galleria_video" onended="cambia_elemento_galleria()" autoplay controls><source src="{src}" type="video/mp4"></video>`
 const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <>" />`
 
-socket = io('/frontend');
+// Path messo come fix per proxy
+const socket = io('/frontend', { path: "/infopoint/socket.io" });
 
 // Il nome l'ha scelto David, questo è il riquadro per uscire da schermo intero
 const dio = document.getElementById('dio');
@@ -94,7 +95,7 @@ function cambia_elemento_galleria() {
 
         setTimeout(() => {
             cambia_elemento_galleria();
-        }, 5000)
+        }, 10000)
 
     } else {
         console.log("Errore nel tipo di elemento: " + elemento.type)
@@ -137,3 +138,23 @@ socket.on('notizie', (data) => {
         }
     }
 })
+
+
+// socket.on('connect_error', reconnect)
+socket.on('connect_failed', reconnect)
+socket.on('disconnect', reconnect)
+
+function reconnect() {
+    fetch('/')
+        .then((response) => {
+            if (response.ok) {
+                setTimeout(() => {
+                    location.reload()
+                }, 500);
+            }
+        })
+        .catch(() => { })
+        .finally(() => {
+            setTimeout(reconnect, 10000)
+        })
+}

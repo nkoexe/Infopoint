@@ -1,22 +1,30 @@
 {
     "00001": {
         "active": false,
-        "text": "test"
+        "text": "Buon anno nuovo!!"
     },
     "00002": {
         "active": true,
-        "text": "test2"
+        "text": "Nuovo Infopoint Powered by Laboratorio HackingTheSchool"
     },
     "00003": {
         "active": true,
-        "text": "Heyoooo questa è una notizia di test figata assurda"
+        "text": "«Tanti indirizzi un istituto»: Aperto bando per colonna e fregio artistici | Scadenza: 31 Marzo 2024 | Partecipate numerosi!!"
     },
     "00004": {
         "active": true,
-        "text": "Ambarabaciccicoccò"
+        "text": "Novità: inaugurazione nuova ala dell'edificio scolastico il 31 gennaio"
     },
     "00007": {
         "active": true,
-        "text": "Evento scolastico"
+        "text": "Nuovo Infopoint Powered by Laboratorio HackingTheSchool"
+    },
+    "00008": {
+        "active": false,
+        "text": "Novità: Nuova aula insegnati!(situata nella nuova ala)"
+    },
+    "00009": {
+        "active": false,
+        "text": "alla prossima non mi pagano per scrivere ste cose"
     }
 }
