@@ -191,12 +191,12 @@ def notizie():
     return "ok"
 
 
-@app.route("/test")
+@app.route("/zoom")
 @login_richiesto
-def test():
-    level = request.args.get("l", 1)
+def zoom():
+    level = request.args.get("l", 100)
 
     with app.test_request_context("/"):
-        emit("setzoom", str(level) + "0%", broadcast=True, namespace="/frontend")
+        emit("setzoom", str(level) + "%", broadcast=True, namespace="/frontend")
 
     return "ok"

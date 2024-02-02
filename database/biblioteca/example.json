@@ -1,5 +1,5 @@
 {
-    "active": "00001",
+    "active": "00002",
     "books": {
         "00001": {
             "descr": "Il 2023 ha segnato il 100° anniversario dalla fondazione del Liceo Classico. Questo libro ripercorre i personaggi e momenti salienti di una delle scuole storiche altoatesine.",
@@ -7,9 +7,9 @@
             "title": "Tante Voci Una Storia"
         },
         "00002": {
-            "descr": "b wedv eqv",
-            "img": "00002.png",
-            "title": "ciao geinis"
+            "descr": "di Marco Paolini e Gianfranco Bettin. Romanzo di formazione, con protagonisti Ettore, fotografo, e Nicola, figlio adottivo arrivato via Internet che preferisce farsi chiamare Numero Primo. Una storia classica con molte prove da superare. Nasce dall’immaginazione, ma si fonda sul confronto con le conoscenze della fisica, della biologia, delle neuroscienze e della robotica.",
+            "img": "00002.jpg",
+            "title": "Le avventure di Numero Primo"
         },
         "00003": {
             "descr": "descrizione eeeee",

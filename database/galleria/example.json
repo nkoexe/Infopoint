@@ -13,18 +13,16 @@
     },
     "00004": {
         "active": false,
-        "path":"00004.mp4",
+        "path": "00004.mp4",
         "text": "Napoleone Bonaparte-Barbero",
         "type": "video"
-   
     },
     "0005": {
-        "active":true,
+        "active": false,
         "path": "display100martafuturo.png",
         "text": "Un display per il centenario 1923-2023",
-        "type":"image"
+        "type": "image"
     },
-
     "00006": {
         "active": false,
         "path": "sAv1uSZYw6c",
@@ -56,17 +54,33 @@
         "type": "image"
     },
     "00011": {
-        "active": true,
+        "active": false,
         "path": "infopointgroup.jpg",
         "text": "Laboratorio HackingTheSchool 2023-2024",
         "type": "image"
-
     },
-    "00012" : {
+    "00012": {
         "active": true,
         "path": "IA.jpg",
         "text": "",
         "type": "image"
+    },
+    "00013": {
+        "active": true,
+        "path": "All’Istituto Gandhi piccoli gesti per l’ambiente.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00014": {
+        "active": true,
+        "path": "safer internet day.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00015": {
+        "active": true,
+        "path": "Grandma's Special Herbs.jpg",
+        "text": "",
+        "type": "image"
     }
-}    
-    
+}

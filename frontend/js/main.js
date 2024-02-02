@@ -132,9 +132,8 @@ socket.on('notizie', (data) => {
     notizie.innerHTML = ''
 
     for (const id in data) {
-
         if (data[id].active) {
-            notizie.innerHTML += data[id].text + "&emsp;&emsp;"
+            notizie.innerHTML += data[id].text + "&emsp;&emsp;&emsp;&emsp;"
         }
     }
 })
