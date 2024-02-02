@@ -9,6 +9,7 @@
 
 * {
     box-sizing: border-box;
+    min-height: 0;
 }
 
 html {
@@ -58,7 +59,7 @@ body {
     place-content: stretch; */
     grid-template-columns: calc(var(--grandezza-galleria)*16 - 2rem) 1fr;
     /* la somma delle prime due righe deve essere 9 per forzare la galleria in formato 16x9 */
-    grid-template-rows: calc(var(--grandezza-galleria)*5) calc(var(--grandezza-galleria)*4) 1fr 1fr 2vh;
+    grid-template-rows: calc(var(--grandezza-galleria)*5) calc(var(--grandezza-galleria)*4) 5fr 4fr 2vh;
     background-color: #F3F6F8;
     width: 100%;
     height: 100%;
@@ -139,10 +140,15 @@ img {
     grid-column-end: 2;
     grid-row-start: 4;
     grid-row-end: 5;
+    max-height: 100%;
     margin: var(--inner-spacing);
     padding: 0;
     background-color: white;
     border: var(--border);
+}
+
+#meteo>div {
+    height: 100%;
 }
 
 #meteo * {
