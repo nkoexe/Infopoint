@@ -120,6 +120,10 @@ img {
     margin: 0;
 }
 
+#didascaliagalleria:has(p:empty) {
+    padding: 0;
+}
+
 #notizie {
     background-color: white;
     grid-column-start: 1;
