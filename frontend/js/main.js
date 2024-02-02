@@ -139,6 +139,10 @@ socket.on('notizie', (data) => {
     }
 })
 
+socket.on("setzoom", (data) => {
+    document.body.style.zoom = data;
+})
+
 
 // socket.on('connect_error', reconnect)
 socket.on('connect_failed', reconnect)

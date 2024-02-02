@@ -9,6 +9,7 @@ from flask import (
 )
 from werkzeug.middleware.proxy_fix import ProxyFix
 from app import app
+from flask_socketio import emit
 
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
@@ -186,5 +187,16 @@ def notizie():
             active = not notiziedb.data[id]["active"]
             notiziedb.edit(id, active=active)
             return "1" if active else "0"
+
+    return "ok"
+
+
+@app.route("/test")
+@login_richiesto
+def test():
+    level = request.args.get("l", 1)
+
+    with app.test_request_context("/"):
+        emit("setzoom", str(level) + "0%", broadcast=True, namespace="/frontend")
 
     return "ok"
