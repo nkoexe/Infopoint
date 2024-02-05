@@ -154,3 +154,9 @@ function reconnect() {
             setTimeout(reconnect, 10000)
         })
 }
+
+
+// per ora il meteo non si aggiorna automaticamente, quindi ricarichiamo la pagina ogni 2 ore
+setTimeout(() => {
+    location.reload()
+}, 7200000);
