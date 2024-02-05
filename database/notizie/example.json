@@ -16,12 +16,12 @@
         "text": "Novità: inaugurazione nuova ala dell'edificio scolastico il 31 gennaio"
     },
     "00007": {
-        "active": true,
-        "text": "Nuovo Infopoint Powered by Laboratorio HackingTheSchool"
+        "active": false,
+        "text": ""
     },
     "00008": {
         "active": false,
-        "text": "Novità: Nuova aula insegnati!(situata nella nuova ala)"
+        "text": "Novità: Nuova aula insegnati! (situata nella nuova ala)"
     },
     "00009": {
         "active": false,
