@@ -3,13 +3,10 @@ const template_video = `<video id="galleria_video" onended="cambia_elemento_gall
 const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <>" />`
 
 // Path messo come fix per proxy
-const socket = io('/frontend', { path: "/infopoint/socket.io" });
+const socket = io('/frontend', { path: "/socket.io" });
 
 // Il nome l'ha scelto David, questo è il riquadro per uscire da schermo intero
 const dio = document.getElementById('dio');
-
-// Marquee dove inserire le notizie
-const notizie = document.getElementById('notizie').children[0];
 
 // Elementi riquadro biblioteca
 const titolobiblioteca = document.getElementById('titolobiblioteca');
@@ -21,7 +18,7 @@ let dati_galleria = [];
 const elemento_galleria = document.getElementById('elemento_galleria');
 const galleria_didascalia = document.getElementById('didascaliagalleria').children[0];
 
-
+// da rimuovere dato che il riquadro dio non viene utilizzato
 function toggleFullScreen() {
     if (!document.fullscreenElement &&
         !document.mozFullScreenElement && !document.webkitFullscreenElement) {
@@ -129,13 +126,9 @@ socket.on('galleria', (data) => {
 })
 
 socket.on('notizie', (data) => {
-    notizie.innerHTML = ''
+    notizie = data
 
-    for (const id in data) {
-        if (data[id].active) {
-            notizie.innerHTML += data[id].text + "&emsp;&emsp;&emsp;&emsp;"
-        }
-    }
+    refresh_notizie()
 })
 
 socket.on("setzoom", (data) => {

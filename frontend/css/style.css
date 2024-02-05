@@ -5,11 +5,15 @@
     --inner-spacing: 0.47vw;
     --outer-spacing: 0.3vw;
     --border: 0.2vw solid #c00f19;
+
+    --colore-bg: #F3F6F8;
+    --colore-bg-riquadri: #F3F6F8;
 }
 
 * {
     box-sizing: border-box;
     min-height: 0;
+    min-width: 0;
 }
 
 html {
@@ -60,7 +64,7 @@ body {
     grid-template-columns: calc(var(--grandezza-galleria)*16 - 2rem) 1fr;
     /* la somma delle prime due righe deve essere 9 per forzare la galleria in formato 16x9 */
     grid-template-rows: calc(var(--grandezza-galleria)*5) calc(var(--grandezza-galleria)*4) 1fr 1fr 2vh;
-    background-color: #F3F6F8;
+    background-color: var(--colore-bg-riquadri);
     width: 100%;
     height: 100%;
     padding: var(--outer-spacing);
@@ -83,7 +87,7 @@ img {
     grid-column-end: 2;
     grid-row-start: 1;
     grid-row-end: 3;
-    background-color: #ffffff;
+    background-color: var(--colore-bg-riquadri);
     border: var(--border);
     margin: var(--inner-spacing);
     padding: 1vw;
@@ -124,20 +128,35 @@ img {
     padding: 0;
 }
 
-#notizie {
-    background-color: white;
+#notizie-container {
+    background-color: var(--colore-bg-riquadri);
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 3;
     grid-row-end: 4;
-    font: bolder;
-    font-size: 2.5vw;
-    display: grid;
+    overflow: hidden;
+    display: flex;
     align-content: center;
     margin: var(--inner-spacing);
     border: var(--border);
     padding: 0;
 }
+
+.notizie-lista {
+    height: 100%;
+    min-width: auto;
+    display: flex;
+    gap: 10vw;
+    padding-right: 10vw;
+    font-size: 2.5vw;
+}
+
+.notizia {
+    min-width: auto;
+    margin: auto;
+    white-space: nowrap;
+}
+
 
 #meteo {
     grid-column-start: 1;
@@ -147,7 +166,7 @@ img {
     max-height: 100%;
     margin: var(--inner-spacing);
     padding: 0;
-    background-color: white;
+    background-color: var(--colore-bg-riquadri);
     border: var(--border);
 }
 
@@ -175,7 +194,7 @@ img {
 
 #meteo .day-forecast .temp {
     display: flex;
-    gap: 0.3vw
+    gap: 0.5vw
 }
 
 #meteo .day-forecast .temp * {
@@ -202,10 +221,15 @@ img {
     width: 4vw !important;
 }
 
+#meteo .ww_source {
+    display: none !important;
+}
+
+
 #biblioteca {
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: var(--colore-bg-riquadri);
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 2;
@@ -243,7 +267,7 @@ img {
 }
 
 #logo {
-    background-color: white;
+    background-color: var(--colore-bg-riquadri);
     grid-column-start: 2;
     grid-column-end: 3;
     border: var(--border);
