@@ -15,7 +15,15 @@
         "active": true,
         "text": "Novità: inaugurazione nuova ala dell'edificio scolastico il 31 gennaio"
     },
-    "00005": {
+    "00007": {
+        "active": false,
+        "text": ""
+    },
+    "00008": {
+        "active": false,
+        "text": "Novità: Nuova aula insegnati! (situata nella nuova ala)"
+    },
+    "00009": {
         "active": false,
         "text": "alla prossima non mi pagano per scrivere ste cose"
     }

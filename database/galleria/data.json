@@ -1,0 +1,86 @@
+{
+    "00001": {
+        "active": true,
+        "path": "Tantiindirizzi.png",
+        "text": "Apertura del bando «Tanti indirizzi un istituto»",
+        "type": "image"
+    },
+    "00003": {
+        "active": false,
+        "path": "00003.jpg",
+        "text": "La Vocazione di San Matteo",
+        "type": "image"
+    },
+    "00004": {
+        "active": false,
+        "path": "00004.mp4",
+        "text": "Napoleone Bonaparte-Barbero",
+        "type": "video"
+    },
+    "0005": {
+        "active": false,
+        "path": "display100martafuturo.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type": "image"
+    },
+    "00006": {
+        "active": false,
+        "path": "sAv1uSZYw6c",
+        "text": "video youtube prova",
+        "type": "youtube"
+    },
+    "00007": {
+        "active": true,
+        "path": "progettobando.jpg",
+        "text": "Nuovo loco per il murales del bando «Tanti indirizzi un istituto»",
+        "type": "image"
+    },
+    "00008": {
+        "active": false,
+        "path": "display100martapassato.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type": "image"
+    },
+    "00009": {
+        "active": true,
+        "path": "00011.jpg",
+        "text": "Profilo instagram del gruppo «La_rivoluzione_dei_libri» del Gandhi",
+        "type": "image"
+    },
+    "00010": {
+        "active": false,
+        "path": "display100martapresente.png",
+        "text": "Un display per il centenario 1923-2023",
+        "type": "image"
+    },
+    "00011": {
+        "active": false,
+        "path": "infopointgroup.jpg",
+        "text": "Laboratorio HackingTheSchool 2023-2024",
+        "type": "image"
+    },
+    "00012": {
+        "active": true,
+        "path": "IA.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00013": {
+        "active": true,
+        "path": "All’Istituto Gandhi piccoli gesti per l’ambiente.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00014": {
+        "active": true,
+        "path": "safer internet day.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00015": {
+        "active": true,
+        "path": "Grandma's Special Herbs.jpg",
+        "text": "",
+        "type": "image"
+    }
+}
