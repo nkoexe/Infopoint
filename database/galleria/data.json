@@ -28,5 +28,12 @@
         "path": "All’Istituto Gandhi piccoli gesti per l’ambiente.jpg",
         "text": "",
         "type": "image"
+    },
+    "0014"{
+        "active": true,
+        "path": ".jpg",
+        "text": "MarcoMontali.jpg",
+        "type": "image"
     }
+
 }
