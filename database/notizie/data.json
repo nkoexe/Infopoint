@@ -4,7 +4,7 @@
         "text": "Buon anno nuovo!!"
     },
     "00002": {
-        "active": true,
+        "active": false,
         "text": "Nuovo Infopoint Powered by Laboratorio HackingTheSchool"
     },
     "00003": {
@@ -12,12 +12,12 @@
         "text": "«Tanti indirizzi un istituto»: Aperto bando per colonna e fregio artistici | Scadenza: 31 Marzo 2024 | Partecipate numerosi!!"
     },
     "00004": {
-        "active": true,
+        "active": false,
         "text": "Novità: inaugurazione nuova ala dell'edificio scolastico il 31 gennaio"
     },
     "00007": {
-        "active": false,
-        "text": ""
+        "active": true,
+        "text": "Prove Invalsi per classi quinte: 1 marzo - 7 marzo"
     },
     "00008": {
         "active": false,
