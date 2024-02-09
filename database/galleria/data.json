@@ -31,8 +31,8 @@
     },
     "00014": {
         "active": true,
-        "path": ".jpg",
-        "text": "MarcoMontali.jpg",
+        "path": "MarcoMontali.jpg",
+        "text": "",
         "type": "image"
     }
 }
