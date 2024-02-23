@@ -30,7 +30,7 @@
         "type": "image"
     },
     "00014": {
-        "active": true,
+        "active": false,
         "path": "MarcoMontali.jpg",
         "text": "",
         "type": "image"
