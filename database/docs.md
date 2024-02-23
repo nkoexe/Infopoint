@@ -18,9 +18,9 @@ Qui di seguito la struttura e una descrizione di ogni categoria.
 JSON di esempio:
 
     {
-      "active": "4",
+      "active": "00001",
       "books": {
-        "1": {
+        "00001": {
             "descr": "Descrizione del libro",
             "img": "/path/to/img.png",
             "title": "Titolone"
@@ -37,53 +37,56 @@ Ogni libro, oltre a titolo e descrizione, ha un campo "img", in cui è indicato 
 JSON di esempio:
 
     {
-      "1":  {
+      "00001":  {
           "text": "test",
           "type": "image",
           "path": "/data/2022-10/img.png",
           "active": true
       },
-      "2": {
+      "00002": {
           "text": "test2",
           "type": "video",
           "path": "/path/to/video.mp4",
           "active": false
       },
-      "3": {
-          "text": "test3",
+      "00003": {
+          "text": "",
           "type": "youtube",
-          "path": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+          "path": "dQw4w9WgXcQ",
           "active": true
       }
     }
 
 Nel riquadro della galleria invece, gli elementi attivi possono essere più di uno. Per questo l'attributo "active" è presente in ogni elemento.
-Il campo "text" è la descrizione del media.
-Ogni elemento può essere di tre tipi: immagine, video o youtube.
+Il campo "text" è la descrizione del media, la didascalia che verrà mostrata assieme ad esso. Può essere un campo vuoto.
+Ogni elemento può essere di tre tipi: immagine, video o video da YouTube.
 Il tipo è determinato dal campo "type":
 
-- se "type" è "image", il campo "path" contiene il percorso dell'immagine;
-- se "type" è "video", il campo "path" contiene il percorso del video;
-- se "type" è "youtube", il campo "path" contiene il link del video youtube.
-  Come per la biblioteca, i campi "path" per immagini e video sono relativi alla cartella "files/" (ovviamente di questa cartella, cioè "database/galleria/files/").
+- se "type" è "image", il campo "path" contiene il percorso locale dell'immagine;
+- se "type" è "video", il campo "path" contiene il percorso locale del video;
+- se "type" è "youtube", il campo "path" contiene l'id del video di YouTube.
+
+Come per la biblioteca, i campi "path" per immagini e video locali sono relativi alla cartella "files/" della cartella della galleria (cioè "database/galleria/files/").
+L'id del video di YouTube viene estratto dal link che l'utente provvede tramite il backend ed inserito nel database automaticamente, per risalire al link originale basta aggiungere l'url base di Youtube. Ad "https://www.youtube.com/watch?v=" quindi si aggiunge la stringa dell'id.
+Similarmente, se si vuole estrarre l'id da un link, bisogna estrarre soltanto il parametro "v" dell'url. Se il link originale è "https://www.youtube.com/watch?v=dQw4w9WgXcQ", l'id del video è "dQw4w9WgXcQ". Per i link brevi ("https://youtu.be/"), scartare tutti i parametri dell'url (tutto quello che segue "?") e inserire soltanto il codice che segue la base dell'url breve. Esempio, da "https://youtu.be/dQw4w9WgXcQ?si=fjpJIurLpmfGxS-_" si scartano i parametri, quindi "https://youtu.be/dQw4w9WgXcQ", e scartando anche la base dell'url si ottiene il codice, "dQw4w9WgXcQ".
 
 ### Notizie
 
 JSON di esempio:
 
     {
-      "1": {
+      "00001": {
           "active": true,
-          "text": "test1"
+          "text": "Questa è una notizia di test. Hello, world!"
       },
-      "2": {
+      "00002": {
           "active": false,
-          "text": "Heyoooo questa è una notizia di test figata assurda"
+          "text": "Heyoooo figata assurda"
       }
     }
 
 Come per la galleria, gli elementi sono ordinati in base al numero del loro ID (numero incrementale), e il campo "active" per ogni elemento indica se esso deve essere mostrato o meno.
-Il campo "text" è il testo della notizia miseria è autoesplicativo.
+Il campo "text" è il testo della notizia.
 
 _Domande_:
 
