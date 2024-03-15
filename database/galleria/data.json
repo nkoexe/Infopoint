@@ -51,6 +51,24 @@
     "active": true,
     "path": "pane.jpg",
     "text": "",
-    "type": "image"}
+    "type": "image"},
+
+    "00018": {
+        "active": true,
+        "path": "Roma.jpg",
+        "text": "",
+        "type": "image"},
+    
+    "00019": {
+        "active": true,
+        "path": "Romaina.jpg",
+        "text": "",
+        "type": "image"},
+
+    "00019": {
+        "active": true,
+        "path": "Romania.jpg",
+        "text": "",
+        "type": "image"}
 
 }
