@@ -70,4 +70,16 @@
         "path": "romania.jpg",
         "text": "",
         "type": "image"},
+
+        "00021": {
+            "active": true,
+            "path": "Pizza.jpg",
+            "text": "",
+            "type": "image"},
+    
+        "00020": {
+            "active": true,
+            "path": "Bullismo.jpg",
+            "text": "",
+            "type": "image"}
 }
