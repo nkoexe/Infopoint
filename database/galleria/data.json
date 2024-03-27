@@ -1,12 +1,12 @@
 {
     "00001": {
-        "active": true,
+        "active": false,
         "path": "Tantiindirizzi.png",
         "text": "Apertura del bando «Tanti indirizzi un istituto»",
         "type": "image"
     },
     "00007": {
-        "active": true,
+        "active": false,
         "path": "progettobando.jpg",
         "text": "Nuovo loco per il murales del bando «Tanti indirizzi un istituto»",
         "type": "image"
@@ -24,7 +24,7 @@
         "type": "image"
     },
     "00013": {
-        "active": true,
+        "active": false,
         "path": "All’Istituto Gandhi piccoli gesti per l’ambiente.jpg",
         "text": "",
         "type": "image"
@@ -79,7 +79,7 @@
     },
     "00022": {
         "active": true,
-        "path": "Bullismo.jpg",
+        "path": "consorsoUSSA.jpg",
         "text": "",
         "type": "image"
     },
@@ -96,14 +96,8 @@
         "type": "image"
     },
     "00025": {
-        "active": true,
+        "active": false,
         "path": "GiornataMondialeConsapevolezzaAutismo.jpg",
-        "text": "",
-        "type": "image"
-    },
-    "00026": {
-        "active": true,
-        "path": "consorsoUSSA.jpg",
         "text": "",
         "type": "image"
     }
