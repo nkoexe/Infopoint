@@ -100,5 +100,11 @@
         "path": "GiornataMondialeConsapevolezzaAutismo.jpg",
         "text": "",
         "type": "image"
+    },
+    "00026": {
+        "active": true,
+        "path": "consorsoUSSA.jpg",
+        "text": "",
+        "type": "image"
     }
 }
