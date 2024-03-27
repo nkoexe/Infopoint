@@ -71,6 +71,18 @@
         "text": "",
         "type": "image"
     },
+    "00021": {
+        "active": true,
+        "path": "Pizza.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00022": {
+        "active": true,
+        "path": "Bullismo.jpg",
+        "text": "",
+        "type": "image"
+    },
     "00023": {
         "active": false,
         "path": "DownSyndromeDay.jpeg",
