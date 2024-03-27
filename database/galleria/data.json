@@ -48,27 +48,45 @@
         "type": "image"
     },
     "00017": {
-    "active": true,
-    "path": "pane.jpg",
-    "text": "",
-    "type": "image"},
-
+        "active": true,
+        "path": "pane.jpg",
+        "text": "",
+        "type": "image"
+    },
     "00018": {
         "active": true,
         "path": "Roma.jpg",
         "text": "",
-        "type": "image"},
-    
+        "type": "image"
+    },
     "00019": {
         "active": true,
         "path": "Romaina.jpg",
         "text": "",
-        "type": "image"},
-
+        "type": "image"
+    },
     "00020": {
         "active": true,
         "path": "romania.jpg",
         "text": "",
-        "type": "image"}
-
+        "type": "image"
+    },
+    "00023": {
+        "active": false,
+        "path": "DownSyndromeDay.jpeg",
+        "text": "",
+        "type": "image"
+    },
+    "00024": {
+        "active": true,
+        "path": "OltreLeStellePiuLontane.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00025": {
+        "active": true,
+        "path": "GiornataMondialeConsapevolezzaAutismo.jpg",
+        "text": "",
+        "type": "image"
+    }
 }
