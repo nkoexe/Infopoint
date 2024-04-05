@@ -8,7 +8,7 @@
         "text": "Nuovo Infopoint Powered by Laboratorio HackingTheSchool"
     },
     "00003": {
-        "active": true,
+        "active": false,
         "text": "«Tanti indirizzi un istituto»: Aperto bando per colonna e fregio artistici | Scadenza: 31 Marzo 2024 | Partecipate numerosi!!"
     },
     "00004": {
@@ -26,5 +26,9 @@
     "00009": {
         "active": false,
         "text": "alla prossima non mi pagano per scrivere ste cose"
-    }
+    },
+    "00010": {
+        "active": true,
+        "text": "Incontro con il magistrato Marisa Manzini sul tema <<Fai silenzio ca parrasti assai. Il potere della parola contro la 'ndrangheta>>"
+    }   
 }
