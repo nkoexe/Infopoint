@@ -1,6 +1,6 @@
 // const template_youtube = `<iframe id="galleria_youtube" src="{src}" type="text/html" frameborder="0" allow="autoplay; encrypted-media" sandbox="allow-same-origin allow-scripts" allowfullscreen></iframe>`
 const template_video = `<video id="galleria_video" onended="cambia_elemento_galleria()" autoplay controls><source src="{src}" type="video/mp4"></video>`
-const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Se stai leggendo questo testo, contatta <>" />`
+const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Whoops! />`
 
 // Path messo come fix per proxy
 const socket = io('/frontend', { path: "/infopoint/socket.io" });
@@ -51,6 +51,13 @@ document.onkeydown = (event) => {
 
 
 function cambia_elemento_galleria() {
+    if (dati_galleria.length === 0) {
+        setTimeout(() => {
+            cambia_elemento_galleria();
+        }, 1000);
+        return;
+    }
+
     index_galleria = (index_galleria + 1) % dati_galleria.length;
     let elemento = dati_galleria[index_galleria];
 
@@ -100,7 +107,7 @@ function cambia_elemento_galleria() {
     }
 };
 
-
+cambia_elemento_galleria()
 
 // -------------------------------
 
@@ -118,11 +125,10 @@ socket.on('galleria', (data) => {
     dati_galleria = [];
     for (elemento in data) {
         if (data[elemento].active) {
+                        
             dati_galleria.push(data[elemento]);
         }
     }
-
-    cambia_elemento_galleria();
 })
 
 socket.on('notizie', (data) => {

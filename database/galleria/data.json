@@ -1,12 +1,12 @@
 {
     "00001": {
-        "active": true,
+        "active": false,
         "path": "Tantiindirizzi.png",
         "text": "Apertura del bando «Tanti indirizzi un istituto»",
         "type": "image"
     },
     "00007": {
-        "active": true,
+        "active": false,
         "path": "progettobando.jpg",
         "text": "Nuovo loco per il murales del bando «Tanti indirizzi un istituto»",
         "type": "image"
@@ -24,7 +24,7 @@
         "type": "image"
     },
     "00013": {
-        "active": true,
+        "active": false,
         "path": "All’Istituto Gandhi piccoli gesti per l’ambiente.jpg",
         "text": "",
         "type": "image"
@@ -48,33 +48,39 @@
         "type": "image"
     },
     "00017": {
-    "active": true,
-    "path": "pane.jpg",
-    "text": "",
-    "type": "image"},
-
+        "active": true,
+        "path": "pane.jpg",
+        "text": "",
+        "type": "image"
+    },
     "00018": {
         "active": true,
         "path": "Roma.jpg",
         "text": "",
-        "type": "image"},
-    
+        "type": "image"
+    },
     "00019": {
         "active": true,
         "path": "Romaina.jpg",
         "text": "",
-        "type": "image"},
-
+        "type": "image"
+    },
     "00020": {
         "active": true,
         "path": "romania.jpg",
         "text": "",
+<<<<<<< HEAD
         "type": "image"},
 
+=======
+        "type": "image"
+    },
+>>>>>>> 34e6704e97260a12fa707ba43326e2ba191dd3cd
     "00021": {
         "active": true,
         "path": "Pizza.jpg",
         "text": "",
+<<<<<<< HEAD
         "type": "image"},
 
     "00020": {
@@ -82,4 +88,32 @@
         "path": "Bullismo.jpg",
         "text": "",
         "type": "image"}
+=======
+        "type": "image"
+    },
+    "00022": {
+        "active": true,
+        "path": "concorsoUSSA.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00023": {
+        "active": false,
+        "path": "DownSyndromeDay.jpeg",
+        "text": "",
+        "type": "image"
+    },
+    "00024": {
+        "active": true,
+        "path": "OltreLeStellePiuLontane.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00025": {
+        "active": false,
+        "path": "GiornataMondialeConsapevolezzaAutismo.jpg",
+        "text": "",
+        "type": "image"
+    }
+>>>>>>> 34e6704e97260a12fa707ba43326e2ba191dd3cd
 }
