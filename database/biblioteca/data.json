@@ -1,5 +1,5 @@
 {
-    "active": "00003",
+    "active": "00004",
     "books": {
         "00001": {
             "descr": "Il 2023 ha segnato il 100° anniversario dalla fondazione del Liceo Classico. Questo libro ripercorre i personaggi e momenti salienti di una delle scuole storiche altoatesine.",
@@ -15,6 +15,12 @@
             "descr": "di Charlotte Link - Una nuova indagine per Kate Linville, la protagonista più amata della regina tedesca del giallo. - «I thriller di Charlotte Link non sono mai solo casi da risolvere, sono storie di uomini e donne, di solitudine e di speranze distrutte. Sono libri che emozionano. Fino alla fine.» - Deutsche Presse Agentur",
             "img": "00003.jpg",
             "title": "La notte di Kate"
-        }
+        },
+        "00004": {
+            "descr": "di Marisa Manzini - L’autrice, noto magistrato, racconta la vita delle donne all’interno delle famiglie di ‘ndrangheta, che troppo spesso divengono strumento dell’organizzazione. Il cambiamento potrà avvenire solo se la componente femminile, che tramanda i sub valori mafiosi, rifiuterà tale compito e se le donne si trasformeranno in donne combattenti.",
+            "img": "ndranghetadonnelibro.jpg",
+            "title": "Donne Custodi, Donne combattenti"
+        },
+
     }
 }
