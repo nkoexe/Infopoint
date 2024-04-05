@@ -69,28 +69,14 @@
         "active": true,
         "path": "romania.jpg",
         "text": "",
-<<<<<<< HEAD
-        "type": "image"},
-
-=======
         "type": "image"
     },
->>>>>>> 34e6704e97260a12fa707ba43326e2ba191dd3cd
     "00021": {
         "active": true,
         "path": "Pizza.jpg",
         "text": "",
-<<<<<<< HEAD
-        "type": "image"},
-
-    "00020": {
-        "active": true,
-        "path": "Bullismo.jpg",
-        "text": "",
-        "type": "image"}
-=======
         "type": "image"
-    },
+        },
     "00022": {
         "active": true,
         "path": "concorsoUSSA.jpg",
@@ -115,5 +101,4 @@
         "text": "",
         "type": "image"
     }
->>>>>>> 34e6704e97260a12fa707ba43326e2ba191dd3cd
 }
