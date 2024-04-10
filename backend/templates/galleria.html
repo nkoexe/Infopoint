@@ -7,9 +7,9 @@ endblock %}{% block content %}
   <label class="text" for="copertina"> Aggiungi foto/video: </label>
   <input type="file" id="input_galleria" name="galleria" accept="image/*" />
   <label class="text" for="copertina">&emsp;|&emsp;Aggiungi link: </label>
-  <input type="url" id="input_link" name="link" />  <br />
+  <input type="url" id="input_link" name="link" /> <br />
   <label class="text" for="titolo"> Inserisci descrizione: </label>
-  <input type="text" id="input_descrizione" name="descrizione" required /><br />
+  <input type="text" id="input_descrizione" name="descrizione" /><br />
   <label class="text" for="titolo"> Attivo: </label>
   <input type="checkbox" id="activecheck" name="checkbox"> <br />
   <button type="submit" id="galleriasubmit" class="btn">Invia</button>
@@ -20,11 +20,11 @@ endblock %}{% block content %}
   <li id="{{ id }}">
     <div class="bcont">
       <div class="b">
-        <div><img id="img.{{ id }}" src="{{ url_for('media', filename='galleria/files/' + media[id]['path'] ) }}" alt="{{ media[id]['path'] }}"></div>
-        <div id="desc.{{ id }}" class="text">{{ media[id]['text'] }}</div>
+        <div><img id="img-{{ id }}" src="{{ url_for('media', filename='galleria/files/' + media[id]['path'] ) }}" alt="{{ media[id]['path'] }}"></div>
+        <div id="desc-{{ id }}" class="text">{{ media[id]['text'] }}</div>
       </div>
       <div class="bbtncont">
-        <button onclick="imgshow('{{ id }}')">attiva</button>
+        <button onclick="imgshow('{{ id }}')"><span class="material-icons">{% if media[id]['active'] %} visibility {% else %} visibility_off {% endif %}</span></button>
         <button id="bookedit" onclick="imgedit('{{ id }}')">modifica</button>
         <button id="duplicate" onclick="duplicate('{{ id }}')">duplica</button>
         <button onclick="imgdel('{{ id }}')">elimina</button>

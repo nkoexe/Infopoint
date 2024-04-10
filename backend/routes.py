@@ -124,7 +124,7 @@ def galleria():
             active = False
         logging.debug(active)
 
-        if media and text:
+        if media.filename or link:
             galleriadb.add(text, active, media, link)
 
         return redirect("/galleria")
@@ -135,9 +135,11 @@ def galleria():
 
     elif request.method == "PUT":
         id = request.form["id"]
-        # Modifica dello stato visibile o meno della notizia
+        # Inverti la visibilità
         if "active" in request.form:
-            galleriadb.editActive(id, active=True)
+            element = galleriadb.data.get(id)
+            if element is not None:
+                galleriadb.edit(id, active=(not element["active"]))
 
     return "ok"
 

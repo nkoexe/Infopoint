@@ -125,7 +125,6 @@ socket.on('galleria', (data) => {
     dati_galleria = [];
     for (elemento in data) {
         if (data[elemento].active) {
-                        
             dati_galleria.push(data[elemento]);
         }
     }

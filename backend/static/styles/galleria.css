@@ -11,6 +11,14 @@
     padding: 10px;
 }
 
+.b {
+    flex: 1;
+}
+
+.b img {
+    height: 300px;
+}
+
 .bbtncont {
     margin-left: 10px;
     display: flex;

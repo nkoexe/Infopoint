@@ -14,17 +14,6 @@ let notizie_should_scroll = false
 let notizie_marginleft = 0;
 
 
-function format_notizia_to_html(testo) {
-    return ui_notizia_html_template.replace("{testo}", testo)
-}
-
-
-function add_notizia_to_ui_list(testo) {
-    const notizia_html = format_notizia_to_html(testo)
-    ui_notizie_lista.innerHTML += notizia_html
-}
-
-
 function refresh_notizie() {
     ui_notizie_lista.innerHTML = ""
 
@@ -35,9 +24,21 @@ function refresh_notizie() {
 
     for (const notizia of Object.values(notizie)) {
         if (notizia.active) {
-            add_notizia_to_ui_list(notizia.text)
+            // escape html characters that can cause trouble
+            const escapedText = notizia.text.replace(/[&<>"']/g, function (m) {
+                return {
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '"': '&quot;',
+                    "'": '&#039;'
+                }[m];
+            });
+            const notizia_html = ui_notizia_html_template.replace("{testo}", escapedText);
+            ui_notizie_lista.insertAdjacentHTML('beforeend', notizia_html);
         }
     }
+
 
     // No need for scroll if total length is smaller than container (plus 20px of padding)
     if (ui_notizie_lista.clientWidth < ui_notizie_container.clientWidth - 20) {

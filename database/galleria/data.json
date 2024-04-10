@@ -9,7 +9,7 @@
         "active": false,
         "path": "progettobando.jpg",
         "text": "Nuovo loco per il murales del bando «Tanti indirizzi un istituto»",
-        "type": "image" 
+        "type": "image"
     },
     "00009": {
         "active": true,
@@ -76,7 +76,7 @@
         "path": "Pizza.jpg",
         "text": "",
         "type": "image"
-        },
+    },
     "00022": {
         "active": true,
         "path": "concorsoUSSA.jpg",
@@ -100,5 +100,17 @@
         "path": "GiornataMondialeConsapevolezzaAutismo.jpg",
         "text": "",
         "type": "image"
+    },
+    "00027": {
+        "active": true,
+        "path": "NGvas_-TMR0",
+        "text": "",
+        "type": "youtube"
+    },
+    "00028": {
+        "active": true,
+        "path": "a5sKBh_XrZk?si=FRKwUQgwkEPjEM9z",
+        "text": "",
+        "type": "youtube"
     }
 }
