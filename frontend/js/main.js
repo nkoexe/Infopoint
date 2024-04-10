@@ -1,6 +1,6 @@
 // const template_youtube = `<iframe id="galleria_youtube" src="{src}" type="text/html" frameborder="0" allow="autoplay; encrypted-media" sandbox="allow-same-origin allow-scripts" allowfullscreen></iframe>`
 const template_video = `<video id="galleria_video" onended="cambia_elemento_galleria()" autoplay controls><source src="{src}" type="video/mp4"></video>`
-const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Whoops! />`
+const template_immagine = `<img id="galleria_immagine" src="{src}" alt="Qui ci dovrebbe essere un'immagine. Whoops!" />`
 
 // Path messo come fix per proxy
 const socket = io('/frontend', { path: "/infopoint/socket.io" });
