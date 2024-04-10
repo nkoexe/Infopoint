@@ -101,16 +101,16 @@
         "text": "",
         "type": "image"
     },
+    "00026": {
+        "active": true,
+        "path": "locandinaManzini.png",
+        "text": "",
+        "type": "image"
+    },
     "00027": {
         "active": true,
-        "path": "NGvas_-TMR0",
-        "text": "",
-        "type": "youtube"
-    },
-    "00028": {
-        "active": true,
-        "path": "a5sKBh_XrZk?si=FRKwUQgwkEPjEM9z",
-        "text": "",
-        "type": "youtube"
+        "path": "INCONTROCONMARISAMANZINI-libri.png",
+        "text": "Consigli di lettura...",
+        "type": "image"
     }
 }
