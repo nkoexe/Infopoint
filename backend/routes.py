@@ -202,3 +202,16 @@ def zoom():
         emit("setzoom", str(level) + "%", broadcast=True, namespace="/frontend")
 
     return "ok"
+
+
+@app.route("/update")
+@login_richiesto
+@ruolo_richiesto.admin
+def update():
+    import subprocess
+
+    subprocess.check_call(["/usr/bin/git", "pull"])
+
+    subprocess.check_call(["/usr/bin/systemctl", "restart", "infopoint.service", "&"])
+
+    return "Updating..."
