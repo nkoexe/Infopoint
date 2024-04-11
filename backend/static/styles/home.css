@@ -1,0 +1,22 @@
+#container-pulsanti-home {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+#container-pulsanti-home a {
+    height: 100px;
+    text-align: center;
+    color: white;
+    background-color: #C00F19;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1.5em;
+}
+
+@media (max-width: 600px) {
+    #container-pulsanti-home {
+        grid-template-columns: 1fr;
+    }
+}
