@@ -20,6 +20,7 @@
     {% endif %}
     {% if user.admin %}
     <a href="{{url_for('impostazioni')}}">Modifica impostazioni</a>
+    <a href="{{url_for('update')}}">Aggiorna il sistema</a>
     {% endif %}
     <a href="{{url_for('logout')}}">Logout</a>
 </div>
