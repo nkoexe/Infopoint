@@ -90,7 +90,7 @@
         "type": "image"
     },
     "00024": {
-        "active": true,
+        "active": false,
         "path": "OltreLeStellePiuLontane.jpg",
         "text": "",
         "type": "image"
@@ -102,15 +102,39 @@
         "type": "image"
     },
     "00026": {
-        "active": true,
+        "active": false,
         "path": "locandinaManzini.png",
         "text": "",
         "type": "image"
     },
     "00027": {
-        "active": true,
+        "active": false,
         "path": "INCONTROCONMARISAMANZINI-libri.png",
         "text": "Consigli di lettura...",
+        "type": "image"
+    },
+    "00028": {
+        "active": true,
+        "path": "bigliettiPapere.png",
+        "text": "",
+        "type": "image"
+    },
+    "00029": {
+        "active": true,
+        "path": "PresentazioneFerragina_ScrittricePodcaster_EVENTOGANDHI.png",
+        "text": "",
+        "type": "image"
+    },
+    "00030": {
+        "active": true,
+        "path": "2LSalMuse.png",
+        "text": "",
+        "type": "image"
+    },
+    "00031": {
+        "active": true,
+        "path": "3LSallaDucati.png",
+        "text": "",
         "type": "image"
     }
 }
