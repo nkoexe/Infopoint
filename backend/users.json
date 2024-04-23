@@ -55,5 +55,12 @@
         "roles": [
             "admin"
         ]
+    },
+    "00009": {
+        "name": "chiara",
+        "hash": "047f923da87fe3b0ff6f570c60858927d27b15d684d050035482374ff3e91906",
+        "roles": [
+            "admin"
+        ]
     }
 }
