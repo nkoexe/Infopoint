@@ -1,6 +1,6 @@
 function bookdel(id) {
     $.ajax({
-        url: "/biblioteca",
+        url: "",
         type: "DELETE",
         data: {
             "id": id
@@ -17,7 +17,7 @@ function bookdel(id) {
 
 function bookshow(id) {
     $.ajax({
-        url: "/biblioteca",
+        url: "",
         type: "PUT",
         data: {
             "id": id,
@@ -84,7 +84,7 @@ function duplicate(id) {
     var img = document.getElementById('img.' + id).alt;
 
     $.ajax({
-        url: "/biblioteca",
+        url: "",
         type: "POST",
         data: {
             "titolo": titolo,

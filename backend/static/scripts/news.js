@@ -2,19 +2,19 @@ function newsshow(id) {
     /* Toggle the visibility of a news element */
 
     // Icon and text of the element
-    var showbtn = document.getElementById("newsshowicon"+id);
+    var showbtn = document.getElementById("newsshowicon" + id);
     var newstext = document.getElementById(id);
 
     // Send the request to the server
     $.ajax({
-        url: "/notizie",
+        url: "",
         type: "PUT",
         data: {
             "id": id,
             // To reverse the visibility just send this, the server will do the rest
             "active": ""
         },
-        success: function(data) {
+        success: function (data) {
             if (data == "ko") {
                 alert("Errore");
             } else if (data == '1') {
@@ -58,13 +58,13 @@ function newseditsave(id) {
 
     // Send the new text to the server
     $.ajax({
-        url: "/notizie",
+        url: "",
         type: "PUT",
         data: {
             "id": id,
             "text": text
         },
-        success: function(data) {
+        success: function (data) {
             // On success, reload the page, otherwise show the error
             if (data == "ok") {
                 location.reload();
@@ -94,12 +94,12 @@ function newseditcanc(id) {
 
 function newsdel(id) {
     $.ajax({
-        url: "/notizie",
+        url: "",
         type: "DELETE",
         data: {
             "id": id
         },
-        success: function(data) {
+        success: function (data) {
             // Remove list element instead of reloading.
             // add an id to the element ("list0002"), find it, .remove() it
             location.reload();

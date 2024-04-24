@@ -19,15 +19,21 @@ endblock %}{% block content %}
   {% for id in media %}
   <li id="{{ id }}">
     <div class="bcont">
-      <div class="b">
-        <div><img id="img-{{ id }}" src="{{ url_for('media', filename='galleria/files/' + media[id]['path'] ) }}" alt="{{ media[id]['path'] }}"></div>
+      <div class="b {% if not media[id]['active'] %}non_pubblicato{% endif %}">
+        {% if media[id]['type'] == 'youtube' %}
+        <iframe id="img-{{ id }}" class="bmedia" src="https://www.youtube.com/embed/{{ media[id]['path'] }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% elif media[id]['type'] == 'video' %}
+        <video id="img-{{ id }}" class="bmedia" src="{{ url_for('media', filename='galleria/files/' + media[id]['path'] ) }}" controls></video>
+        {% else %}
+        <img id="img-{{ id }}" class="bmedia" src="{{ url_for('media', filename='galleria/files/' + media[id]['path'] ) }}" alt="{{ media[id]['path'] }}">
+        {% endif %}
         <div id="desc-{{ id }}" class="text">{{ media[id]['text'] }}</div>
       </div>
       <div class="bbtncont">
-        <button onclick="imgshow('{{ id }}')"><span class="material-icons">{% if media[id]['active'] %} visibility {% else %} visibility_off {% endif %}</span></button>
-        <button id="bookedit" onclick="imgedit('{{ id }}')">modifica</button>
-        <button id="duplicate" onclick="duplicate('{{ id }}')">duplica</button>
-        <button onclick="imgdel('{{ id }}')">elimina</button>
+        <button class="bbtn" onclick="imgshow('{{ id }}')"><span class="material-icons">{% if media[id]['active'] %} visibility {% else %} visibility_off {% endif %}</span></button>
+        <button id="bookedit" class="bbtn" onclick="imgedit('{{ id }}')"><span class="material-icons">edit</span></button>
+        <!-- <button id="duplicate" class="bbtn" onclick="duplicate('{{ id }}')">duplica</button> -->
+        <button class="bbtn" onclick="imgdel('{{ id }}')"><span class="material-icons">delete</span></button>
       </div>
     </div>
   </li>
