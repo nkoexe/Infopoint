@@ -136,5 +136,17 @@
         "path": "3LSallaDucati.png",
         "text": "",
         "type": "image"
+    },
+    "00032": {
+        "active": true,
+        "path": "doblone.png",
+        "text": "",
+        "type": "image"
+    },
+    "00034": {
+        "active": true,
+        "path": "laboratorio.png",
+        "text": "",
+        "type": "image"
     }
 }
