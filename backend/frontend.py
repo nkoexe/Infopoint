@@ -56,4 +56,7 @@ def aggiorna_notizie():
 
 
 def aggiorna_galleria():
-    socketio.emit("galleria", galleriadb.data, namespace="/frontend")
+    galleria = {
+        id: elemento for id, elemento in galleriadb.data.items() if elemento["active"]
+    }
+    socketio.emit("galleria", galleria, namespace="/frontend")

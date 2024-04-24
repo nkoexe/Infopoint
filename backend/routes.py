@@ -15,6 +15,7 @@ app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1, x_prefix=1)
 
 from auth import users, login_richiesto, ruolo_richiesto, current_user
 from databaseconnections import bibliotecadb, notiziedb, galleriadb, media_path
+from frontend import aggiorna_galleria, aggiorna_biblioteca, aggiorna_notizie
 
 logger = logging.getLogger(__name__)
 
@@ -127,6 +128,8 @@ def galleria():
         if media.filename or link:
             galleriadb.add(text, active, media, link)
 
+            aggiorna_galleria()
+
         return redirect("/galleria")
 
     elif request.method == "DELETE":
@@ -140,6 +143,8 @@ def galleria():
             element = galleriadb.data.get(id)
             if element is not None:
                 galleriadb.edit(id, active=(not element["active"]))
+
+    aggiorna_galleria()
 
     return "ok"
 
@@ -168,6 +173,8 @@ def notizie():
         if notizia:
             notiziedb.add(notizia)
 
+            aggiorna_notizie()
+
         return redirect("/notizie")
 
     # Aggiornamento della notizia
@@ -188,20 +195,23 @@ def notizie():
         if "active" in request.form:
             active = not notiziedb.data[id]["active"]
             notiziedb.edit(id, active=active)
+            aggiorna_notizie()
             return "1" if active else "0"
 
-    return "ok"
-
-
-@app.route("/zoom")
-@login_richiesto
-def zoom():
-    level = request.args.get("l", 100)
-
-    with app.test_request_context("/"):
-        emit("setzoom", str(level) + "%", broadcast=True, namespace="/frontend")
+    aggiorna_notizie()
 
     return "ok"
+
+
+# @app.route("/zoom")
+# @login_richiesto
+# def zoom():
+#     level = request.args.get("l", 100)
+
+#     with app.test_request_context("/"):
+#         emit("setzoom", str(level) + "%", broadcast=True, namespace="/frontend")
+
+#     return "ok"
 
 
 @app.route("/update")
@@ -212,6 +222,6 @@ def update():
 
     subprocess.check_call(["/usr/bin/git", "pull"])
 
-    subprocess.check_call(["/usr/bin/systemctl", "restart", "infopoint.service", "&"])
+    subprocess.Popen(["/usr/bin/systemctl", "restart", "infopoint.service"])
 
     return "Updating..."
