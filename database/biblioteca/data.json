@@ -1,5 +1,5 @@
 {
-    "active": "00004",
+    "active": "00005",
     "books": {
         "00001": {
             "descr": "Il 2023 ha segnato il 100° anniversario dalla fondazione del Liceo Classico. Questo libro ripercorre i personaggi e momenti salienti di una delle scuole storiche altoatesine.",
@@ -20,6 +20,11 @@
             "descr": "di Marisa Manzini - L’autrice, noto magistrato, racconta la vita delle donne all’interno delle famiglie di ‘ndrangheta, che troppo spesso divengono strumento dell’organizzazione. Il cambiamento potrà avvenire solo se la componente femminile, che tramanda i sub valori mafiosi, rifiuterà tale compito e se le donne si trasformeranno in donne combattenti.",
             "img": "ndranghetadonnelibro.jpeg",
             "title": "Donne Custodi, Donne combattenti"
+        },
+        "00005": {
+            "descr": "Una testimonianza unica e diretta, il diario di un’adolescenza rubata, ma soprattutto una voce di speranza per un mondo piombato di nuovo nella brutalità della guerra.",
+            "img": "guerra.jpeg",
+            "title": "Tu non sai cos'è la guerra"
         }
     }
 }
