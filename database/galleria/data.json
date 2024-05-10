@@ -150,8 +150,26 @@
         "type": "image"
     },
     "00035": {
-        "active": true,
+        "active": false,
         "path": "Cosadivento.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00036": {
+        "active": false,
+        "path": "Venezia.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00037": {
+        "active": false,
+        "path": "rope park.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00038": {
+        "active": false,
+        "path": "cosadimare.png",
         "text": "",
         "type": "image"
     }

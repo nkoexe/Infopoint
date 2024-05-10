@@ -36,7 +36,11 @@
         "text": "29 aprile 2024 giornata pedagogica: interruzione delle lezioni, attività pomeridiane e corsi serali"
     },
     "00012": {
-        "active": true,
+        "active": false,
         "text": "A tutti i docenti: si ricorda il questionario di valutazione del nuovo sistema delle sostituzioni! Grazie a tutte e tutti"
+    },
+    "00013": {
+        "active": true,
+        "text": "Ai docenti accompagnatori: sono gradite le foto delle uscite che farete!"
     }
 }
