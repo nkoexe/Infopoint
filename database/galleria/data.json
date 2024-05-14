@@ -12,7 +12,7 @@
         "type": "image"
     },
     "00009": {
-        "active": true,
+        "active": false,
         "path": "00011.jpg",
         "text": "Profilo Instagram del gruppo «La_rivoluzione_dei_libri» del Gandhi",
         "type": "image"
@@ -42,7 +42,7 @@
         "type": "image"
     },
     "00016": {
-        "active": true,
+        "active": false,
         "path": "uscita.jpg",
         "text": "",
         "type": "image"
@@ -120,7 +120,7 @@
         "type": "image"
     },
     "00029": {
-        "active": true,
+        "active": false,
         "path": "PresentazioneFerragina_ScrittricePodcaster_EVENTOGANDHI.png",
         "text": "",
         "type": "image"
@@ -146,6 +146,30 @@
     "00034": {
         "active": true,
         "path": "laboratorio.png",
+        "text": "",
+        "type": "image"
+    },
+    "00035": {
+        "active": false,
+        "path": "Cosadivento.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00036": {
+        "active": true,
+        "path": "Venezia.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00037": {
+        "active": true,
+        "path": "rope park.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00038": {
+        "active": true,
+        "path": "cosadimare.png",
         "text": "",
         "type": "image"
     }
