@@ -150,7 +150,7 @@
         "type": "image"
     },
     "00035": {
-        "active": true,
+        "active": false,
         "path": "Cosadivento.jpg",
         "text": "",
         "type": "image"
