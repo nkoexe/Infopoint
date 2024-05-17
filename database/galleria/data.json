@@ -178,5 +178,11 @@
         "path": "nazionali.jpg",
         "text": "",
         "type": "image"
+    },
+    "00040": {
+        "active": true,
+        "path": "video.jpg",
+        "text": "",
+        "type": "image"
     }
 }
