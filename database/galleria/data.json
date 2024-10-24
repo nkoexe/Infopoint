@@ -172,5 +172,17 @@
         "path": "cosadimare.png",
         "text": "",
         "type": "image"
+    },
+    "00039": {
+        "active": true,
+        "path": "nazionali.jpg",
+        "text": "",
+        "type": "image"
+    },
+    "00040": {
+        "active": true,
+        "path": "Video.jpg",
+        "text": "",
+        "type": "image"
     }
 }
