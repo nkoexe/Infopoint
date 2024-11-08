@@ -69,5 +69,12 @@
         "roles": [
             "admin"
         ]
+    },
+    "00011": {
+        "name": "momar",
+        "hash": "539d2eb301893d738af935e0bcc348b55ebb7ae35334467b9de5e9b44e707d30",
+        "roles": [
+            "admin"
+        ]
     }
 }
